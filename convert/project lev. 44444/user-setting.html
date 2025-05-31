@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Setting</title>
+    <link rel="stylesheet" href="user-setting.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body class="dashboard">
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.jpg" alt="EqualChance">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../final home/about2.html">Home</a></li>
+                    <li><a href="../jobs grid edit/index.html">Jobs</a></li>
+                    <li><a href="../Awareness.html">For You</a></li>
+                    <li><a href="../price/index.html">Payment</a></li>
+                </ul>
+            </nav>
+            <a href="user-profile.html">
+                <div class="user-menu">
+                    <div class="user-avatar">
+                        <img src="images/u_profile/marina.jpg" alt="User profile">
+                    </div>
+                    <span class="marina">Marina</span>
+            </div>
+            </a>
+        </div>
+    </header>
+
+    <!-- Dashboard Layout -->
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-menu">
+
+                <h4>Management</h4>
+                <ul>
+                    <li><a href="user-applied.html"><i class="ph ph-notepad">📝</i> My Applied</a></li>
+                </ul>
+
+                <h4>User</h4>
+                <ul>
+                    <li><a href="user-profile.html">👤 My Profile</a></li>
+                    <li class="active"><a href="user-setting.html">⚙️Edit Profile</a></li>
+                    <li><a href="user-change-pass.html">🔓Change Password</a></li>
+                    <li><a href="user-delete-profile.html">🗑️ Delete Profile</a></li>
+                    <li><a href="../final home/about2.html">🚪 Log Out</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h2>Edit Profile</h2>
+                <button id="save-publish-btn" class="btn-primary">Save & Publish</button>
+            </div>
+
+            <!-- CV File Section -->
+            <section class="card">
+                <h3>CV File</h3>
+                <div id="file-list-container" class="file-list">
+                    <div class="file-item">
+                        
+                        <button class="delete-btn"></button>
+                    </div>
+                </div>
+                <div class="file-upload">
+                    <label class="upload-btn">
+                        Choose File
+                        <input type="file" id="cv-upload" accept=".pdf,.doc,.docx">
+                    </label>
+                    <span>Upload file PDF, Doc, Docx</span>
+                </div>
+            </section>
+
+            <!-- Information Section -->
+            <section class="card">
+                <h3>Information</h3>
+                <div class="form-grid">
+                    <!-- Avatar Upload -->
+                    <div class="form-group full-width">
+                        <label> Upload a new photo: <span class="required">*</span></label>
+                        <div class="avatar-upload">
+                            <div class="avatar-preview">
+                                <i class="ph ph-image"></i>
+                                <img id="avatar-preview" src="#" alt="Preview" style="display: none;">
+                            </div>
+                            <div class="avatar-upload-controls">
+                                <strong>Upload your photo</strong>
+                                <p>JPG 320x240px</p>
+                                <label class="upload-btn">
+                                    Choose File
+                                    <input type="file" id="avatar-upload" accept="image/*">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personal Info -->
+                    <div class="form-group">
+                        <label for="full-name">Full Name: <span class="required">*</span></label>
+                        <input type="text" id="full-name" placeholder="Ex: John amir" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone number: <span class="required">*</span></label>
+                        <input type="tel" id="phone" placeholder="Ex: +1234567890" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email address: <span class="required">*</span></label>
+                        <input type="email" id="email" placeholder="Ex: john.amir@gmail.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Gender: <span class="required">*</span></label>
+                        <select>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="age">Age: <span class="required">*</span></label>
+                        <input type="number" id="age" value="32" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="education">Education: <span class="required">*</span></label>
+                        <input type="text" id="education" placeholder="Ex: Bacholar degree" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="major">Major: <span class="required">*</span></label>
+                        <input type="text" id="major" placeholder="Ex: Data Analyst" required>
+                    </div>
+                    
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>Experience time: <span class="required">*</span></label>
+                        <select>
+                            <option>>4 Years</option>
+                            <option>4 Years</option>
+                            <option>3 Years</option>
+                            <option>2 Years</option>
+                            <option>1 Year</option>
+                            <option>&lt; 1 Year</option>
+                            <option>0 Year</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>Language: <span class="required">*</span></label>
+                        <div class="tags-input">
+                            <input type="text" placeholder="Type your language...">
+                            <div class="tags-container"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Your Experience: <span class="required">*</span></label>
+                        <textarea rows="6" placeholder= "Ex: UI/UX designer with 5+ years in the industry. Specialized in creating intuitive user interfaces and engaging user experiences for web and mobile applications." ></textarea>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="user-setting.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>  Payment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo-white.png" alt="FreelanHub Logo">
+                </a>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="employers-dashboard.html" class="active">Dashboard</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-actions">
+                <div class="user-profile">
+                    <img src="assets/images/avatar/IMG-7.webp" alt="User Avatar">
+                    <span>Employer</span>
+                </div>
+            </div>
+        </div>
+    </header> -->
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="left">
+                <h1 class="logo">
+                    <a href="index.html">
+                        <img src="logo.png" alt="EqualChance" class="logo-white">
+                    </a>
+                </h1>
+            </div>
+            
+            <div class="navigator" style="margin-right: 500px;">
+                <ul class="nav-list">
+                    <li><a href="../final home/about2.html">Home</a></li>
+                    <li><a href="../Awareness.html">Awarness</a></li>
+                    <li><a href="../feedback/feedback.html">Feedback</a></li>
+                    <li ><a href="../final home/about2.html">log out</a></li>
+                </ul>
+            </div>
+                
+            <!-- <div class="user-block">
+                <a href="../final home/about2.html">
+                    <button class="log out">
+                        <img src="../assets/images/avatar/about1.webp" alt="User" class="user-avatar">
+                    </button>
+                </a>
+            </div> -->
+        </div>
+    </header>
+
+     <div class="dashboard-container">
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Payment</h1>
+            </div>
+            
+            <div class="payout-settings">
+                <!-- <h2>Payout Settings</h2> -->
+                
+                <div class="payout-methods">
+                    <button class="method-tab active" data-tab="bank">Bank Transfer</button>
+                    <button class="method-tab" data-tab="paypal">PayPal</button>
+                    <button class="method-tab" data-tab="paypal">Fawry</button>
+                </div>
+                
+                <form class="payout-form">
+                    <div class="form-row">
+<div class="form-group">
+    <label for="bank-country">Choose Your Bank</label>
+    <select id="bank-country" required>
+        <option value="">Select Bank</option>
+        <option value="nbe">البنك الأهلي المصري (National Bank of Egypt)</option>
+        <option value="bm">بنك مصر (Banque Misr)</option>
+        <option value="abe">البنك الزراعي المصري (Agricultural Bank of Egypt)</option>
+        <option value="idb">بنك التنمية الصناعية (Industrial Development Bank)</option>
+        <option value="cib">البنك التجاري الدولي CIB - البنك التجاري الدولي المصري (Commercial International Bank)</option>
+        <option value="qnb">بنك قطر الوطني QNB الأهلي (QNB الأهلي)</option>
+        <option value="ab">بنك الإسكندرية (Alexandria Bank)</option>
+        <option value="hsbc">بنك إتش إس بي سي (HSBC)</option>
+        <option value="faisal">بنك فيصل الإسلامي المصري (Faisal Islamic Bank of Egypt)</option>
+        <option value="aaib">البنك العربي الأفريقي الدولي (Arab African International Bank)</option>
+    </select>
+</div>
+
+                        
+                        <div class="form-group">
+                            <label for="swift-code">Bank BIC/SWIFT *</label>
+                            <input type="text" id="swift-code" placeholder="ABCDEFGHXYZ" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bank-address">Card number</label>
+                            <input type="text" id="bank-address" placeholder="Enter your card number" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bank-city">Bank City *</label>
+                            <input type="text" id="bank-city" placeholder="Cairo" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bank-cvv">Card number cvv</label>
+                             <input type="text" id="bank-cvv" placeholder="Enter your card number cvv" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="account-number">Account Number *</label>
+                            <input type="text" id="account-number" placeholder="10240135686" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="account-holder">Name of Account Holder *</label>
+                        <input type="text" id="account-holder" placeholder="Your Name" required>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary">Pay Now </button>
+                        <!-- <button type="submit" class="btn-primary">Add payment & Active</button> -->
+                    </div>
+                </form>
+        </main>
+    </div>
+    
+    <footer class="footer">
+        <p>2025 EQUAL CHANCE. All Rights Reserved</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

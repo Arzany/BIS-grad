@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Profile</title>
+    <link rel="stylesheet" href="company-profile.css">
+</head>
+<body class="dashboard-page">
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.jpg" alt="EqualChance Logo">
+                </a>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../final home/about2.html">Home</a></li>
+                    <li><a href="../Awareness.html">For you</a></li>
+                    <li><a href="../price/index.html">Payment</a></li>
+                    
+                </ul>
+            </nav>
+            
+            <div class="user-menu">
+                <div class="user-avatar">
+                    <img src="images/com. logo/mercedese.jpg" alt="company logo">
+                </div>
+                <span>Mercedes</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Main Content -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-menu">
+                <h4>Management</h4>
+                <ul>
+                    
+                    <li><a href="company-jobs.html"><i class="ph ph-gavel">💼</i> MY Jobs</a></li>
+                    <li><a href="company-submit-job.html"><i class="ph ph-gavel">📝</i> Submit Jobs</a></li>
+                </ul>
+                
+                <h4>Account</h4>
+                <ul>
+                    <li class="active"><a href="company-profile.html"><i class="ph ph-user-circle">👤</i> My Profile</a></li>
+                    <li><a href="company-profile-sett.html"><i class="ph ph-gear">⚙️</i>Edit Profile</a></li>
+                    <li><a href="company-change-pass.html"><i class="ph ph-gear">🔓</i>Change Password</a></li>
+                    <li><a href="company-delete-profile.html"><i class="ph ph-gear">🗑️</i>Delete Profile</a></li>
+                    <li><a href="../final home/about2.html"><i class="ph ph-sign-out">🚪</i> Logout</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <div class="profile-header">
+                <h2>My Profile</h2>
+                <a href="company-profile-sett.html" class="btn-primary">Edit Profile</a>
+            </div>
+            
+            <div class="profile-content">
+                <!-- Left Column -->
+                <div class="profile-left">
+                    <div class="info-card">
+                        <h3>Company Info</h3>
+                        <div class="company-map">
+                        <ul class="company-info">
+                            <li><span>Website:</span> http://www.mercedes.com</li>
+                            <li><span>Email:</span> maercedes@gmail.com</li>
+                            <li><span>Industry:</span> Internet Publishing</li>
+                            <li><span>Address:</span> October, Giza</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Right Column -->
+                <div class="profile-right">
+                    <div class="about-card">
+                        <h3>About Us</h3>
+                        <p>The Mercedes-Benz Group AG (former Daimler AG) is one of the world's most successful automotive companies. With Mercedes-Benz AG, we are one of the leading global suppliers of high-end passenger cars and premium vans. Mercedes-Benz Mobility AG offers financing, leasing, car subscription and car rental, fleet management, digital services for charging and payment, insurance brokerage, as well as innovative mobility services.</p>
+                    </div>
+                    
+                    <div class="jobs-card">
+                        <h3>Our Job Openings</h3>
+                        <div class="job-listing">
+                            <!-- Job 1 -->
+                            <a href="job-details-1.html" class="job-link">
+                                <div class="job-item">
+                                    <div class="job-header">
+                                        <img src="images/com. logo/mercedese.jpg" alt="Mercedes Logo">
+                                        <div>
+                                            <h4>Digital Marketing</h4>
+                                            <div class="job-meta">
+                                                <span><i class="ph ph-map-pin"></i> October, Giza</span>
+                                                <span><i class="ph ph-calendar-blank"></i> 2 days ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="job-footer">
+                                        <div class="job-tags">
+                                            <span>full-time</span>
+                                            <span>UX/UI</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                    
+                            <!-- Job 2 -->
+                            <a href="job-details-2.html" class="job-link">
+                                <div class="job-item">
+                                    <div class="job-header">
+                                        <img src="images/com. logo/mercedese.jpg" alt="Mercedes Logo">
+                                        <div>
+                                            <h4>Full Stack Developer</h4>
+                                            <div class="job-meta">
+                                                <span><i class="ph ph-map-pin"></i> Sheraton, Cairo</span>
+                                                <span><i class="ph ph-calendar-blank"></i> 2 days ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="job-footer">
+                                        <div class="job-tags">
+                                            <span>Full-Time</span>
+                                            <span>Web Design</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="company-profile.js"></script>
+</body>
+</html>

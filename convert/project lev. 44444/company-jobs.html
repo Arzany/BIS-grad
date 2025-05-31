@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company's Jobs</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="company-jobs.css">
+</head>
+<body class="dashboard">
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="left">
+                <h1 class="logo">
+                    <a href="index.html">
+                        <img src="images/logo.jpg" alt="EqualChance" class="logo-white">
+                    </a>
+                </h1>
+            </div>
+            
+            <div class="navigator">
+                <ul class="nav-list">
+                    <li><a href="../final home/about2.html">Home</a></li>
+                    <li><a href="../Awareness.html">For you</a></li>
+                    <li><a href="../price/index.html">Payment</a></li>
+                    
+                </ul>
+            </div>
+                
+                <div class="user-block">
+                    <a href="company-profile.html">
+                        <div class="user-info">
+                            <img src="images/com. logo/mercedese.jpg" alt="Compay logo" class="user-avatar">
+                            <strong class="user-name">Mercedes</strong>
+                        </div>
+                    </a>
+                </div>
+               
+
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="main-content-area">
+        <!-- Dashboard Main -->
+        <div class="dashboard-main">
+            <!-- Dashboard Menu -->
+            <div class="dashboard-menu">
+                <div class="menu-inner">
+                    
+                    <div class="menu-area">
+                        <span class="menu-title">Management</span>
+                        <ul class="menu-list">
+                    
+                            <li class="active"><a href="company-jobs.html">💼My Jobs</a></li>
+                            <li><a href="company-submit-job.html">📝Submit Jobs</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="menu-area">
+                        <span class="menu-title">User</span>
+                        <ul class="menu-list">
+                            <li><a href="employers-profile.html">👤 My Profile</a></li>
+                            <li><a href="employers-profile-setting.html">⚙️Edit Profile</a></li>
+                            <li><a href="employers-change-passwords.html">🔓Change Passwords</a></li>
+                            <li><a href="employers-delete-profile.html">🗑️Delete Profile</a></li>
+                            <li><a href="../final home/about2.html">🚪 Log Out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>>
+    </div>
+
+    
+        
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <div class="submit">
+                <h1 class="page-title">Dashboard</h1>
+                <a href="c_submit_job.html" class="btn btn-primary">Submit New Job</a>
+
+            </div>     
+       
+            <div class="grid">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <span>Posted Jobs</span>
+                            <h3>80</h3>
+                        </div>
+                        <div class="stat-icon">
+                            <i class='bx bx-briefcase' ></i>
+                            <span class="icon">
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <span>Applications</span>
+                            <h3>200</h3>
+                        </div>
+                        <div class="stat-icon">
+                            <i class='bx bx-send' ></i>
+                            <span class="icon">
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <span>On hold</span>
+                            <h3>100</h3>
+                        </div>
+                        <div class="stat-icon">
+                            <i class='bx bx-no-entry'></i>
+                            <span class="icon">
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <span>Approved</span>
+                            <h3>50</h3>
+                        </div>
+                        <div class="stat-icon">
+                            <i class='bx bx-smile' ></i>
+                            <span class="icon">      
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <span>Rejected</span>
+                            <h3>50</h3>
+                        </div>
+                        <div class="stat-icon">
+                            <i class='bx bx-sad' ></i>
+                            <span class="icon">     
+                            </span>
+                        </div>
+                    </div>
+            </div> 
+        </div>
+            
+                   
+            <div class="container">
+                <button class="btn-menu-dashboard">
+                    <strong>Menu</strong>
+                </button>
+                
+                <div class="dashboard-header">
+                    <h3 class="dashboard-title">My Jobs</h3>
+                    
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="job-tabs">
+                        <ul class="tab-list" role="tablist">
+                            <li class="tab-item active" role="presentation">
+                                <button class="tab-btn" id="posted_jobs_tab" role="tab" aria-controls="posted_jobs" aria-selected="true">Posted Jobs</button>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="job-filters">
+                        <form class="search-form">
+                            <input type="text" placeholder="Search by keyword" required>
+                            <button type="submit">
+                            </button>        
+                        </form>
+                        
+                        <div class="select-wrapper">
+                            <div class="select">
+                                <span class="selected">Sort by (default)</span>
+                                <ul class="options">
+                                    <li>sort by (default)</li>
+                                    <li>candidate name (a -> z)</li>
+                                    <li>candidate name (z -> a)</li>
+                                    <li>job title (a -> z)</li>
+                                    <li>job title (z -> a)</li>
+                                    <li>status (on hold)</li>
+                                    <li>status (interviewed)</li>
+                                    <li>status (rejected)</li>
+                                    <li>status (hired)</li>
+                                </ul>
+                            </div>
+                            <span class="ph ph-caret-down"></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Posted Jobs Tab -->
+                    <div id="posted_jobs" class="tab-panel active" role="tabpanel" aria-labelledby="posted_jobs_tab">
+                        <div class="job-table">
+                            <table id="jobsTable">
+                                <thead>
+                                    <tr>
+                                        <th>My jobs</th>
+                                        <th>Created & expiry</th>
+                                        <th>Status</th>
+                                        <th>Applicants</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                <strong>HR Manager</strong>
+                                                <div class="job-location">
+                                                    <span>New Cairo, Cairo</span>
+                                                </div>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <p>Created date: Jun 1 , 2025</p>
+                                            <p>Expiry date: Jun 30, 2025</p>
+                                        </td>
+                                        <td>
+                                            <span class="status-tag published">Published</span>
+                                        </td>
+                                        <td>
+                                            <a href="company_jobs_view_app.html" class="btn btn-outline">view Applicants (18)</a>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <div class="tooltip-container">
+                                                    <button class="action-btn view-job">
+                                                        <i class='bx bx-low-vision' ></i>
+                                                        <span class="tooltip-text">View Job</span>
+                                                    </button>
+                                                </div>
+                                                <div class="tooltip-container">
+                                                    <a href="company-edit-job.html">
+                                                        <button class="action-btn edit-job">
+                                                        <i class='bx bx-edit-alt' ></i>
+                                                        <span class="tooltip-text">Edit Job</span>
+                                                    </button>
+
+                                                    </a>
+                                                    
+                                                </div>
+                                                <div class="tooltip-container">
+                                                    <button class="action-btn delete">
+                                                        <i class='bx bx-message-square-x' ></i>
+                                                        <span class="tooltip-text">Delete</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- More job rows would go here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Other tabs would go here -->
+                    
+                    <div class="table-footer">
+                        <ul class="pagination">
+                            <li><a href="#" class="active">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">></a></li>
+                        </ul>
+                        <p class="showing-info">Showing <span>1</span> to <span>6</span> of <span>24</span> entries</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-footer">
+                <span class="copyright">EqualChance. All Rights Reserved</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <!-- Mobile menu content would go here -->
+    </div>
+    <script src="company-jobs.js"></script>
+</body>
+</html>

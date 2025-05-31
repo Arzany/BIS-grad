@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+        <header class="header">
+        <div class="header-inner">
+            <div class="left">
+                <h1 class="logo">
+                    <a href="index.html">
+                        <img src="logo.png" alt="EqualChance" class="logo-white">
+                    </a>
+                </h1>
+            </div>
+            
+            <div class="navigator">
+                <ul class="nav-list">
+                    <li><a href="../final home/about2.html">Home</a></li>
+                    <li><a href="../Awareness.html">Awarness</a></li>
+                    <li><a href="../feedback/feedback.html">Feedback</a></li>
+                </ul>
+            </div>
+                
+            <div class="user-block">
+                <a href="../project lev. 44444/user-profile.html">
+                    <button class="user-info">
+                        <img src="../assets/images/avatar/about1.webp" alt="User" class="user-avatar">
+                    </button>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Section -->
+    <section class="breadcrumb">
+        <div class="breadcrumb-container">
+            <div class="breadcrumb-links">
+                <a href="../final home/about2.html">Home</a> 
+            </div>
+            <h1>Jobs</h1>
+            
+    </section>
+
+    <!-- Jobs Grid Section -->
+    <section class="jobs-grid">
+        <div class="container">
+            <div class="jobs-filter">
+                 <input 
+                 type="text" 
+                id="search-input" 
+                placeholder="Search for job title..." 
+                class="search-bar"
+            />
+            <div class="sort-options">
+                    <span>Sort by:</span>
+                    <select id="sort-select">
+                         <option value="default">Default</option>
+                         <option value="newest">Newest</option>
+                         <option value="oldest">Oldest</option>
+                    </select>
+            </div>
+         </div>
+            
+            <div class="jobs-list" id="jobs-list"></div>
+     
+
+        </div> 
+    </section> 
+
+    <script src="script.js"></script>
+</body>
+</html>
