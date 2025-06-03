@@ -1,0 +1,23 @@
+const express = require("express");
+const adminController = require("../controllers/Admin-controller");
+
+const router = express.Router();
+
+// -------------------
+// Sign In / Sign Out
+// -------------------
+
+//gets
+router.get("/admindashboard" , adminController.getAdmindashboard);
+router.get("/jogbgridedit" , adminController.getJobgridedit);
+router.get("/companylist",adminController.getCompanylist);
+router.get("/userlist",adminController.getUserlist);
+
+
+
+
+
+//posts
+// router.post("/:companyName/signin", userController.postSignin);
+
+module.exports = router;

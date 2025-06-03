@@ -48,11 +48,11 @@ exports.getUserchangepass = async (req, res, next) => {
 
 
 
-exports.getUserdeletepass = async (req, res, next) => {
+exports.getUserdeleteprofile = async (req, res, next) => {
   try {
-    res.render("User delete pass");
+    res.render("User delete profile");
   } catch (error) {
-    console.error("Error fetching User delete pass page :", error);
+    console.error("Error fetching User delete profile page :", error);
   }
 };
 

@@ -13,5 +13,14 @@
   "dependencies": {
     "ejs": "^3.1.10",
     "express": "^5.1.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arzany/BIS-grad.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Arzany/BIS-grad/issues"
+  },
+  "homepage": "https://github.com/Arzany/BIS-grad#readme"
 }
