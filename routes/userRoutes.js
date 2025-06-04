@@ -9,14 +9,14 @@ const router = express.Router();
 
 
 //gets
-router.get("/jobdetail", usercontroller.getJobdetailedit);
+router.get("/jobdetailedit", usercontroller.getJobdetailedit);
 router.get("/payment", usercontroller.getPayment);
-router.get("/getprice",usercontroller.getPrice);
+router.get("/price",usercontroller.getPrice);
 router.get("/userapplied", usercontroller.getUserapplied);
 router.get("/userchangepass", usercontroller.getUserchangepass);
 router.get("/userdeleteprofile", usercontroller.getUserdeleteprofile);
 router.get("/userprofile",usercontroller.getUserprofile);
-router.get("/usersettings",usercontroller.getUsersettings);
+router.get("/usersetting",usercontroller.getUsersettings);
 
 
 

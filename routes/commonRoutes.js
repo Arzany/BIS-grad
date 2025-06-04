@@ -9,7 +9,7 @@ const router = express.Router();
 
 
 //gets
-router.get("/", commonController.getFinalhome);
+router.get("/home", commonController.getFinalhome);
 router.get("/feedback", commonController.getFeedback);
 router.get("/login", commonController.getLogin);
 router.get("/register", commonController.getRegister);
