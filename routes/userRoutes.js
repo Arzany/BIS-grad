@@ -1,6 +1,5 @@
 const express = require("express");
-const usercontroller = require("../controllers/user-controller");
-const { use } = require("react");
+const usercontroller = require("../controllers/userController");
 
 const router = express.Router();
 
@@ -21,18 +20,7 @@ router.get("/usersettings",usercontroller.getUsersettings);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+module.exports = router;
 
 
 

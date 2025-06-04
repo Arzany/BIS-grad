@@ -10,18 +10,20 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(express.static(path.join(__dirname, "assets")));
 
-const commenRoutes = require("./routes/commen-routes");
-const adminRoutes = require("./routes/admin-routes");
+const commonRoutes = require("./routes/commonRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+const companyRoutes = require("./routes/companyRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 // Start the server
 const startServer = async () => {
   try {
     // setupSessionMiddleware(schemas);
 
-    app.use(commen-Routes);
-    app.use(admin-Routes);
-    app.use(user-Routes);
-    app.use(company-Routes);
+    app.use(commonRoutes);
+    app.use(adminRoutes);
+    app.use(companyRoutes);
+    app.use(userRoutes);
 
 
     app.listen(3000, () => {

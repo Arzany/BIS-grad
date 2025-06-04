@@ -30,7 +30,7 @@ exports.getUserlist = async (req, res, next) => {
 
 exports.getAdmindashboard = async (req, res, next) => {
   try {
-    res.render("Admindashboard");
+    res.render("admin-dashboard");
   } catch (error) {
     console.error("Error fetching Admin dashboard page :", error);
   }

@@ -1,6 +1,5 @@
 const express = require("express");
-const companycontroller = require("../controllers/company-controller");
-const { use } = require("react");
+const companycontroller = require("../controllers/companyController");
 
 const router = express.Router();
 
@@ -23,6 +22,6 @@ router.get("/companyeditjob",companycontroller.getComapnyeditjobs);
 
 
 
-
+module.exports = router;
 
 //posts
