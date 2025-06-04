@@ -10,7 +10,7 @@ exports.getFeedback = async (req, res, next) => {
 
 exports.getFinalhome = async (req, res, next) => {
   try {
-    res.render("index");
+    res.render("home");
   } catch (error) {
     console.error("Error fetching final home page :", error);
   }
@@ -19,7 +19,7 @@ exports.getFinalhome = async (req, res, next) => {
 
 exports.getLogin = async (req, res, next) => {
   try {
-    res.render("Login");
+    res.render("login");
   } catch (error) {
     console.error("Error fetching Login page :", error);
   }
@@ -35,7 +35,7 @@ exports.postLogin = async (req, res, next) => {
 
 exports.getRegister = async (req, res, next) => {
   try {
-    res.render("Register");
+    res.render("register");
   } catch (error) {
     console.error("Error fetching Register page :", error);
   }

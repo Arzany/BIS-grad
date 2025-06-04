@@ -1,6 +1,6 @@
 exports.getJobdetailedit = async (req, res, next) => {
   try {
-    res.render("Jobdetailedit");
+    res.render("jobdetailedit");
   } catch (error) {
     console.error("Error fetching Job detail edit page :", error);
   }
@@ -10,7 +10,7 @@ exports.getJobdetailedit = async (req, res, next) => {
 
 exports.getPayment = async (req, res, next) => {
   try {
-    res.render("Payment");
+    res.render("payment");
   } catch (error) {
     console.error("Error fetching Payment page :", error);
   }
@@ -20,7 +20,7 @@ exports.getPayment = async (req, res, next) => {
 
 exports.getPrice = async (req, res, next) => {
   try {
-    res.render("Price");
+    res.render("price");
   } catch (error) {
     console.error("Error fetching Price page :", error);
   }
@@ -30,7 +30,7 @@ exports.getPrice = async (req, res, next) => {
 
 exports.getUserapplied = async (req, res, next) => {
   try {
-    res.render("User applied");
+    res.render("userapplied");
   } catch (error) {
     console.error("Error fetching User appliedpage :", error);
   }
@@ -40,7 +40,7 @@ exports.getUserapplied = async (req, res, next) => {
 
 exports.getUserchangepass = async (req, res, next) => {
   try {
-    res.render("User change pass");
+    res.render("userchangepass");
   } catch (error) {
     console.error("Error fetching User change pass page :", error);
   }
@@ -50,7 +50,7 @@ exports.getUserchangepass = async (req, res, next) => {
 
 exports.getUserdeleteprofile = async (req, res, next) => {
   try {
-    res.render("User delete profile");
+    res.render("userdeleteprofile");
   } catch (error) {
     console.error("Error fetching User delete profile page :", error);
   }
@@ -60,7 +60,7 @@ exports.getUserdeleteprofile = async (req, res, next) => {
 
 exports.getUserprofile = async (req, res, next) => {
   try {
-    res.render("User profile");
+    res.render("userprofile");
   } catch (error) {
     console.error("Error fetching User profile page :", error);
   }
@@ -70,7 +70,7 @@ exports.getUserprofile = async (req, res, next) => {
 
 exports.getUsersettings = async (req, res, next) => {
   try {
-    res.render("User settings");
+    res.render("usersetting");
   } catch (error) {
     console.error("Error fetching User settings page :", error);
   }

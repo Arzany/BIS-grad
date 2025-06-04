@@ -1,6 +1,6 @@
 exports.getJobgridedit = async (req, res, next) => {
   try {
-    res.render("Jobgridedit");
+    res.render("jobgridedit");
   } catch (error) {
     console.error("Error fetching Job grid edit page :", error);
   }
@@ -30,8 +30,10 @@ exports.getUserlist = async (req, res, next) => {
 
 exports.getAdmindashboard = async (req, res, next) => {
   try {
-    res.render("admin-dashboard");
+    res.render("admindashboard");
   } catch (error) {
     console.error("Error fetching Admin dashboard page :", error);
   }
 };
+
+
