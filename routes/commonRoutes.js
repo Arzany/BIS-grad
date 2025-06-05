@@ -13,6 +13,7 @@ router.get("/home", commonController.getFinalhome);
 router.get("/feedback", commonController.getFeedback);
 router.get("/login", commonController.getLogin);
 router.get("/register", commonController.getRegister);
+router.get("/awareness",commonController.getawareness);
 
 
 

@@ -22,6 +22,7 @@ router.get("/companyeditjob",companycontroller.getComapnyeditjobs);
 
 
 
+
 module.exports = router;
 
 //posts

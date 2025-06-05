@@ -40,3 +40,12 @@ exports.getRegister = async (req, res, next) => {
     console.error("Error fetching Register page :", error);
   }
 };
+
+
+exports.getawareness = async (req, res, next) => {
+  try {
+    res.render("awareness");
+  } catch (error) {
+    console.error("Error fetching awareness page :", error);
+  }
+};
