@@ -28,11 +28,11 @@ exports.getPrice = async (req, res, next) => {
 
 
 
-exports.getUserapplied = async (req, res, next) => {
+exports.getuserapplied = async (req, res, next) => {
   try {
     res.render("userapplied");
   } catch (error) {
-    console.error("Error fetching User appliedpage :", error);
+    console.error("Error fetching User applied page :", error);
   }
 };
 

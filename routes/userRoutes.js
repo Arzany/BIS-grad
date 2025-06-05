@@ -12,7 +12,7 @@ const router = express.Router();
 router.get("/jobdetailedit", usercontroller.getJobdetailedit);
 router.get("/payment", usercontroller.getPayment);
 router.get("/price",usercontroller.getPrice);
-router.get("/userapplied", usercontroller.getUserapplied);
+router.get("/userapplied", usercontroller.getuserapplied);
 router.get("/userchangepass", usercontroller.getUserchangepass);
 router.get("/userdeleteprofile", usercontroller.getUserdeleteprofile);
 router.get("/userprofile",usercontroller.getUserprofile);
