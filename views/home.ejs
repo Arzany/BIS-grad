@@ -1,56 +1,69 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EQUAL CHANCE - فرص متساوية</title>
     <link rel="stylesheet" href="/css/final-home.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Open+Sans:wght@400;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="/css/home-styles.css">
-    
+
 </head>
+
 <body>
 
-<!-- شريط التنقل -->
-<header class="header">
-  <div class="container">
+    <!-- شريط التنقل -->
+    <header class="header">
+        <div class="container">
 
-    <div class="logo">
-      <img src="/images/logoforallpages.png" alt="شعار EQUAL CHANCE" />
-    </div>
+            <div class="logo">
+                <img src="/images/logoforallpages.png" alt="شعار EQUAL CHANCE" />
+            </div>
 
-    <nav class="navbar">
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-      <ul id="nav-links">
-        <li>
-          <a href="/home" class="nav-link ar">الرئيسية</a>
-          <a href="/home" class="nav-link en" style="display: none">Home</a>
-        </li>
-        <li>
-          <a href="/awareness" class="nav-link ar">معرفة</a>
-          <a href="/awareness" class="nav-link en" style="display: none">awareness</a>
-        </li>
-        <li>
-          <a href="/feedback" class="nav-link ar">التعليقات</a>
-          <a href="/feedback" class="nav-link en" style="display: none">Feedback</a>
-        </li>
-      </ul>
-    </nav>
+            <nav class="navbar">
+                <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+                <ul id="nav-links">
+                    <li>
+                        <a href="/home" class="nav-link ar">الرئيسية</a>
+                        <a href="/home" class="nav-link en" style="display: none">Home</a>
+                    </li>
+                    <li>
+                        <a href="/awareness" class="nav-link ar">معرفة</a>
+                        <a href="/awareness" class="nav-link en" style="display: none">awareness</a>
+                    </li>
+                    <li>
+                        <a href="/feedback" class="nav-link ar">التعليقات</a>
+                        <a href="/feedback" class="nav-link en" style="display: none">Feedback</a>
+                    </li>
+                </ul>
+            </nav>
 
-    <div class="auth-buttons">
-      <a href="/register" class="btn btn-primary ar">تسجيل جديد</a>
-      <a href="/register" class="btn btn-primary en" style="display: none">Register</a>
-      <a href="/login" class="btn btn-outline ar">تسجيل دخول</a>
-      <a href="/login" class="btn btn-outline en" style="display: none">Login</a>
-    </div>
-    
-        <div class="lang-switcher">
-      <button class="lang-btn active" data-lang="ar">العربية</button>
-      <button class="lang-btn" data-lang="en">English</button>
-    </div>
+            <% if (isLoggedIn) { %>
+                <div class="auth-buttons">
+                    <form action="/logout" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-outline ar">تسجيل خروج</button>
+                        <button type="submit" class="btn btn-outline en" style="display:none;">Logout</button>
+                    </form>
+                </div>
+                <% } else { %>
+                    <div class="auth-buttons">
+                        <a href="/register" class="btn btn-primary ar">تسجيل جديد</a>
+                        <a href="/register" class="btn btn-primary en" style="display: none">Register</a>
+                        <a href="/login" class="btn btn-outline ar">تسجيل دخول</a>
+                        <a href="/login" class="btn btn-outline en" style="display: none">Login</a>
+                    </div>
+                    <% } %>
 
-  </div>
-</header>
+                        <div class="lang-switcher">
+                            <button class="lang-btn active" data-lang="ar">العربية</button>
+                            <button class="lang-btn" data-lang="en">English</button>
+                        </div>
+
+        </div>
+    </header>
 
 
     <!-- البانر الرئيسي -->
@@ -59,7 +72,8 @@
             <h1 class="ar">EQUAL CHANCE</h1>
             <h1 class="en" style="display:none;">EQUAL CHANCE</h1>
             <p class="subtitle ar">جسر يربط بين الموهوبين وأصحاب العمل في بيئة داعمة وعادلة</p>
-            <p class="subtitle en" style="display:none;">Bridging talents with employers in a supportive and fair environment</p>
+            <p class="subtitle en" style="display:none;">Bridging talents with employers in a supportive and fair
+                environment</p>
         </div>
     </section>
 
@@ -70,26 +84,33 @@
                 <h2 class="ar"><i class="fas fa-bullseye"></i> رسالتنا</h2>
                 <h2 class="en" style="display:none;"><i class="fas fa-bullseye"></i> Our Mission</h2>
                 <p class="ar">تمكين الأفراد من ذوي الإعاقة وإتاحة الفرص العادلة لهم في سوق العمل</p>
-                <p class="en" style="display:none;">Empowering individuals with disabilities and providing equal opportunities in the job market</p>
+                <p class="en" style="display:none;">Empowering individuals with disabilities and providing equal
+                    opportunities in the job market</p>
             </div>
             <div class="mission-content">
                 <div class="mission-text">
                     <h3 class="ar">لماذا منصتنا؟</h3>
                     <h3 class="en" style="display:none;">Why Our Platform?</h3>
-                    
-                    <p class="ar">نؤمن بأن التنوع قوة، والإعاقة ليست عائقًا بل قد تكون مصدر إبداع وتميز. نقدم منصة متكاملة تتيح للشركات اكتشاف المواهب المميزة وللباحثين عن عمل إثبات كفاءتهم.</p>
-                    <p class="en" style="display:none;">We believe diversity is strength, and disability is not an obstacle but can be a source of creativity and excellence. We provide an integrated platform that allows companies to discover exceptional talents and job seekers to prove their competence.</p>
-                    
+
+                    <p class="ar">نؤمن بأن التنوع قوة، والإعاقة ليست عائقًا بل قد تكون مصدر إبداع وتميز. نقدم منصة
+                        متكاملة تتيح للشركات اكتشاف المواهب المميزة وللباحثين عن عمل إثبات كفاءتهم.</p>
+                    <p class="en" style="display:none;">We believe diversity is strength, and disability is not an
+                        obstacle but can be a source of creativity and excellence. We provide an integrated platform
+                        that allows companies to discover exceptional talents and job seekers to prove their competence.
+                    </p>
+
                     <div class="key-features">
                         <div class="feature">
                             <i class="fas fa-user-tie"></i>
                             <p class="ar">للشركات: الاشتراك لنشر الوظائف والوصول للمرشحين</p>
-                            <p class="en" style="display:none;">For Companies: Subscribe to post jobs and access candidates</p>
+                            <p class="en" style="display:none;">For Companies: Subscribe to post jobs and access
+                                candidates</p>
                         </div>
                         <div class="feature">
                             <i class="fas fa-users"></i>
                             <p class="ar">للباحثين: تسجيل الملفات الشخصية والعثور على وظائف</p>
-                            <p class="en" style="display:none;">For Job Seekers: Register profiles and find suitable jobs</p>
+                            <p class="en" style="display:none;">For Job Seekers: Register profiles and find suitable
+                                jobs</p>
                         </div>
 
                     </div>
@@ -97,7 +118,8 @@
                         <div class="feature">
                             <i class="fas fa-info-circle"></i>
                             <p class="ar">التوعية بحقوق التوظيف وتكييف بيئات العمل</p>
-                            <p class="en" style="display:none;">awareness of employment rights and workplace accommodations</p>
+                            <p class="en" style="display:none;">awareness of employment rights and workplace
+                                accommodations</p>
                         </div>
                     </div>
                 </div>
@@ -114,7 +136,7 @@
                 <p class="ar">خطوات بسيطة لتحقيق فرص متساوية</p>
                 <p class="en" style="display:none;">Simple steps to create equal opportunities</p>
             </div>
-            
+
             <div class="steps-container">
                 <div class="step">
                     <div class="step-icon">
@@ -125,7 +147,7 @@
                     <p class="ar">قم بإنشاء حسابك كباحث عن عمل أو صاحب عمل</p>
                     <p class="en" style="display:none;">Create your account as job seeker or employer</p>
                 </div>
-                
+
                 <div class="step">
                     <div class="step-icon">
                         <i class="fas fa-id-card"></i>
@@ -135,7 +157,7 @@
                     <p class="ar">أضف معلوماتك وخبراتك ومهاراتك</p>
                     <p class="en" style="display:none;">Add your information, experience and skills</p>
                 </div>
-                
+
                 <div class="step">
                     <div class="step-icon">
                         <i class="fas fa-search"></i>
@@ -145,7 +167,7 @@
                     <p class="ar">ابحث عن الفرص المناسبة أو الكفاءات المطلوبة</p>
                     <p class="en" style="display:none;">Find suitable opportunities or required competencies</p>
                 </div>
-                
+
                 <div class="step">
                     <div class="step-icon">
                         <i class="fas fa-handshake"></i>
@@ -160,53 +182,47 @@
     </section>
 
     <!-- تذييل الصفحة -->
-   <footer class="footer">
-    <div class="container">
-        <div class="contact-footer">
-            <div class="contact-header">
-                <h3 class="ar">تواصل معنا</h3>
-                <h3 class="en" style="display:none;">Contact Us</h3>
-                <p class="ar">نحن هنا لمساعدتك في كل خطوة. لنجعل أهدافك حقيقة.</p>
-                <p class="en" style="display:none;">We're here to assist you every step of the way. Let's make your goals a reality.</p>
+    <footer class="footer">
+        <div class="container">
+            <div class="contact-footer">
+                <div class="contact-header">
+                    <h3 class="ar">تواصل معنا</h3>
+                    <h3 class="en" style="display:none;">Contact Us</h3>
+                    <p class="ar">نحن هنا لمساعدتك في كل خطوة. لنجعل أهدافك حقيقة.</p>
+                    <p class="en" style="display:none;">We're here to assist you every step of the way. Let's make your
+                        goals a reality.</p>
+                </div>
+
+                <div class="contact-details">
+                    <div class="detail-item">
+                        <h4 class="ar">العنوان:</h4>
+                        <h4 class="en" style="display:none;">Address:</h4>
+                        <p>23 طلعت حرب، وسط البلد، القاهرة</p>
+                    </div>
+
+                    <div class="detail-item">
+                        <h4 class="ar">البريد الإلكتروني:</h4>
+                        <h4 class="en" style="display:none;">Email:</h4>
+                        <p>EQUALCHANCE@gmail.com</p>
+                    </div>
+
+                    <div class="detail-item">
+                        <h4 class="ar">أوقات العمل:</h4>
+                        <h4 class="en" style="display:none;">Open Time:</h4>
+                        <p class="ar">الأحد - الخميس: 9 صباحاً - 5 مساءً</p>
+                        <p class="en" style="display:none;">Sun- Thu: 09:00 AM - 05:00 PM</p>
+                        <p class="ar">الجمعة - السبت: إجازة</p>
+                        <p class="en" style="display:none;">Fri- Sat: Time off</p>
+                    </div>
+
+                    <div class="detail-item">
+                        <h4 class="ar">رقم الهاتف:</h4>
+                        <h4 class="en" style="display:none;">Tel. Number:</h4>
+                        <p>02 20471485</p>
+                    </div>
+                </div>
             </div>
-            
-            <div class="contact-details">
-                <div class="detail-item">
-                    <h4 class="ar">العنوان:</h4>
-                    <h4 class="en" style="display:none;">Address:</h4>
-                    <p>23 طلعت حرب، وسط البلد، القاهرة</p>
-                </div>
-                
-                <div class="detail-item">
-                    <h4 class="ar">البريد الإلكتروني:</h4>
-                    <h4 class="en" style="display:none;">Email:</h4>
-                    <p>EQUALCHANCE@gmail.com</p>
-                </div>
-                
-                <div class="detail-item">
-                    <h4 class="ar">أوقات العمل:</h4>
-                    <h4 class="en" style="display:none;">Open Time:</h4>
-                    <p class="ar">الأحد - الخميس: 9 صباحاً - 5 مساءً</p>
-                    <p class="en" style="display:none;">Sun- Thu: 09:00 AM - 05:00 PM</p>
-                    <p class="ar">الجمعة - السبت: إجازة</p>
-                    <p class="en" style="display:none;">Fri- Sat: Time off</p>
-                </div>
-                
-                <div class="detail-item">
-                    <h4 class="ar">رقم الهاتف:</h4>
-                    <h4 class="en" style="display:none;">Tel. Number:</h4>
-                    <p>02 20471485</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p class="ar">&copy; 2025 EQUAL CHANCE. جميع الحقوق محفوظة.</p>
-            <p class="en" style="display:none;">&copy; 2025 EQUAL CHANCE. All Rights Reserved.</p>
-        </div>
-        </div>
-    </footer>
-            
+
             <div class="footer-bottom">
                 <p class="ar">&copy; 2025 EQUAL CHANCE. جميع الحقوق محفوظة.</p>
                 <p class="en" style="display:none;">&copy; 2025 EQUAL CHANCE. All Rights Reserved.</p>
@@ -214,6 +230,14 @@
         </div>
     </footer>
 
+    <div class="footer-bottom">
+        <p class="ar">&copy; 2025 EQUAL CHANCE. جميع الحقوق محفوظة.</p>
+        <p class="en" style="display:none;">&copy; 2025 EQUAL CHANCE. All Rights Reserved.</p>
+    </div>
+    </div>
+    </footer>
+
     <script src="/js/final-home.js"></script>
 </body>
+
 </html>

@@ -20,8 +20,6 @@ router.get("/usersetting",usercontroller.getUsersettings);
 
 
 
+
 module.exports = router;
 
-
-
-//posts

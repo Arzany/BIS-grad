@@ -1,6 +1,7 @@
 const express = require("express");
 const commonController = require("../controllers/commonController");
 
+
 const router = express.Router();
 
 // -------------------
@@ -15,16 +16,9 @@ router.get("/login", commonController.getLogin);
 router.get("/register", commonController.getRegister);
 router.get("/awareness",commonController.getawareness);
 
-
-
-
-
-
-
-
-
 //posts
+router.post("/register", commonController.postRegister);
 router.post("/login", commonController.postLogin);
-// router.post("/:companyName/signin", userController.postSignin);
+router.post("/logout", commonController.postLogout);
 
 module.exports = router;

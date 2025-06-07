@@ -1,102 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="/css/register.css">
 </head>
+
 <body>
 
     <section class="breadcrumb">
         <div class="container">
             <div class="breadcrumb-links">
-                <a href="/home">Home</a>  
+                <a href="/home">Home</a>
             </div>
             <h1>Register</h1>
         </div>
     </section>
 
-    <section class="registration-form">
-        <div class="form-container">
-            <h2>Create  account</h2>
-            
-            <div class="tab-buttons">
-                <button class="tab-btn active" data-tab="candidate">Company</button>
-                <button class="tab-btn "  data-tab="employer">Applicant</button>
-            </div>
-            
-            <div class="tab-content active" id="candidate">
-                <form id="candidate-form">
-                    <div class="form-group">
-                        <label for="candidate-email">Company email address</label>
-                        <input type="email" id="candidate-email" required placeholder="Email address">
-                    </div>
-                    <div class="form-group">
-                        <label for="candidate-password">Password</label>
-                        <input type="password" id="candidate-password" required placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <label for="candidate-confirm">Confirm password</label>
-                        <input type="password" id="candidate-confirm" required placeholder="Confirm password">
-                    </div>
-                    <!-- <div class="form-checkbox">
-                        <input type="checkbox" id="candidate-terms" required>
-                        <label for="candidate-terms">I agree to the <a href="term-of-use.html">Terms of Use</a></label>
-                    </div> -->
-                        <a href="/price">
-                            <button type="submit" class="submit-btn">Create a new account</button>
-
-                        </a>
-
-                    
-
-                  
-                      
-
-                    
-                </form>
-                <div class="login-link">
-                    Already have an account? <a href="/login">Login</a>
-                   
-                </div>
-            </div>
-            
-            <div class="tab-content" id="employer">
-                <form id="employer-form">
-                    <div class="form-group">
-                        <label for="employer-email">Applicant email address</label>
-                        <input type="email" id="employer-email" required placeholder="Email address">
-                    </div>
-                    <div class="form-group">
-                        <label for="employer-password">Password</label>
-                        <input type="password" id="employer-password" required placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <label for="employer-confirm">Confirm password</label>
-                        <input type="password" id="employer-confirm" required placeholder="Confirm password">
-                    </div>
-                    <!-- <div class="form-checkbox">
-                        <input type="checkbox" id="employer-terms" required>
-                        <label for="employer-terms">I agree to the <a href="term-of-use.html">Terms of Use</a></label>
-                    </div> -->
-                      
-                     <a href="../price/index.html">
-                        <button type="submit" class="submit-btn">Create a new account</button>
-
-                    </a>
-                        <!-- <button type="submit"   class="submit-btn">Create a new account  </button> -->
-                    
-                   
-
-                </form>
-                <div class="login-link">
-                    Already have an account? <a href="/login">Login</a>
-                </div>
-            </div>
+    <% if (typeof error !=="undefined" ) { %>
+        <div class="form-error">
+            <%= error %>
         </div>
-    </section>
+        <% } %>
 
-    <script src="/js/register.js"></script>
+            <section class="registration-form">
+                <div class="form-container">
+                    <h2>Create account</h2>
+
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="candidate">Company</button>
+                        <button class="tab-btn " data-tab="employer">Applicant</button>
+                    </div>
+
+                    <div class="tab-content active" id="candidate">
+                        <form id="candidate-form" method="POST" action="/register">
+                            <div class="form-group">
+                                <label for="candidate-email">Company email address</label>
+                                <input type="email" id="candidate-email" name="email" required
+                                    placeholder="Email address">
+                            </div>
+                            <div class="form-group">
+                                <label for="candidate-password">Password</label>
+                                <input type="password" id="candidate-password" name="password" required
+                                    placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="candidate-confirm">Confirm password</label>
+                                <input type="password" id="candidate-confirm" name="confirm" required
+                                    placeholder="Confirm password">
+                            </div>
+                            <input type="hidden" name="role" value="company">
+                            <button type="submit" class="submit-btn">Create a new account</button>
+                        </form>
+                        <div class="login-link">
+                            Already have an account? <a href="/login">Login</a>
+
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="employer">
+                        <form id="employer-form" method="POST" action="/register">
+                            <div class="form-group">
+                                <label for="employer-email">Applicant email address</label>
+                                <input type="email" id="employer-email" name="email" required
+                                    placeholder="Email address">
+                            </div>
+                            <div class="form-group">
+                                <label for="employer-password">Password</label>
+                                <input type="password" id="employer-password" name="password" required
+                                    placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="employer-confirm">Confirm password</label>
+                                <input type="password" id="employer-confirm" name="confirm" required
+                                    placeholder="Confirm password">
+                            </div>
+                            <input type="hidden" name="role" value="applicant">
+                            <button type="submit" class="submit-btn">Create a new account</button>
+                        </form>
+                        <div class="login-link">
+                            Already have an account? <a href="/login">Login</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <script src="/js/register.js"></script>
+
+            <script>
+                function validatePasswords(formId, passwordId, confirmId, buttonClass) {
+                    const form = document.getElementById(formId);
+                    const password = document.getElementById(passwordId);
+                    const confirm = document.getElementById(confirmId);
+                    const button = form.querySelector('.' + buttonClass);
+
+                    function check() {
+                        if (password.value && password.value !== confirm.value) {
+                            button.disabled = true;
+                        } else {
+                            button.disabled = false;
+                        }
+                    }
+
+                    password.addEventListener('input', check);
+                    confirm.addEventListener('input', check);
+                }
+
+                validatePasswords('candidate-form', 'candidate-password', 'candidate-confirm', 'submit-btn');
+                validatePasswords('employer-form', 'employer-password', 'employer-confirm', 'submit-btn');
+            </script>
 </body>
+
 </html>

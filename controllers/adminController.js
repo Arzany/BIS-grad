@@ -1,3 +1,5 @@
+const User = require("../models/user");
+
 exports.getJobgridedit = async (req, res, next) => {
   try {
     res.render("jobgridedit");
@@ -5,8 +7,6 @@ exports.getJobgridedit = async (req, res, next) => {
     console.error("Error fetching Job grid edit page :", error);
   }
 };
-
-
 
 exports.getCompanylist = async (req, res, next) => {
   try {
@@ -16,8 +16,6 @@ exports.getCompanylist = async (req, res, next) => {
   }
 };
 
-
-
 exports.getUserlist = async (req, res, next) => {
   try {
     res.render("Userlist");
@@ -26,14 +24,15 @@ exports.getUserlist = async (req, res, next) => {
   }
 };
 
-
-
 exports.getAdmindashboard = async (req, res, next) => {
   try {
-    res.render("admindashboard");
+    const companiesCount = await User.count({ where: { role: "company" } });
+    const usersCount = await User.count({ where: { role: "applicant" } });
+    res.render("admindashboard", {
+      companiesCount: companiesCount,
+      usersCount: usersCount,
+    });
   } catch (error) {
     console.error("Error fetching Admin dashboard page :", error);
   }
 };
-
-
