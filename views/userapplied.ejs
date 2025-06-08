@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Applied Jobs</title>
     <link rel="stylesheet" href="/css/user-applied.css">
 </head>
+
 <body class="dashboard-page">
     <!-- Header -->
     <header class="header">
@@ -15,10 +17,10 @@
                     <img src="images/logo.jpg" alt="EqualChance Logo">
                 </a>
             </div>
-            
+
             <nav class="main-nav">
                 <ul>
-                     <li><a href="/home">Home</a></li>
+                    <li><a href="/home">Home</a></li>
                     <li><a href="/jobgridedit">Jobs</a></li>
                     <li><a href="/awareness">For You</a></li>
                     <li><a href="/price">Payment</a></li>
@@ -30,10 +32,10 @@
                     <span>Marina</span>
                     <i class="ph-caret-down"></i>
                 </div>
-            </a> 
-            </div>
-            
-            <button class="mobile-menu-btn"><i class="ph-list"></i></button>
+            </a>
+        </div>
+
+        <button class="mobile-menu-btn"><i class="ph-list"></i></button>
         </div>
     </header>
 
@@ -41,14 +43,14 @@
     <div class="dashboard-container">
         <!-- Sidebar -->
         <aside class="dashboard-sidebar">
-            
+
             <div class="sidebar-section">
                 <h4>Management</h4>
                 <ul>
                     <li class="active"><a href="#"><i class="ph-notepad">📝</i> My Applied</a></li>
                 </ul>
             </div>
-            
+
             <div class="sidebar-section">
                 <h4>User</h4>
                 <ul>
@@ -67,14 +69,14 @@
                 <button class="sidebar-toggle"><i class="ph-squares-four"></i> Menu</button>
                 <h1>My Applied</h1>
             </div>
-            
+
             <div class="applied-jobs-container">
                 <div class="jobs-filter">
                     <form class="search-form">
                         <input type="text" onkeyup="search()" id="" placeholder="Search by keyword">
                         <button type="submit"><i class="ph-magnifying-glass"></i></button>
                     </form>
-                    
+
                     <div class="sort-dropdown">
                         <select>
                             <option>Sort by (default)</option>
@@ -87,106 +89,47 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="jobs-table">
                     <table>
                         <thead>
                             <tr>
                                 <th>Title</th>
                                 <th>Date Applied</th>
-                                <th>Salary</th>
+                                <th>Salary Range</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <a href="/jobdetailedit" class="job-title">Financial Manager</a>
-                                    <div class="job-meta">
-                                        <a href="#" class="company">
-                                            <img src="/images/com. logo/alabd.jpg" alt="Company Logo">
-                                            ELABD
+                            <% applications.forEach(function(app) { %>
+                                <tr>
+                                    <td>
+                                        <a href="/jobdetailedit/<%= app.job.id %>" class="job-title">
+                                            <%= app.job.title %>
                                         </a>
-                                        <span class="location">
-                                            <i class="ph-map-pin"></i> October, Giza
-                                        </span>
-                                    </div>
-                                </td>
-                                <td>Mar 19, 2025</td>
-                                <td>5000 LE.</td>
-
-                                
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="#" class="job-title">HR Specialist</a>
-                                    <div class="job-meta">
-                                        <a href="#" class="company">
-                                            <img src="/images/com. logo/mercedese.jpg" alt="Company Logo">
-                                            Mercedes
-                                        </a>
-                                        <span class="location">
-                                            <i class="ph-map-pin"></i> New Cairo, Cairo
-                                        </span>
-                                    </div>
-                                </td>
-                                <td>Mar 24, 2025</td>
-                                <td>10000 LE.</td>
-                                
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="#" class="job-title">Marketing Manager</a>
-                                    <div class="job-meta">
-                                        <a href="#" class="company">
-                                            <img src="/images/com. logo/nissan.jpg" alt="Company Logo">
-                                            Nissan
-                                        </a>
-                                        <span class="location">
-                                            <i class="ph-map-pin"></i> October, Giza
-                                        </span>
-                                    </div>
-                                </td>
-                                <td>Jan 19, 2025</td>
-                                <td>8500 LE.</td>
-                                
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="#" class="job-title">Call Center</a>
-                                    <div class="job-meta">
-                                        <a href="#" class="company">
-                                            <img src="/images/com. logo/vodafone.jpg" alt="Company Logo">
-                                            Vodafone
-                                        </a>
-                                        <span class="location">
-                                            <i class="ph-map-pin"></i> Nasr City, Cairo
-                                        </span>
-                                    </div>
-                                </td>
-                                <td>Apr 16, 2025</td>
-                                <td>5500 LE.</td>
-                            
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="#" class="job-title">Customer Service</a>
-                                    <div class="job-meta">
-                                        <a href="#" class="company">
-                                            <img src="images/com. logo/etisalate.jpg" alt="Company Logo">
-                                            Etisalat
-                                        </a>
-                                        <span class="location">
-                                            <i class="ph-map-pin"></i> Nasr City, Cairo
-                                        </span>
-                                    </div>
-                                </td>
-                                <td>Feb 12, 2025</td>
-                                <td>7500 LE.</td>
-                            </tr>
+                                        <div class="job-meta">
+                                            <a href="#" class="company">
+                                                <img src="<%= app.job.company.logo %>" alt="Company Logo">
+                                                <%= app.job.company.name %>
+                                            </a>
+                                            <span class="location">
+                                                <i class="ph-map-pin"></i>
+                                                <%= app.job.location %>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <%= app.createdAt ? app.createdAt.getDate() + '-' + (app.createdAt.getMonth() +
+                                            1) + '-' + app.createdAt.getFullYear() : '' %>
+                                    </td>
+                                    <td>
+                                        <%= app.job.min_salary %> LE - <%= app.job.max_salary %> LE
+                                    </td>
+                                </tr>
+                                <% }); %>
                         </tbody>
                     </table>
                 </div>
-                
+                <!--                 
                 <div class="jobs-footer">
                     <div class="pagination">
                         <a href="#" class="active">1</a>
@@ -197,7 +140,7 @@
                     <div class="showing-info">
                         Showing 1 to 4 of 16 entries
                     </div>
-                </div>
+                </div> -->
             </div>
 
         </main>
@@ -212,4 +155,5 @@
 
     <script src="/js/user-applied.js"></script>
 </body>
+
 </html>

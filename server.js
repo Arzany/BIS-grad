@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const session = require("express-session");
 const MySQLStore = require("express-mysql-session")(session);
+const multer = require("multer");
 
 const sequelize = require("./util/database");
 
@@ -44,6 +45,20 @@ app.use(
   })
 );
 
+const fileStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "assets/cv");
+  },
+  filename: (req, file, cb) => {
+    const randomNumber = Math.floor(Math.random() * 100000);
+    const fileExtension = file.originalname.split(".").pop();
+    const newFilename = `${randomNumber}-${Date.now()}.${fileExtension}`;
+    cb(null, newFilename);
+  },
+});
+
+app.use(multer({ storage: fileStorage }).single("cv"));
+
 const commonRoutes = require("./routes/commonRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const companyRoutes = require("./routes/companyRoutes");
@@ -60,9 +75,17 @@ app.use(userRoutes);
 Company.hasMany(Job);
 Job.belongsTo(Company);
 
-// Applicant applies to many Jobs (through Application)
+// Many-to-many (already present)
 Applicant.belongsToMany(Job, { through: Application });
 Job.belongsToMany(Applicant, { through: Application });
+
+// For eager loading FROM Application (already present)
+Application.belongsTo(Job);
+Application.belongsTo(Applicant);
+
+// ADD THIS for eager loading FROM Job:
+Job.hasMany(Application); // <-- THIS IS MISSING
+Application.belongsTo(Job); // (already present, but fine to repeat)
 
 // Payment belongs to Applicant
 Payment.belongsTo(Applicant);

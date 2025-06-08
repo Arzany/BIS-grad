@@ -1,4 +1,8 @@
 const Job = require("../models/job");
+const Application = require("../models/application");
+const sequelize = require("../util/database");
+const { Op, fn, col } = require("sequelize");
+const Applicant = require("../models/applicant");
 
 exports.getPayment = async (req, res, next) => {
   try {
@@ -18,17 +22,48 @@ exports.getPrice = async (req, res, next) => {
 
 exports.getCompanyjobsview = async (req, res, next) => {
   try {
-    res.render("companyjobsview");
+    // Get all applications for this job
+    const applications = await Application.findAll({
+      where: { jobId: req.params.jobId },
+      include: [
+        {
+          model: Job,
+          attributes: [
+            "title",
+            "type",
+            "application_deadline",
+            "createdAt",
+            "salary_period",
+            "min_salary",
+            "max_salary",
+          ],
+        },
+        {
+          model: Applicant,
+          attributes: [
+            "name",
+            "phone",
+          ],
+        },
+      ],
+    });
+
+    // Count applications for this job
+    const applicantsCount = await Application.count({
+      where: { jobId: req.params.jobId },
+    });
+    
+    res.render("companyjobsview", { applications, applicantsCount });
   } catch (error) {
     console.error("Error fetching Company jobs view page :", error);
   }
 };
 
-exports.getComapnychangepass = async (req, res, next) => {
+exports.getCompanychangepass = async (req, res, next) => {
   try {
     res.render("companychangepass");
   } catch (error) {
-    console.error("Error fetching Comapny change pass page :", error);
+    console.error("Error fetching Company change pass page :", error);
   }
 };
 
@@ -50,36 +85,97 @@ exports.getCompanysubmitjob = async (req, res, next) => {
   }
 };
 
-exports.getComapnyprofile = async (req, res, next) => {
+exports.getCompanyprofile = async (req, res, next) => {
   try {
     res.render("companyprofile");
   } catch (error) {
-    console.error("Error fetching Comapny profile page :", error);
+    console.error("Error fetching Company profile page :", error);
   }
 };
 
-exports.getComapnyprofilesett = async (req, res, next) => {
+exports.getCompanyprofilesett = async (req, res, next) => {
   try {
     res.render("companyprofilesett");
   } catch (error) {
-    console.error("Error fetching Comapny profile sett page :", error);
+    console.error("Error fetching Company profile sett page :", error);
   }
 };
 
-exports.getComapnyjobs = async (req, res, next) => {
+exports.getCompanyjobs = async (req, res, next) => {
   try {
-    const jobs = await Job.findAll({ where: { companyId: req.session.xid } });
-    res.render("companyjobs", { jobs });
+    const jobsCount = await Job.count({
+      where: { companyId: req.session.xid },
+    });
+
+    // Get all jobs for this company
+    const jobs = await Job.findAll({
+      where: { companyId: req.session.xid },
+      include: [
+        {
+          model: Application,
+          attributes: [],
+        },
+      ],
+      attributes: {
+        include: [
+          [
+            sequelize.literal(`(
+              SELECT COUNT(*)
+              FROM applications AS application
+              WHERE
+                application.jobId = job.id
+            )`),
+            "applicantsCount",
+          ],
+        ],
+      },
+    });
+
+    // Get all applications for this company's jobs
+    const allApplications = await Application.findAll({
+      include: [
+        {
+          model: Job,
+          where: { companyId: req.session.xid },
+          attributes: [],
+        },
+      ],
+      attributes: ["status"],
+    });
+
+    // Count by status
+    let pendingCount = 0,
+      approvedCount = 0,
+      rejectedCount = 0;
+    allApplications.forEach((app) => {
+      if (app.status === "Pending") pendingCount++;
+      else if (app.status === "Approved") approvedCount++;
+      else if (app.status === "Rejected") rejectedCount++;
+    });
+
+    // Calculate total applicants across all jobs
+    const totalApplicants = jobs.reduce((sum, job) => {
+      return sum + Number(job.getDataValue("applicantsCount") || 0);
+    }, 0);
+
+    res.render("companyjobs", {
+      jobs,
+      totalApplicants,
+      jobsCount,
+      pendingCount,
+      approvedCount,
+      rejectedCount,
+    });
   } catch (error) {
-    console.error("Error fetching Comapny jobs page :", error);
+    console.error("Error fetching Company jobs page :", error);
   }
 };
 
-exports.getComapnyeditjobs = async (req, res, next) => {
+exports.getCompanyeditjobs = async (req, res, next) => {
   try {
     res.render("companyeditjob");
   } catch (error) {
-    console.error("Error fetching Comapny edit jobs page :", error);
+    console.error("Error fetching Company edit jobs page :", error);
   }
 };
 

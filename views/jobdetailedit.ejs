@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,22 +8,23 @@
     <link rel="stylesheet" href="/css/job-detail-edit.css">
     <link rel="stylesheet" href="https://unpkg.com/phosphor-icons">
     <style>
-  .nav-list {
-    list-style: none !important;
-    margin: 0;
-    padding: 0;
-  }
+        .nav-list {
+            list-style: none !important;
+            margin: 0;
+            padding: 0;
+        }
 
-  .nav-list li {
-    margin: 0;
-    padding: 0;
-  }
-</style>
+        .nav-list li {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 
 </head>
+
 <body>
     <!-- Header -->
-        <header class="header">
+    <header class="header">
         <div class="header-inner">
             <div class="left">
                 <h1 class="logo">
@@ -31,15 +33,15 @@
                     </a>
                 </h1>
             </div>
-            
+
             <div class="navigator">
                 <ul class="nav-list">
-                     <li><a href="/home">Home</a></li>
+                    <li><a href="/home">Home</a></li>
                     <li><a href="/awareness">awareness</a></li>
                     <li><a href="/feedback">Feedback</a></li>
                 </ul>
             </div>
-                
+
             <div class="user-block">
                 <a href="../project lev. 44444/user-profile.html">
                     <button class="user-info">
@@ -58,15 +60,17 @@
                     <img src="assets/images/company/8.png" alt="PrimeEdge Solutions">
                 </div> -->
                 <div class="job-details">
-                    <span class="company-name">PrimeEdge Solutions</span>
-                    <h1>Full Stack Developer</h1>
-                    <div class="job-meta">
-                        <span><i class="ph ph-map-pin"></i> Las Vegas, USA</span>
-                        <span><i class="ph ph-calendar-blank"></i> 2 days ago</span>
-                    </div>
+                    <span class="company-name">
+                        <%= job.company.name %>
+                    </span>
+                    <h1>
+                        <%= job.title %>
+                    </h1>
                     <div class="job-tags">
-                        <span>Part-Time</span>
-                        <span>Web Design</span>
+                        <span>
+                            <%= job.type %>
+                        </span>
+                        <!-- <span>Web Design</span> -->
                     </div>
                 </div>
             </div>
@@ -77,8 +81,8 @@
                     <button class="btn-primary apply-btn">Apply Now</button>
                 </div>
                 <!-- <div class="job-meta-secondary"> -->
-                    <!-- <span>12 days left to apply</span> -->
-                    <!-- <div class="rating">
+                <!-- <span>12 days left to apply</span> -->
+                <!-- <div class="rating">
                         <i class="ph-fill ph-star"></i>
                         <i class="ph-fill ph-star"></i>
                         <i class="ph-fill ph-star"></i>
@@ -87,10 +91,10 @@
                     </div>
                 </div>
                 <div class="job-salary"> -->
-                    <!-- <span>$450 - $550</span>
+                <!-- <span>$450 - $550</span>
                     <span>/month</span> -->
-                </div>
             </div>
+        </div>
         </div>
     </section>
 
@@ -105,57 +109,72 @@
                             <i class="ph ph-calendar-blank"></i>
                             <div>
                                 <span>Date Posted:</span>
-                                <strong>April 20, 2024</strong>
+                                <strong>
+                                    <%= job.createdAt ? job.createdAt.toLocaleDateString('en-US', { year: 'numeric' ,
+                                        month: 'long' , day: 'numeric' }) : '' %>
+                                </strong>
                             </div>
                         </div>
                         <div class="overview-item">
                             <i class="ph ph-clock-countdown"></i>
                             <div>
                                 <span>Expiration date:</span>
-                                <strong>April 20, 2027</strong>
+                                <strong>
+                                    <%= job.application_deadline ? job.application_deadline.toLocaleDateString('en-US',
+                                        { year: 'numeric' , month: 'long' , day: 'numeric' }) : '' %>
+                                </strong>
                             </div>
                         </div>
-                        <div class="overview-item">
+                        <!-- <div class="overview-item">
                             <i class="ph ph-map-pin"></i>
                             <div>
                                 <span>Location:</span>
                                 <strong>Las Vegas, USA</strong>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="overview-item">
                             <i class="ph ph-hourglass"></i>
                             <div>
-                                <span>Hours:</span>
-                                <strong>35h /week</strong>
+                                <span>Salary Type:</span>
+                                <strong>
+                                    <%= job.salary_period %>
+                                </strong>
                             </div>
                         </div>
                         <div class="overview-item">
                             <i class="ph ph-chart-bar"></i>
                             <div>
-                                <span>Experience:</span>
-                                <strong>4 Year</strong>
+                                <span>Salary Range:</span>
+                                <strong>
+                                    <%= job.min_salary %> LE - <%= job.max_salary %> LE
+                                </strong>
                             </div>
                         </div>
-                        <div class="overview-item">
+                        <!-- <div class="overview-item">
                             <i class="ph ph-translate"></i>
                             <div>
                                 <span>English Level:</span>
                                 <strong>Fluent</strong>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </section>
 
                 <section class="job-description">
                     <h2>Full Job Description</h2>
-                    <p>Are you a User Experience Designer with a track record of delivering intuitive digital experiences that drive results? Are you a strategic storyteller and systems thinker who can concept and craft smart, world-class campaigns across a variety of mediums?</p>
+                    <p>
+                        <%= job.description %>
+                    </p>
                 </section>
 
-                <section class="job-responsibilities">
+                <!-- <section class="job-responsibilities">
                     <h2>The Work You'll Do:</h2>
                     <ul>
-                        <li>Support the Creative Directors and Associate Creative Directors of experience design to concept and oversee the production of bold, innovative, award-winning campaigns and digital experiences.</li>
-                        <li>Make strategic and tactical UX decisions related to design and usability as well as features and functions.</li>
+                        <li>Support the Creative Directors and Associate Creative Directors of experience design to
+                            concept and oversee the production of bold, innovative, award-winning campaigns and digital
+                            experiences.</li>
+                        <li>Make strategic and tactical UX decisions related to design and usability as well as features
+                            and functions.</li>
                         <li>Creates low- and high-fidelity wireframes that represent a user's journey.</li>
                     </ul>
                 </section>
@@ -163,9 +182,11 @@
                 <section class="job-requirements">
                     <h2>What you'll bring:</h2>
                     <ul>
-                        <li>Passion for Human-Centered Design-a drive to make interactive technology better for people.</li>
+                        <li>Passion for Human-Centered Design-a drive to make interactive technology better for people.
+                        </li>
                         <li>Thorough knowledge of UX/UI best practices.</li>
-                        <li>Possess problem-solving skills, an investigative mentality, and a proactive nature-committed to delivering solutions.</li>
+                        <li>Possess problem-solving skills, an investigative mentality, and a proactive nature-committed
+                            to delivering solutions.</li>
                     </ul>
                 </section>
 
@@ -174,11 +195,13 @@
                     <ul>
                         <li>Bachelor's degree preferred, or equivalent experience.</li>
                         <li>At least 5-8 years of experience with UX and UI design.</li>
-                        <li>2 years of experience with design thinking or similar framework that focuses on defining users' needs early.</li>
-                        <li>Strong portfolio showing expert concept, layout, and typographic skills, as well as creativity and ability to adhere to brand standards.</li>
+                        <li>2 years of experience with design thinking or similar framework that focuses on defining
+                            users' needs early.</li>
+                        <li>Strong portfolio showing expert concept, layout, and typographic skills, as well as
+                            creativity and ability to adhere to brand standards.</li>
                         <li>Expertise in Figma, Adobe Creative Cloud suite, Microsoft suite.</li>
                     </ul>
-                </section>
+                </section> -->
 
                 <!-- <section class="job-gallery">
                     <div class="gallery-grid">
@@ -248,7 +271,7 @@
                 </section>
             </div> -->
 
-            <!-- <aside class="job-sidebar">
+                <!-- <aside class="job-sidebar">
                 <div class="sidebar-card">
                     <h3>About the Employer</h3>
                     <div class="employer-info">
@@ -398,26 +421,19 @@
                 <h3>Apply Jobs</h3>
                 <button class="close-modal"><i class="ph ph-x"></i></button>
             </div>
-            <form class="modal-form">
+            <form class="modal-form" method="POST" action="/applyToJob" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="cover-letter">Cover letter <span>*</span></label>
-                    <textarea id="cover-letter" rows="4" cols="50" placeholder="Enter your cover letter" required></textarea>
+                    <textarea name="cover_letter" id="cover-letter" rows="4" cols="50"
+                        placeholder="Enter your cover letter" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="cv">CV <span>*</span></label>
-                    <div class="file-upload-options">
-                        <div class="upload-option">
-                            <input type="file" id="pdf-cv" accept=".pdf">
-                            <label for="pdf-cv">PDF</label>
-                            <i class="ph ph-file-pdf"></i>
-                        </div>
-                        <div class="upload-option">
-                            <input type="file" id="doc-cv" accept=".doc,.docx">
-                            <label for="doc-cv">Doc</label>
-                            <i class="ph ph-file-doc"></i>
-                        </div>
-                    </div>
+                    <label for="pdf-cv">CV <span>*</span></label>
+                    <input type="file" id="pdf-cv" name="cv" accept=".pdf,.doc,.docx" required style="display:none;">
+                    <label for="pdf-cv" class="custom-file-label">Choose File</label>
+                    <span id="file-chosen" style="margin-left:10px;">No file chosen</span>
                 </div>
+                <input type="hidden" name="jobId" value="<%= job.id %>">
                 <button type="submit" class="btn-primary">Apply Now</button>
             </form>
         </div>
@@ -434,5 +450,12 @@
     <!-- <button class="scroll-top"><i class="ph ph-caret-up"></i></button> -->
 
     <script src="/js/job-grid-edit.js"></script>
+    <script src="/js/job-detail-edit.js"></script>
+    <script>
+        document.getElementById('pdf-cv').addEventListener('change', function () {
+            document.getElementById('file-chosen').textContent = this.files[0]?.name || 'No file chosen';
+        });
+    </script>
 </body>
+
 </html>

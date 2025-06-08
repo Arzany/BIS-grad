@@ -1,9 +1,20 @@
 const Job = require("../models/job");
 const Company = require("../models/company");
+const Application = require("../models/application");
+const Applicant = require("../models/applicant");
 
 exports.getJobdetailedit = async (req, res, next) => {
   try {
-    res.render("jobdetailedit");
+    const jobId = req.params.jobId;
+    const job = await Job.findByPk(jobId, {
+      include: [
+        {
+          model: Company,
+          attributes: ["name", "logo"],
+        },
+      ],
+    });
+    res.render("jobdetailedit", { job: job });
   } catch (error) {
     console.error("Error fetching Job detail edit page :", error);
   }
@@ -27,7 +38,24 @@ exports.getPrice = async (req, res, next) => {
 
 exports.getuserapplied = async (req, res, next) => {
   try {
-    res.render("userapplied");
+const applications = await Application.findAll({
+  where: { applicantId: req.session.xid },
+  include: [
+    {
+      model: Job,
+      include: [
+        {
+          model: Company,
+          attributes: ["name", "logo"],
+        },
+      ],
+    },
+    {
+      model: Applicant,
+    },
+  ],
+});
+    res.render("userapplied", { applications: applications });
   } catch (error) {
     console.error("Error fetching User applied page :", error);
   }
@@ -76,8 +104,27 @@ exports.getJobgridedit = async (req, res, next) => {
         },
       ],
     });
-    
+
     res.render("jobgridedit", { jobs: jobs });
+  } catch (error) {
+    console.error("Error fetching Job grid edit page :", error);
+  }
+};
+
+exports.postApplyToJob = async (req, res, next) => {
+  try {
+    const cover_letter = req.body.cover_letter;
+    const jobId = req.body.jobId;
+    const cv = req.file;
+
+    const application = await Application.create({
+      cover_letter: cover_letter,
+      cv_path: cv.filename,
+      jobId: jobId,
+      applicantId: req.session.xid,
+    });
+
+    res.redirect("/userapplied");
   } catch (error) {
     console.error("Error fetching Job grid edit page :", error);
   }

@@ -9,16 +9,16 @@ const router = express.Router();
 
 
 //gets
-router.get("/companyjobsview",companycontroller.getCompanyjobsview);
+router.get("/companyjobsview/:jobId",companycontroller.getCompanyjobsview);
 router.get("/payment",companycontroller.getPayment);
 router.get("/price",companycontroller.getPrice);
-router.get("/companychangepass",companycontroller.getComapnychangepass);
+router.get("/companychangepass",companycontroller.getCompanychangepass);
 router.get("/companydeleteprofile",companycontroller.getCompanydeleteprofile);
 router.get("/companysubmitjob",companycontroller.getCompanysubmitjob);
-router.get("/companyprofile",companycontroller.getComapnyprofile);
-router.get("/companyprofilesett",companycontroller.getComapnyprofilesett);
-router.get("/companyjobs",companycontroller.getComapnyjobs);
-router.get("/companyeditjob",companycontroller.getComapnyeditjobs);
+router.get("/companyprofile",companycontroller.getCompanyprofile);
+router.get("/companyprofilesett",companycontroller.getCompanyprofilesett);
+router.get("/companyjobs",companycontroller.getCompanyjobs);
+router.get("/companyeditjob",companycontroller.getCompanyeditjobs);
 
 
 router.post("/companysubmitjob",companycontroller.postCompanysubmitjob);

@@ -26,7 +26,19 @@ body {
     color: var(--dark-color);
     background-color: var(--light-color);
 }
-
+.custom-file-label {
+    display: inline-block;
+    padding: 8px 18px;
+    background: #6962ef;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+.custom-file-label:hover {
+    background: #554fd8;
+}
 a {
     text-decoration: none;
     color: inherit;

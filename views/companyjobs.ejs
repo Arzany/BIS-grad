@@ -92,7 +92,7 @@
                 <div class="stat-card">
                     <div class="stat-info">
                         <span>Posted Jobs</span>
-                        <h3>80</h3>
+                        <h3><%= jobsCount %></h3>
                     </div>
                     <div class="stat-icon">
                         <i class='bx bx-briefcase'></i>
@@ -104,7 +104,7 @@
                 <div class="stat-card">
                     <div class="stat-info">
                         <span>Applications</span>
-                        <h3>200</h3>
+                        <h3><%= totalApplicants %></h3>
                     </div>
                     <div class="stat-icon">
                         <i class='bx bx-send'></i>
@@ -115,8 +115,8 @@
 
                 <div class="stat-card">
                     <div class="stat-info">
-                        <span>On hold</span>
-                        <h3>100</h3>
+                        <span>Pending</span>
+                        <h3><%= pendingCount %></h3>
                     </div>
                     <div class="stat-icon">
                         <i class='bx bx-no-entry'></i>
@@ -128,7 +128,7 @@
                 <div class="stat-card">
                     <div class="stat-info">
                         <span>Approved</span>
-                        <h3>50</h3>
+                        <h3><%= approvedCount %></h3>
                     </div>
                     <div class="stat-icon">
                         <i class='bx bx-smile'></i>
@@ -140,7 +140,7 @@
                 <div class="stat-card">
                     <div class="stat-info">
                         <span>Rejected</span>
-                        <h3>50</h3>
+                        <h3><%= rejectedCount %></h3>
                     </div>
                     <div class="stat-icon">
                         <i class='bx bx-sad'></i>
@@ -247,7 +247,7 @@
                                         </td>
                                         <td>
                                             <a href="/companyjobsview/<%= job.id %>" class="btn btn-outline">
-                                                View Applicants (<%= job.applicantsCount || 0 %>)
+                                                View Applicants (<%= job.dataValues.applicantsCount || 0 %>)
                                             </a>
                                         </td>
                                         <td>

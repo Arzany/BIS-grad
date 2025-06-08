@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="/css/company-job-view.css">
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/fill/style.css">
 </head>
+
 <body class="dashboard">
     <!-- Header -->
     <header class="header">
@@ -16,16 +18,16 @@
                     <img src="/images/logoforallpages.png" alt="EqualChance">
                 </a>
             </div>
-            
+
             <div class="navigator">
                 <ul class="nav-list">
                     <li><a href="/home">Home</a></li>
                     <li><a href="/awareness">For you</a></li>
                     <li><a href="/price">Payment</a></li>
-            
+
                 </ul>
             </div>
-            
+
             <div class="user-block">
                 <a href="/companyprofile">
                     <button class="user-info">
@@ -48,30 +50,36 @@
                     <div class="menu-area">
                         <span class="menu-title">Management</span>
                         <ul class="menu-list">
-                            
-                            <li class="active"><a href="/companyjobs"><span class="ph-duotone ph-briefcase">💼</span> My Jobs</a></li>
-                            <li><a href="/companysubmitjob"><span class="ph-duotone ph-file-arrow-up">📝</span> Submit Jobs</a></li>
+
+                            <li class="active"><a href="/companyjobs"><span class="ph-duotone ph-briefcase">💼</span> My
+                                    Jobs</a></li>
+                            <li><a href="/companysubmitjob"><span class="ph-duotone ph-file-arrow-up">📝</span> Submit
+                                    Jobs</a></li>
                         </ul>
                     </div>
-                    
+
                     <div class="menu-area">
                         <span class="menu-title">User</span>
                         <ul class="menu-list">
-                            <li><a href="/companyprofile"><span class="ph-duotone ph-user-circle">👤</span> My Profile</a></li>
-                            <li><a href="/companyprofilesett"><span class="ph-duotone ph-read-cv-logo">⚙️</span> Edit Profile</a></li>
-                            <li><a href="/companychangepass"><span class="ph-duotone ph-lock-key-open">🔓</span> Change Passwords</a></li>
-                            <li><a href="/companydeleteprofile"><span class="ph-duotone ph-trash">🗑️</span> Delete Profile</a></li>
+                            <li><a href="/companyprofile"><span class="ph-duotone ph-user-circle">👤</span> My
+                                    Profile</a></li>
+                            <li><a href="/companyprofilesett"><span class="ph-duotone ph-read-cv-logo">⚙️</span> Edit
+                                    Profile</a></li>
+                            <li><a href="/companychangepass"><span class="ph-duotone ph-lock-key-open">🔓</span> Change
+                                    Passwords</a></li>
+                            <li><a href="/companydeleteprofile"><span class="ph-duotone ph-trash">🗑️</span> Delete
+                                    Profile</a></li>
                             <li><a href="/home"><span class="ph-duotone ph-sign-out">🚪</span> Log Out</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>>
-    
+
 
         <!-- Main Content -->
         <main class="main-content">
-            
+
             <div class="content-header">
                 <h1>View Applicants</h1>
             </div>
@@ -80,17 +88,33 @@
                 <!-- Job Info -->
                 <div class="job-info-card">
                     <div class="job-info">
-                        <h2>HR Manager</h2>
-                        <p>New Cairo, Cairo</p>
+                        <h2>
+                            <%= applications[0].job.title %>
+                        </h2>
                         <div class="job-meta">
-                            <p>Created date: Jun 1, 2025</p>
-                            <p>Expiry date: Jun 30, 2025</p>
+                            <p>
+                                Created date:
+                                <%= applications[0].job.createdAt ?
+                                    applications[0].job.createdAt.getDate().toString().padStart(2, '0' ) + ' ' +
+                                    applications[0].job.createdAt.toLocaleString('en-US', { month: 'short' }) + ' ' +
+                                    applications[0].job.createdAt.getFullYear() : '' %>
+                            </p>
+                            <p>
+                                Expiry date:
+                                <%= applications[0].job.application_deadline ?
+                                    applications[0].job.application_deadline.getDate().toString().padStart(2, '0' )
+                                    + ' ' + applications[0].job.application_deadline.toLocaleString('en-US', {
+                                    month: 'short' }) + ' ' + applications[0].job.application_deadline.getFullYear()
+                                    : '' %>
+                            </p>
                         </div>
                         <span class="status-badge published">Published</span>
                     </div>
                     <div class="applicants-count">
                         <span>Number of Applicants</span>
-                        <strong id="applicants-count">4</strong>
+                        <strong id="applicants-count">
+                            <%= applicantsCount %>
+                        </strong>
                     </div>
                 </div>
 
@@ -105,7 +129,7 @@
                             </svg>
                         </button>
                     </form>
-                    
+
                     <div class="sort-dropdown">
                         <select id="sort-select">
                             <option value="default">Sort by (default)</option>
@@ -113,10 +137,9 @@
                             <option value="name-desc">Candidate name (Z → A)</option>
                             <option value="date-asc">Date applied (Oldest first)</option>
                             <option value="date-desc">Date applied (Newest first)</option>
-                            <option value="hold">Status (on hold)</option>
-                            <option value="interviewed">Status (interviewed)</option>
-                            <option value="rejected">Status (rejected)</option>
-                            <option value="hired">Status (hired)</option>
+                            <option value="Pending">Status (Pending)</option>
+                            <option value="Approved">Status (Approved)</option>
+                            <option value="Rejected">Status (Rejected)</option>
                         </select>
                     </div>
                 </div>
@@ -134,237 +157,93 @@
                             </tr>
                         </thead>
                         <tbody id="applicants-tbody">
-                            <!-- Applicant 1 -->
-                            <tr>
-                                <td>
-                                    <div class="candidate-info">
-                                        <img src="/images/u_profile/marina.jpg" alt="Marina's profile">
-                                        <div>
-                                            <h3>Sandy Mounir</h3>
-                                            <p>New Cairo, Ciro, Egypt</p>
+                            <% applications.forEach(function(app) { %>
+                                <tr>
+                                    <td>
+                                        <div class="candidate-info">
+                                            <img src="<%= app.applicant && app.applicant.profileImage ? app.applicant.profileImage : '/images/u_profile/default.jpg' %>"
+                                                alt="<%= app.applicant && app.applicant.name ? app.applicant.name : 'Candidate' %>'s profile">
+                                            <div>
+                                                <h3>
+                                                    <%= app.applicant && app.applicant.name ? app.applicant.name
+                                                        : 'Unknown' %>
+                                                </h3>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>Jun 12, 2025</td>
-                                <td><span class="status-badge on-hold">On Hold</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <div class="tooltip-container">
-                                            <button class="action-btn approve" >
-                                                <span class="tooltip-text">Approve</span>
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                                    <path d="M20 6L9 17l-5-5"></path>
-                                                </svg>
-                                            </button>
+                                    </td>
+                                    <td>
+                                        <%= app.createdAt ? app.createdAt.getDate().toString().padStart(2, '0' ) + ' ' +
+                                            app.createdAt.toLocaleString('en-US', { month: 'short' }) + ' ' +
+                                            app.createdAt.getFullYear() : '' %>
+                                    </td>
+                                    <td>
+                                        <span
+                                            class="status-badge <%= app.status ? app.status.toLowerCase().replace(/\s/g, '-') : '' %>">
+                                            <%= app.status || 'On Hold' %>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <div class="tooltip-container">
+                                                <button class="action-btn approve">
+                                                    <span class="tooltip-text">Approve</span>
+                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor">
+                                                        <path d="M20 6L9 17l-5-5"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="tooltip-container">
+                                                <a href="<%= app.cvUrl ? app.cvUrl : '#' %>" download>
+                                                    <button class="action-btn download cv" type="button">
+                                                        <span class="tooltip-text">Download CV</span>
+                                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor">
+                                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                                            <polyline points="7 10 12 15 17 10"></polyline>
+                                                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                                                        </svg>
+                                                    </button>
+                                                </a>
+                                            </div>
+                                            <div class="tooltip-container">
+                                                <button class="action-btn reject">
+                                                    <span class="tooltip-text">Reject</span>
+                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor">
+                                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="tooltip-container">
+                                                <button class="action-btn delete">
+                                                    <span class="tooltip-text">Delete</span>
+                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor">
+                                                        <path d="M3 6h18"></path>
+                                                        <path
+                                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div class="tooltip-container">
-                                            <button class="action-btn download cv" >
-                                                <span class="tooltip-text">Download CV</span>
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                                    <polyline points="7 10 12 15 17 10"></polyline>
-                                                    <line x1="12" y1="15" x2="12" y2="3"></line>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="tooltip-container">
-                                            <button class="action-btn reject" >
-                                                <span class="tooltip-text">Reject</span>
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="tooltip-container">
-                                            <button class="action-btn delete">
-                                                <span class="tooltip-text">Delete</span>
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                                    <path d="M3 6h18"></path>
-                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            
-                            <!-- Applicant 2 -->
-                            <tr>
-                                <td>
-                                    <div class="candidate-info">
-                                        <img src="/images/u_profile/mario.jpg" alt="Mario's profile">
-                                        <div>
-                                            <h3>Mario Samy</h3>
-                                            <p>Shubra, Cairo</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>Jun 2. 2025</td>
-                                <td><span class="status-badge on-hold">On Hold</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <div class="tooltip-container">
-                                            <button class="action-btn approve" >
-                                                <span class="tooltip-text">Approve</span>
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                                    <path d="M20 6L9 17l-5-5"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="tooltip-container">
-                                            <button class="action-btn download cv" >
-                                                <span class="tooltip-text">Download CV</span>
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                                    <polyline points="7 10 12 15 17 10"></polyline>
-                                                    <line x1="12" y1="15" x2="12" y2="3"></line>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="tooltip-container">
-                                            <button class="action-btn reject" >
-                                                <span class="tooltip-text">Reject</span>
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="tooltip-container">
-                                            <button class="action-btn delete">
-                                                <span class="tooltip-text">Delete</span>
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                                    <path d="M3 6h18"></path>
-                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            
-                            <!-- Applicant 3 -->
-                            <tr>
-                                <td>
-                                    <div class="candidate-info">
-                                        <img src="/images/u_profile/marina.jpg" alt="Sara's profile">
-                                        <div>
-                                            <h3>sara Wael</h3>
-                                            <p>Sheratoon, Cairo</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>Jun 5, 2025</td>
-                                <td><span class="status-badge interviewed">Interviewed</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <div class="tooltip-container">
-                                            <button class="action-btn approve" >
-                                                <span class="tooltip-text">Approve</span>
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                                    <path d="M20 6L9 17l-5-5"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="tooltip-container">
-                                            <button class="action-btn download cv" >
-                                                <span class="tooltip-text">Download CV</span>
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                                    <polyline points="7 10 12 15 17 10"></polyline>
-                                                    <line x1="12" y1="15" x2="12" y2="3"></line>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="tooltip-container">
-                                            <button class="action-btn reject" >
-                                                <span class="tooltip-text">Reject</span>
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="tooltip-container">
-                                            <button class="action-btn delete">
-                                                <span class="tooltip-text">Delete</span>
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                                    <path d="M3 6h18"></path>
-                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            
-                            <!-- Applicant 4 -->
-                            <tr>
-                                <td>
-                                    <div class="candidate-info">
-                                        <img src="/images/u_profile/mario.jpg" alt="Karl's profile">
-                                        <div>
-                                            <h3>Karl Hany</h3>
-                                            <p>Nasr City, Cairo</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>Jun 5, 2025</td>
-                                <td><span class="status-badge rejected">Rejected</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <div class="tooltip-container">
-                                            <button class="action-btn approve" >
-                                                <span class="tooltip-text">Approve</span>
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                                    <path d="M20 6L9 17l-5-5"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="tooltip-container">
-                                            <button class="action-btn download cv" >
-                                                <span class="tooltip-text">Download CV</span>
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                                    <polyline points="7 10 12 15 17 10"></polyline>
-                                                    <line x1="12" y1="15" x2="12" y2="3"></line>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="tooltip-container">
-                                            <button class="action-btn reject" >
-                                                <span class="tooltip-text">Reject</span>
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="tooltip-container">
-                                            <button class="action-btn delete">
-                                                <span class="tooltip-text">Delete</span>
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                                    <path d="M3 6h18"></path>
-                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                                <% }); %>
                         </tbody>
                     </table>
                 </div>
 
-                <!-- Pagination -->
+                <!-- Pagination
                 <div class="pagination">
                     <button class="active">1</button>
                     <button>2</button>
                     <button>3</button>
                     <button>&gt;</button>
                     <span>Showing 1 to 6 of 24 entries</span>
-                </div>
+                </div> -->
             </div>
         </main>
     </div>
@@ -376,7 +255,7 @@
 
     <!-- Modals -->
     <div class="modal-overlay" id="modal-overlay"></div>
-    
+
     <!-- Delete Confirmation Modal -->
     <div class="modal" id="delete-modal">
         <div class="modal-header">
@@ -395,4 +274,5 @@
 
     <script src="/js/company_jobs_view.js"></script>
 </body>
+
 </html>

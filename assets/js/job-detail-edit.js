@@ -54,15 +54,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Form Submission
-    const applyForm = document.querySelector('.modal-form');
-    if (applyForm) {
-        applyForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Here you would typically send the form data to your server
-            alert('Application submitted successfully!');
-            applyModal.classList.remove('active');
-            document.body.style.overflow = '';
-            this.reset();
-        });
-    }
+    // const applyForm = document.querySelector('.modal-form');
+    // if (applyForm) {
+    //     applyForm.addEventListener('submit', function(e) {
+    //         e.preventDefault();
+    //         // Here you would typically send the form data to your server
+    //         alert('Application submitted successfully!');
+    //         applyModal.classList.remove('active');
+    //         document.body.style.overflow = '';
+    //         this.reset();
+    //     });
+    // }
 });
