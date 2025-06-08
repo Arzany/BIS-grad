@@ -9,6 +9,17 @@ exports.getFeedback = async (req, res, next) => {
   }
 };
 
+exports.postfeedback = async (req,res,next) => {
+  
+}
+
+
+
+
+
+
+
+
 exports.getFinalhome = async (req, res, next) => {
   try {
     res.render("home", {
