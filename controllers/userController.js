@@ -1,3 +1,6 @@
+const Job = require("../models/job");
+const Company = require("../models/company");
+
 exports.getJobdetailedit = async (req, res, next) => {
   try {
     res.render("jobdetailedit");
@@ -5,8 +8,6 @@ exports.getJobdetailedit = async (req, res, next) => {
     console.error("Error fetching Job detail edit page :", error);
   }
 };
-
-
 
 exports.getPayment = async (req, res, next) => {
   try {
@@ -16,8 +17,6 @@ exports.getPayment = async (req, res, next) => {
   }
 };
 
-
-
 exports.getPrice = async (req, res, next) => {
   try {
     res.render("price");
@@ -25,8 +24,6 @@ exports.getPrice = async (req, res, next) => {
     console.error("Error fetching Price page :", error);
   }
 };
-
-
 
 exports.getuserapplied = async (req, res, next) => {
   try {
@@ -36,8 +33,6 @@ exports.getuserapplied = async (req, res, next) => {
   }
 };
 
-
-
 exports.getUserchangepass = async (req, res, next) => {
   try {
     res.render("userchangepass");
@@ -45,8 +40,6 @@ exports.getUserchangepass = async (req, res, next) => {
     console.error("Error fetching User change pass page :", error);
   }
 };
-
-
 
 exports.getUserdeleteprofile = async (req, res, next) => {
   try {
@@ -56,8 +49,6 @@ exports.getUserdeleteprofile = async (req, res, next) => {
   }
 };
 
-
-
 exports.getUserprofile = async (req, res, next) => {
   try {
     res.render("userprofile");
@@ -65,8 +56,6 @@ exports.getUserprofile = async (req, res, next) => {
     console.error("Error fetching User profile page :", error);
   }
 };
-
-
 
 exports.getUsersettings = async (req, res, next) => {
   try {
@@ -76,3 +65,20 @@ exports.getUsersettings = async (req, res, next) => {
   }
 };
 
+exports.getJobgridedit = async (req, res, next) => {
+  try {
+    const jobs = await Job.findAll({
+      where: { status: "Available" },
+      include: [
+        {
+          model: Company,
+          attributes: ["name", "logo"],
+        },
+      ],
+    });
+    
+    res.render("jobgridedit", { jobs: jobs });
+  } catch (error) {
+    console.error("Error fetching Job grid edit page :", error);
+  }
+};

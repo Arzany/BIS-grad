@@ -1,3 +1,4 @@
+const Job = require("../models/job");
 
 exports.getPayment = async (req, res, next) => {
   try {
@@ -7,8 +8,6 @@ exports.getPayment = async (req, res, next) => {
   }
 };
 
-
-
 exports.getPrice = async (req, res, next) => {
   try {
     res.render("price");
@@ -16,9 +15,6 @@ exports.getPrice = async (req, res, next) => {
     console.error("Error fetching Price page :", error);
   }
 };
-
-
-
 
 exports.getCompanyjobsview = async (req, res, next) => {
   try {
@@ -28,8 +24,6 @@ exports.getCompanyjobsview = async (req, res, next) => {
   }
 };
 
-
-
 exports.getComapnychangepass = async (req, res, next) => {
   try {
     res.render("companychangepass");
@@ -37,10 +31,6 @@ exports.getComapnychangepass = async (req, res, next) => {
     console.error("Error fetching Comapny change pass page :", error);
   }
 };
-
-
-
-
 
 exports.getCompanydeleteprofile = async (req, res, next) => {
   try {
@@ -50,17 +40,15 @@ exports.getCompanydeleteprofile = async (req, res, next) => {
   }
 };
 
-
-
 exports.getCompanysubmitjob = async (req, res, next) => {
   try {
-    res.render("companysubmitjob");
+    res.render("companysubmitjob", {
+      companyId: req.session.user.id || null,
+    });
   } catch (error) {
     console.error("Error fetching Company submit job page :", error);
   }
 };
-
-
 
 exports.getComapnyprofile = async (req, res, next) => {
   try {
@@ -70,10 +58,6 @@ exports.getComapnyprofile = async (req, res, next) => {
   }
 };
 
-
-
-
-
 exports.getComapnyprofilesett = async (req, res, next) => {
   try {
     res.render("companyprofilesett");
@@ -82,27 +66,48 @@ exports.getComapnyprofilesett = async (req, res, next) => {
   }
 };
 
-
-
-
-
 exports.getComapnyjobs = async (req, res, next) => {
   try {
-    res.render("companyjobs");
+    const jobs = await Job.findAll({ where: { companyId: req.session.xid } });
+    res.render("companyjobs", { jobs });
   } catch (error) {
     console.error("Error fetching Comapny jobs page :", error);
   }
 };
-
-
-
-
-
 
 exports.getComapnyeditjobs = async (req, res, next) => {
   try {
     res.render("companyeditjob");
   } catch (error) {
     console.error("Error fetching Comapny edit jobs page :", error);
+  }
+};
+
+exports.postCompanysubmitjob = async (req, res, next) => {
+  try {
+    var title = req.body.title;
+    var jobType = req.body.jobType;
+    var deadline = req.body.deadline;
+    var salaryType = req.body.salaryType;
+    var minSalary = req.body.minSalary;
+    var maxSalary = req.body.maxSalary;
+    var description = req.body.description;
+    var companyId = req.session.xid;
+
+    const job = await Job.create({
+      title: title,
+      type: jobType,
+      application_deadline: deadline,
+      salary_period: salaryType,
+      min_salary: minSalary,
+      max_salary: maxSalary,
+      description: description,
+      companyId: companyId,
+      status: "available",
+    });
+
+    res.redirect("/companyjobs");
+  } catch (error) {
+    console.error("Error fetching Company submit job page :", error);
   }
 };

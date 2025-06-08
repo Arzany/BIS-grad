@@ -8,6 +8,12 @@ const MySQLStore = require("express-mysql-session")(session);
 const sequelize = require("./util/database");
 
 const User = require("./models/user");
+const Applicant = require("./models/applicant");
+const Application = require("./models/application");
+const Article = require("./models/article");
+const Company = require("./models/company");
+const Job = require("./models/job");
+const Payment = require("./models/payment");
 
 const app = express();
 
@@ -47,6 +53,45 @@ app.use(commonRoutes);
 app.use(adminRoutes);
 app.use(companyRoutes);
 app.use(userRoutes);
+
+// Define Relationships
+
+// Company has many Jobs
+Company.hasMany(Job);
+Job.belongsTo(Company);
+
+// Applicant applies to many Jobs (through Application)
+Applicant.belongsToMany(Job, { through: Application });
+Job.belongsToMany(Applicant, { through: Application });
+
+// Payment belongs to Applicant
+Payment.belongsTo(Applicant);
+Applicant.hasOne(Payment);
+
+// Article and Video relationships (assuming they belong to Company)
+Article.belongsTo(Company);
+Company.hasMany(Article);
+
+// One-to-one: Applicant hasOne User via userId (foreign key in Applicant)
+Applicant.belongsTo(User, {
+  foreignKey: "userId", // this will add `userId` column in the Applicant table
+  as: "user",
+});
+
+User.hasOne(Applicant, {
+  foreignKey: "userId", // ensure this points to the same field
+  as: "applicant",
+});
+
+Company.belongsTo(User, {
+  foreignKey: "userId",
+  as: "user",
+});
+
+User.hasOne(Company, {
+  foreignKey: "userId",
+  as: "company",
+});
 
 sequelize
   // .sync({ force: true })

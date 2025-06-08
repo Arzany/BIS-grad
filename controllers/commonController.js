@@ -1,5 +1,8 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/user");
+const Company = require("../models/company");
+const Applicant = require("../models/applicant");
+const Job = require("../models/job");
 
 exports.getFeedback = async (req, res, next) => {
   try {
@@ -9,21 +12,13 @@ exports.getFeedback = async (req, res, next) => {
   }
 };
 
-exports.postfeedback = async (req,res,next) => {
-  
-}
-
-
-
-
-
-
-
+exports.postfeedback = async (req, res, next) => {};
 
 exports.getFinalhome = async (req, res, next) => {
   try {
     res.render("home", {
       isLoggedIn: req.session.isLoggedIn || false,
+      role: req.session && req.session.user ? req.session.user.role : null,
     });
   } catch (error) {
     console.error("Error fetching final home page :", error);
@@ -53,6 +48,19 @@ exports.postLogin = async (req, res, next) => {
         .status(401)
         .render("login", { error: "Invalid email or password" });
     }
+    var company, applicant;
+    if (user.role == "company") {
+      company = await Company.findOne({ userId: user.id });
+    } else if (user.role == "applicant") {
+      applicant = await Applicant.findOne({ userId: user.id });
+    }
+
+    if (company) {
+      req.session.xid = company.id;
+    } else if (applicant) {
+      req.session.xid = applicant.id;
+    }
+
     req.session.isLoggedIn = true;
     req.session.user = user;
     return req.session.save((err) => {
@@ -72,9 +80,7 @@ exports.postLogin = async (req, res, next) => {
 exports.postLogout = (req, res, next) => {
   req.session.destroy((err) => {
     console.log(err);
-    res.render("home", {
-      isLoggedIn: req.session ? req.session.isLoggedIn : false,
-    });
+    res.redirect("/home");
   });
 };
 
@@ -87,7 +93,7 @@ exports.getRegister = async (req, res, next) => {
 };
 
 exports.postRegister = async (req, res, next) => {
-  const { email, password, role } = req.body;
+  const { name, email, password, role } = req.body;
   try {
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
@@ -101,6 +107,24 @@ exports.postRegister = async (req, res, next) => {
       password: hashedPassword,
       role,
     });
+    var company, applicant;
+    if (role == "company") {
+      company = await Company.create({
+        name: name,
+        userId: user.id,
+      });
+    } else {
+      applicant = await Applicant.create({
+        name: name,
+        userId: user.id,
+      });
+    }
+
+    if (role == "company") {
+      req.session.xid = company.id;
+    } else {
+      req.session.xid = applicant.id;
+    }
     req.session.isLoggedIn = true;
     req.session.user = user;
     return req.session.save((err) => {
@@ -123,3 +147,5 @@ exports.getawareness = async (req, res, next) => {
     console.error("Error fetching awareness page :", error);
   }
 };
+
+

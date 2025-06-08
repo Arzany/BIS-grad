@@ -1,38 +1,37 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../util/database");
 
-const company = sequelize.define("company", {
+const Company = sequelize.define("company", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true,
   },
-    name: {
+  name: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true,
   },
-   address: {
+  address: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true,
   },
   logo: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: true,
   },
-    categories: {
-    type: DataTypes.STRING
+  categories: {
+    type: DataTypes.STRING,
+    allowNull: true,
   },
   website: {
-    type: DataTypes.STRING
-  },
-  password: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true,
   },
   description: {
-    type: DataTypes.TEXT
-  }
-  });
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
+});
 
-
-module.exports = company;
+module.exports = Company;

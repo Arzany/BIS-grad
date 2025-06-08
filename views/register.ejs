@@ -37,6 +37,10 @@
                     <div class="tab-content active" id="candidate">
                         <form id="candidate-form" method="POST" action="/register">
                             <div class="form-group">
+                                <label for="candidate-name">Company Name</label>
+                                <input type="name" id="candidate-name" name="name" required placeholder="Company name">
+                            </div>
+                            <div class="form-group">
                                 <label for="candidate-email">Company email address</label>
                                 <input type="email" id="candidate-email" name="email" required
                                     placeholder="Email address">
@@ -62,6 +66,10 @@
 
                     <div class="tab-content" id="employer">
                         <form id="employer-form" method="POST" action="/register">
+                            <div class="form-group">
+                                <label for="employer-name">Applicant Name</label>
+                                <input type="name" id="employer-name" name="name" required placeholder="Applicant Name">
+                            </div>
                             <div class="form-group">
                                 <label for="employer-email">Applicant email address</label>
                                 <input type="email" id="employer-email" name="email" required

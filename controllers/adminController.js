@@ -1,12 +1,6 @@
 const User = require("../models/user");
 
-exports.getJobgridedit = async (req, res, next) => {
-  try {
-    res.render("jobgridedit");
-  } catch (error) {
-    console.error("Error fetching Job grid edit page :", error);
-  }
-};
+
 
 exports.getCompanylist = async (req, res, next) => {
   try {

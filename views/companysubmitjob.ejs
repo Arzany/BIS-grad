@@ -1,46 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit Job</title>
     <link rel="stylesheet" href="/css/company-submit-jobs.css">
 </head>
+
 <body>
     <div class="dashboard-container">
         <!-- Header -->
-    <header class="header">
-        <div class="header-inner">
-            <div class="left">
-                <h1 class="logo">
-                    
-                    <img src="/images/logoforallpages.png" alt="EqualChance" class="logo-white">
-                    
-                </h1>
-            </div>
-            
-            <div class="navigator">
-                <ul class="nav-list">
-                    <li><a href="/home">Home</a></li>
-                    <li><a href="/awareness">For you</a></li>
-                    <li><a href="/price">Payment</a></li>
-            
-                </ul>
-            </div>
-                
+        <header class="header">
+            <div class="header-inner">
+                <div class="left">
+                    <h1 class="logo">
+
+                        <img src="/images/logoforallpages.png" alt="EqualChance" class="logo-white">
+
+                    </h1>
+                </div>
+
+                <div class="navigator">
+                    <ul class="nav-list">
+                        <li><a href="/home">Home</a></li>
+                        <li><a href="/awareness">For you</a></li>
+                        <li><a href="/price">Payment</a></li>
+                    </ul>
+                </div>
+
                 <div class="user-block">
                     <a href="/companyprofile">
-                        
-                            <img src="/images/com. logo/mercedese.jpg" alt="User" class="user-avatar">
-                            <strong class="user-name">Mercedes</strong>
-                            <span class="ph ph-caret-down"></span>
-                        
+
+                        <img src="/images/com. logo/mercedese.jpg" alt="User" class="user-avatar">
+                        <strong class="user-name">Mercedes</strong>
+                        <span class="ph ph-caret-down"></span>
+
                     </a>
                 </div>
-               
+
 
             </div>
-        </div>
+    </div>
     </header>
 
     <!-- Main Content Area -->
@@ -50,23 +51,28 @@
             <!-- Dashboard Menu -->
             <div class="dashboard-menu">
                 <div class="menu-inner">
-                    
+
                     <div class="menu-area">
                         <span class="menu-title">Management</span>
                         <ul class="menu-list">
-                            
+
                             <li><a href="/companyjobs"><span class="ph-duotone ph-notepad">💼</span> My Jobs</a></li>
-                            <li class="active"><a href="/companysubmitjob"><span class="ph-duotone ph-file-arrow-up">📝</span> Submit Jobs</a></li>
+                            <li class="active"><a href="/companysubmitjob"><span
+                                        class="ph-duotone ph-file-arrow-up">📝</span> Submit Jobs</a></li>
                         </ul>
                     </div>
-                    
+
                     <div class="menu-area">
                         <span class="menu-title">Company</span>
                         <ul class="menu-list">
-                            <li><a href="/companyprofile"><span class="ph-duotone ph-user-circle">👤</span> My Profile</a></li>
-                            <li><a href="/companyprofilesetting"><span class="ph-duotone ph-read-cv-logo">⚙️</span>Edit Profile</a></li>
-                            <li><a href="/companychangepass"><span class="ph-duotone ph-lock-key-open">🔓</span> Change Passwords</a></li>
-                            <li><a href="/companydeleteprofile"><span class="ph-duotone ph-trash">🗑️</span> Delete Profile</a></li>
+                            <li><a href="/companyprofile"><span class="ph-duotone ph-user-circle">👤</span> My
+                                    Profile</a></li>
+                            <li><a href="/companyprofilesetting"><span class="ph-duotone ph-read-cv-logo">⚙️</span>Edit
+                                    Profile</a></li>
+                            <li><a href="/companychangepass"><span class="ph-duotone ph-lock-key-open">🔓</span> Change
+                                    Passwords</a></li>
+                            <li><a href="/companydeleteprofile"><span class="ph-duotone ph-trash">🗑️</span> Delete
+                                    Profile</a></li>
                             <li><a href="/home"><span class="ph-duotone ph-sign-out">🚪</span> Log Out</a></li>
                         </ul>
                     </div>
@@ -75,103 +81,107 @@
         </div>>
     </div>
 
-            <!-- Main Content -->
-            <main class="dashboard-main">
-                <form class="job-submission-form">
-                    <div class="form-header">
-                        <h2>Submit Job</h2>
-                        <button type="submit" class="btn-primary">Save & Publish</button>
-                    </div>
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <form class="job-submission-form" method="POST" action="/companysubmitjob">
+            <div class="form-header">
+                <h2>Submit Job</h2>
+            </div>
 
-                    <!-- Information Section -->
-                    <section class="form-section">
-                        <h3>Information</h3>
-                        <div class="form-grid">
-                            <!-- Logo Upload -->
-                            <div class="form-group">
-                                <label for="logo">Upload Logo</label>
-                                <div class="upload-area" id="logo-upload">
-                                    <div class="preview-area">
-                                        <span class="placeholder-icon">📷</span>
-                                        <img id="logo-preview" src="#" alt="Logo Preview" style="display: none;">
-                                    </div>
-                                    <div class="upload-controls">
-                                        <label for="logo" class="btn-upload">Choose File</label>
-                                        <input type="file" id="logo" accept="image/*">
-                                        <p>JPG 320x240px</p>
-                                    </div>
-                                </div>
+            <!-- Information Section -->
+            <section class="form-section">
+                <h3>Information</h3>
+                <div class="form-grid">
+                    <!-- Logo Upload -->
+                    <!-- <div class="form-group">
+                        <label for="logo">Upload Logo</label>
+                        <div class="upload-area" id="logo-upload">
+                            <div class="preview-area">
+                                <span class="placeholder-icon">📷</span>
+                                <img id="logo-preview" src="#" alt="Logo Preview" style="display: none;">
                             </div>
+                            <div class="upload-controls">
+                                <label for="logo" class="btn-upload">Choose File</label>
+                                <input type="file" id="logo" accept="image/*">
+                                <p>JPG 320x240px</p>
+                            </div>
+                        </div>
+                    </div> -->
 
-                            <!-- Banner Upload -->
-                            <div class="form-group">
-                                <!-- <label for="banner">Upload Banner</label>
+                    <!-- Banner Upload -->
+                    <!-- <div class="form-group"> -->
+                        <!-- <label for="banner">Upload Banner</label>
                                 <div class="upload-area" id="banner-upload">
                                     <div class="preview-area">
                                         <span class="placeholder-icon">📷</span>
                                         <img id="banner-preview" src="#" alt="Banner Preview" style="display: none;">
                                     </div> -->
-                                    <!-- <div class="upload-controls">
+                        <!-- <div class="upload-controls">
                                         <label for="banner" class="btn-upload">Choose File</label>
                                         <input type="file" id="banner" accept="image/*">
                                         <p>JPG 320x240px</p>
                                     </div>
                                 </div> -->
-                            </div>
+                    <!-- </div> -->
 
-                            <!-- Job Title -->
-                            <div class="form-group">
-                                <label for="title">Title</label>
-                                <input type="text" id="title" placeholder="Enter job title" required>
-                            </div>
+                    <!-- Job Title -->
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" placeholder="Enter job title" required>
+                    </div>
 
-                            <!-- Job Type -->
-                            <div class="form-group">
-                                <label for="type">Type</label>
-                                <select id="type" required>
-                                    <option value="">Select job type</option>
-                                    <option value="fulltime">Fulltime</option>
-                                    <option value="parttime">Parttime</option>
-                                </select>
-                            </div>
+                    <!-- Job Type -->
+                    <div class="form-group">
+                        <label for="type">Type</label>
+                        <select id="type" name="jobType" required>
+                            <option value="">Select job type</option>
+                            <option value="Full-time">Fulltime</option>
+                            <option value="Part-time">Parttime</option>
+                        </select>
+                    </div>
 
-                            <!-- Deadline Date -->
-                            <div class="form-group">
-                                <label for="deadline">Application deadline date</label>
-                                <input type="date" id="deadline" required>
-                            </div>
+                    <!-- Deadline Date -->
+                    <div class="form-group">
+                        <label for="deadline">Application deadline date</label>
+                        <input type="date" id="deadline" name="deadline" required>
+                    </div>
 
-                            <!-- Salary Information -->
-                            <div class="form-group full-width">
-                                <label>Salary type</label>
-                                <select required>
-                                    <option value="">Select salary type</option>
-                                    <option value="month">Monthly</option>
-                                    <option value="week">Weekly</option>
-                                    <option value="day">Daily</option>
-                                </select>
-                            </div>
+                    <!-- Salary Information -->
+                    <div class="form-group full-width">
+                        <label>Salary type</label>
+                        <select required name="salaryType">
+                            <option value="">Select salary type</option>
+                            <option value="Monthly">Monthly</option>
+                            <option value="Weekly">Weekly</option>
+                            <option value="Daily">Daily</option>
+                        </select>
+                    </div>
 
-                            <div class="form-group">
-                                <label for="min-salary">Min. salary</label>
-                                <input type="text" id="min-salary" required>
-                            </div>
+                    <div class="form-group">
+                        <label for="min-salary">Min. salary</label>
+                        <input type="text" id="min-salary" name="minSalary" required>
+                    </div>
 
-                            <div class="form-group">
-                                <label for="max-salary">Max. salary</label>
-                                <input type="text" id="max-salary" required>
-                            </div>
+                    <div class="form-group">
+                        <label for="max-salary">Max. salary</label>
+                        <input type="text" id="max-salary" name="maxSalary" required>
+                    </div>
 
-                            <!-- Description -->
-                            <div class="form-group full-width">
-                                <label for="description">Description</label>
-                                <textarea id="description" rows="6" required></textarea>
-                            </div>
-                        </div>
-                    </section>
+                    <!-- Description -->
+                    <div class="form-group full-width">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" rows="6" required></textarea>
+                    </div>
+                </div>
+                <input type="hidden" name="companyId" value="<%= companyId %>">
+                <div>
+                    <button type="submit" class="btn-primary">Save & Publish</button>
+                </div>
 
-                    <!-- Questions Section -->
-                    <section class="form-section">
+            </section>
+
+            <!-- Questions Section -->
+            <!-- <section class="form-section">
                         <h3>Questions</h3>
                         <div class="questions-list">
                             <div class="question-item">
@@ -190,14 +200,15 @@
                                 <span>+</span> Add Another Question
                             </button>
                         </div>
-                    </section>
+                    </section> -->
 
-                    
-                </form>
-            </main>
-        </div>
+
+        </form>
+    </main>
+    </div>
     </div>
 
     <script src="/js/company-submit-job.js"></script>
 </body>
+
 </html>

@@ -202,9 +202,6 @@ Applicant.hasOne(Payment);
 Article.belongsTo(Company);
 Company.hasMany(Article);
 
-Video.belongsTo(Company);
-Company.hasMany(Video);
-
 // Sync all models with database
 sequelize.sync({ alter: true })
   .then(() => {

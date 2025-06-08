@@ -9,11 +9,8 @@ const router = express.Router();
 
 //gets
 router.get("/admindashboard" , adminController.getAdmindashboard);
-router.get("/jobgridedit" , adminController.getJobgridedit);
 router.get("/companylist",adminController.getCompanylist);
 router.get("/userlist",adminController.getUserlist);
-
-
 
 
 

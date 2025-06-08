@@ -21,6 +21,7 @@ router.get("/companyjobs",companycontroller.getComapnyjobs);
 router.get("/companyeditjob",companycontroller.getComapnyeditjobs);
 
 
+router.post("/companysubmitjob",companycontroller.postCompanysubmitjob);
 
 
 module.exports = router;

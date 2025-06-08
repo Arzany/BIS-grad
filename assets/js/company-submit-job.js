@@ -128,60 +128,60 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Form Submission with Reset
-    const jobForm = document.querySelector('.job-submission-form');
-    if (jobForm) {
-        jobForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+    // const jobForm = document.querySelector('.job-submission-form');
+    // if (jobForm) {
+    //     jobForm.addEventListener('submit', function(e) {
+    //         e.preventDefault();
             
-            // Here you would typically send the form data to the server
+    //         // Here you would typically send the form data to the server
             
-            // Reset form fields
-            this.reset();
+    //         // Reset form fields
+    //         this.reset();
             
-            // Clear image previews
-            document.getElementById('logo-preview').style.display = 'none';
-            document.getElementById('banner-preview').style.display = 'none';
-            document.querySelector('#logo-upload .placeholder-icon').style.display = 'inline-block';
-            document.querySelector('#banner-upload .placeholder-icon').style.display = 'inline-block';
+    //         // Clear image previews
+    //         document.getElementById('logo-preview').style.display = 'none';
+    //         document.getElementById('banner-preview').style.display = 'none';
+    //         document.querySelector('#logo-upload .placeholder-icon').style.display = 'inline-block';
+    //         document.querySelector('#banner-upload .placeholder-icon').style.display = 'inline-block';
             
-            // Clear tags
-            if (tagsContainer) {
-                tagsContainer.innerHTML = '';
-            }
+    //         // Clear tags
+    //         if (tagsContainer) {
+    //             tagsContainer.innerHTML = '';
+    //         }
             
-            // Clear portfolio files
-            if (portfolioPreview) {
-                portfolioPreview.innerHTML = '';
-            }
+    //         // Clear portfolio files
+    //         if (portfolioPreview) {
+    //             portfolioPreview.innerHTML = '';
+    //         }
             
-            // Reset questions to default with placeholders
-            if (questionsContainer) {
-                questionsContainer.innerHTML = `
-                    <div class="question-item">
-                        <input type="text" class="question-input" value="Why do you think you are a suitable candidate?" placeholder="Please write your question...">
-                        <button type="button" class="btn-remove-question">×</button>
-                    </div>
-                    <div class="question-item">
-                        <input type="text" class="question-input" value="What relevant experience do you have?" placeholder="Please write your question...">
-                        <button type="button" class="btn-remove-question">×</button>
-                    </div>
-                    <div class="question-item">
-                        <input type="text" class="question-input" value="What are your salary expectations?" placeholder="Please write your question...">
-                        <button type="button" class="btn-remove-question">×</button>
-                    </div>
-                `;
+    //         // Reset questions to default with placeholders
+    //         if (questionsContainer) {
+    //             questionsContainer.innerHTML = `
+    //                 <div class="question-item">
+    //                     <input type="text" class="question-input" value="Why do you think you are a suitable candidate?" placeholder="Please write your question...">
+    //                     <button type="button" class="btn-remove-question">×</button>
+    //                 </div>
+    //                 <div class="question-item">
+    //                     <input type="text" class="question-input" value="What relevant experience do you have?" placeholder="Please write your question...">
+    //                     <button type="button" class="btn-remove-question">×</button>
+    //                 </div>
+    //                 <div class="question-item">
+    //                     <input type="text" class="question-input" value="What are your salary expectations?" placeholder="Please write your question...">
+    //                     <button type="button" class="btn-remove-question">×</button>
+    //                 </div>
+    //             `;
                 
-                // Reattach event listeners to remove buttons
-                document.querySelectorAll('.btn-remove-question').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        this.parentElement.remove();
-                    });
-                });
-            }
+    //             // Reattach event listeners to remove buttons
+    //             document.querySelectorAll('.btn-remove-question').forEach(btn => {
+    //                 btn.addEventListener('click', function() {
+    //                     this.parentElement.remove();
+    //                 });
+    //             });
+    //         }
             
-            alert('Form submitted successfully and all data has been cleared!');
-        });
-    }
+    //         alert('Form submitted successfully and all data has been cleared!');
+    //     });
+    // }
     
     // Responsive Sidebar Toggle (for mobile)
     const menuToggle = document.createElement('div');

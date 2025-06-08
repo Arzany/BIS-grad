@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jobs</title>
     <link rel="stylesheet" href="/css/job-grid-edit.css">
 </head>
+
 <body>
-        <header class="header">
+    <header class="header">
         <div class="header-inner">
             <div class="left">
                 <h1 class="logo">
@@ -16,7 +18,7 @@
                     </a>
                 </h1>
             </div>
-            
+
             <div class="navigator">
                 <ul class="nav-list">
                     <li><a href="/home">Home</a></li>
@@ -24,7 +26,7 @@
                     <li><a href="/feedback">Feedback</a></li>
                 </ul>
             </div>
-                
+
             <div class="user-block">
                 <a href="../project lev. 44444/user-profile.html">
                     <button class="user-info">
@@ -39,38 +41,100 @@
     <section class="breadcrumb">
         <div class="breadcrumb-container">
             <div class="breadcrumb-links">
-                <a href="../final home/about2.html">Home</a> 
+                <a href="../final home/about2.html">Home</a>
             </div>
             <h1>Jobs</h1>
-            
+
     </section>
 
     <!-- Jobs Grid Section -->
     <section class="jobs-grid">
         <div class="container">
             <div class="jobs-filter">
-                 <input 
-                 type="text" 
-                id="search-input" 
-                placeholder="Search for job title..." 
-                class="search-bar"
-            />
-            <div class="sort-options">
+                <input type="text" id="search-input" placeholder="Search for job title..." class="search-bar" />
+                <div class="sort-options">
                     <span>Sort by:</span>
                     <select id="sort-select">
-                         <option value="default">Default</option>
-                         <option value="newest">Newest</option>
-                         <option value="oldest">Oldest</option>
+                        <option value="default">Default</option>
+                        <option value="newest">Newest</option>
+                        <option value="oldest">Oldest</option>
                     </select>
+                </div>
             </div>
-         </div>
-            
-            <div class="jobs-list" id="jobs-list"></div>
-     
 
-        </div> 
-    </section> 
+            <!-- <div class="jobs-list" id="jobs-list"></div> -->
+
+            <div class="jobs-list-kiko">
+                <% jobs.forEach(job=> { %>
+                    <div class="job-item" style="margin-bottom: 1rem;">
+                        <a href="/jobsdetail/<%= job.id %>">
+
+                            <div class="job-header">
+                                <img src="<%= job.companyLogo %>" alt="Company Logo">
+                                <div class="job-info">
+                                    <span class="company">
+                                        <%= job.company.name %>
+                                    </span>
+                                    <h3>
+                                        <%= job.title %> - (<%= job.type %>)
+                                    </h3>
+                                    <div class="job-meta">
+                                        <span><i>Posted At :</i>
+                                            <%= job.createdAt ? job.createdAt.getDate() + '-' +
+                                                (job.createdAt.getMonth() + 1) + '-' + job.createdAt.getFullYear() : ''
+                                                %>
+                                        </span>
+                                        <span><i>Deadline : </i>
+                                            <%= job.application_deadline ? job.application_deadline.getDate() + '-' +
+                                                (job.application_deadline.getMonth() + 1) + '-' +
+                                                job.application_deadline.getFullYear() : '' %>
+                                        </span>
+                                        <span><i>Salary Type : </i>
+                                            <%= job.salary_period %>
+                                        </span>
+                                        <span><i>Min Salary : </i>
+                                            <%= job.min_salary %>
+                                        </span>
+                                        <span><i>Max Salary : </i>
+                                            <%= job.max_salary %>
+                                        </span>
+                                    </div>
+                                    <span><i>Description : </i>
+                                        <%= job.description %>
+                                    </span>
+                                </div>
+                                <!-- <button class="save-btn">❤</button> -->
+                            </div>
+                            <!-- <div class="job-footer">
+                            <div class="job-tags">
+                                <% if (job.tags && job.tags.length) { %>
+                                    <% job.tags.forEach(function(tag) { %>
+                                        <span>
+                                            <%= tag %>
+                                        </span>
+                                        <% }); %>
+                                            <% } %>
+                            </div>
+                            <div class="job-price">
+                                <span>
+                                    <%= job.price %>
+                                </span>
+                                <span>
+                                    <%= job.period %>
+                                </span>
+                            </div>
+                        </div> -->
+                        </a>
+
+                    </div>
+                    <% }); %>
+            </div>
+
+
+        </div>
+    </section>
 
     <script src="/js/job-grid-edit.js"></script>
 </body>
+
 </html>

@@ -38,6 +38,18 @@
                         <a href="/feedback" class="nav-link ar">التعليقات</a>
                         <a href="/feedback" class="nav-link en" style="display: none">Feedback</a>
                     </li>
+                    <% if (role=='company' ) { %>
+                        <li>
+                            <a href="/companyprofile" class="nav-link ar">حسابى</a>
+                            <a href="/companyprofile" class="nav-link en" style="display: none">My Account</a>
+                        </li>
+                        <% } else { %>
+                            <li>
+                                <a href="/userprofile" class="nav-link ar">حسابى</a>
+                                <a href="/userprofile" class="nav-link en" style="display: none">My Account</a>
+                            </li>
+                            <% } %>
+
                 </ul>
             </nav>
 
