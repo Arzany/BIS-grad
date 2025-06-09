@@ -1481,3 +1481,95 @@ img {
 }
 
 
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.job-details {
+    margin-top: 1.5rem;
+}
+
+.job-details p {
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+}
+
+/* Status Tag Styles */
+.status-tag {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.status-tag.published {
+    background-color: #e3f5e1;
+    color: #2e7d32;
+}
+
+.status-tag.draft {
+    background-color: #e0e0e0;
+    color: #424242;
+}
+
+.status-tag.closed {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+/* Mobile Menu Styles */
+@media (max-width: 768px) {
+    .dashboard-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 80%;
+        height: 100vh;
+        background-color: white;
+        z-index: 1000;
+        padding: 1rem;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        overflow-y: auto;
+    }
+    
+    .dashboard-menu.active {
+        display: block;
+    }
+    
+    .btn-menu-dashboard {
+        display: block;
+        margin-bottom: 1rem;
+    }
+}
