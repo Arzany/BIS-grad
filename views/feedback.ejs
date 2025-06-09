@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +9,9 @@
     <link rel="stylesheet" href="/css/feedback.css">
     <link rel="stylesheet" href="https://unpkg.com/phosphor-icons">
 </head>
+
 <body>
-            <header class="header">
+    <header class="header">
         <div class="header-inner">
             <div class="left">
                 <h1 class="logo">
@@ -18,14 +20,14 @@
                     </a>
                 </h1>
             </div>
-            
+
             <div class="navigator">
                 <ul class="nav-list">
                     <li><a href="/home">Home</a></li>
                     <li><a href="/awareness">awareness</a></li>
                 </ul>
             </div>
-                
+
             <div class="user-block">
                 <a href="../project lev. 44444/user-profile.html">
                     <button class="user-info">
@@ -43,66 +45,70 @@
             <div class="form-container">
                 <h2>Feedback</h2>
 
-    <form id = "feedbackform" method="post" action="/feedback"> 
-    <!-- User Type -->
-    <div class="form-group">
-        <label>User Type</label>
-        <div class="radio-group">
-        <label class="radio-inline">
-            <input type="radio" name="userType" value="jobSeeker" required>
-            Job Seeker
-        </label>
-        <label class="radio-inline">
-            <input type="radio" name="userType" value="company">
-            Company
-        </label>
-        </div>
-    </div>
+                <form id="feedbackform" method="post" action="/feedback">
+                    <!-- User Type -->
+                    <div class="form-group">
+                        <label>User Type</label>
+                        <div class="radio-group">
+                            <% if (role=='applicant' ) { %>
+                                <label class="radio-inline">
+                                    <input checked type="radio" name="userType" value="Applicant" required>
+                                    Applicant
+                                </label>
+                                <% } else { %>
+                                    <label class="radio-inline">
+                                        <input checked type="radio" name="userType" value="Company">
+                                        Company
+                                    </label>
+                                    <% } %>
+                        </div>
+                    </div>
 
-    <!-- Rating -->
-    <div class="form-group">
-        <label>Rating</label>
-        <div class="rating-stars">
-            <span class="star" data-value="1">&#9733;</span>
-            <span class="star" data-value="2">&#9733;</span>
-            <span class="star" data-value="3">&#9733;</span>
-            <span class="star" data-value="4">&#9733;</span>
-            <span class="star" data-value="5">&#9733;</span>
-            <input type="hidden" name="rating" id="rating" required>
-        </div>
-    </div>
+                    <!-- Rating -->
+                    <div class="form-group">
+                        <label>Rating</label>
+                        <div class="rating-stars">
+                            <span class="star" data-value="1">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="5">&#9733;</span>
+                            <input type="hidden" name="rating" id="rating" required>
+                        </div>
+                    </div>
 
-    <!-- Improvement Needed -->
-    <div class="form-group">
-        <label>Improvement Needed</label>
-        <input type="text" placeholder="Improvement Needed" required>
-    </div>
+                    <!-- Improvement Needed -->
+                    <div class="form-group">
+                        <label>Improvement Needed</label>
+                        <input type="text" name="impNeeded" placeholder="Improvement Needed" required>
+                    </div>
 
-    <!-- Would Recommend -->
-    <div class="form-group">
-        <label>Would Recommend</label>
-        <div class="radio-group">
-            <label><input type="radio" name="recommend" value="yes" required> Yes</label>
-            <label><input type="radio" name="recommend" value="no"> No</label>
-        </div>
-    </div>
+                    <!-- Would Recommend -->
+                    <div class="form-group">
+                        <label>Would Recommend</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="recommend" value="true" required> Yes</label>
+                            <label><input type="radio" name="recommend" value="false"> No</label>
+                        </div>
+                    </div>
 
-    <!-- Understood Rights -->
-    <div class="form-group">
-        <label>Understood Rights</label>
-        <div class="radio-group">
-            <label><input type="radio" name="understood" value="yes" required> Yes</label>
-            <label><input type="radio" name="understood" value="no"> No</label>
-        </div>
-    </div>
+                    <!-- Understood Rights -->
+                    <div class="form-group">
+                        <label>Understood Rights</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="understood" value="true" required> Yes</label>
+                            <label><input type="radio" name="understood" value="false"> No</label>
+                        </div>
+                    </div>
 
-    <button type="submit" class="btn-primary">Submit your Feedback</button>
-   </form>
+                    <button type="submit" class="btn-primary">Submit your Feedback</button>
+                </form>
 
             </div>
         </div>
-    </section> 
+    </section>
 
     <script src="/js/feedback.js"></script>
 </body>
+
 </html>

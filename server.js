@@ -15,6 +15,7 @@ const Article = require("./models/article");
 const Company = require("./models/company");
 const Job = require("./models/job");
 const Payment = require("./models/payment");
+const Feedback = require("./models/feedback");
 
 const app = express();
 
@@ -114,6 +115,30 @@ Company.belongsTo(User, {
 User.hasOne(Company, {
   foreignKey: "userId",
   as: "company",
+});
+
+Feedback.belongsTo(Applicant, {
+  foreignKey: "applicantId",
+  as: "applicant",
+  allowNull: true,
+});
+
+Applicant.hasMany(Feedback, {
+  foreignKey: "applicantId",
+  as: "feedback",
+  allowNull: true,
+});
+
+Feedback.belongsTo(Company, {
+  foreignKey: "companyId",
+  as: "company",
+  allowNull: true,
+});
+
+Company.hasMany(Feedback, {
+  foreignKey: "companyId",
+  as: "feedback",
+  allowNull: true,
 });
 
 sequelize

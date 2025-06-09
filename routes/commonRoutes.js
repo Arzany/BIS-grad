@@ -20,5 +20,7 @@ router.get("/awareness",commonController.getawareness);
 router.post("/register", commonController.postRegister);
 router.post("/login", commonController.postLogin);
 router.post("/logout", commonController.postLogout);
+router.post("/feedback", commonController.postFeedback);
+
 
 module.exports = router;
