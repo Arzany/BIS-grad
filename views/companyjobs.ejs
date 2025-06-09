@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Company's Jobs</title>
     <link rel="shortcut icon" href="/images/fav.png" type="image/x-icon" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href='/css/company-jobs.css' rel='stylesheet'>
     <link rel="stylesheet" href="company-jobs.css">
 </head>
@@ -34,7 +35,7 @@
             <div class="user-block">
                 <a href="/companyprofile">
                     <div class="user-info">
-                        <img src="/images/com. logo/mercedese.jpg" alt="Compay logo" class="user-avatar">
+                        <img src="/images/mercedese.jpg" alt="Compay logo" class="user-avatar">
                         <strong class="user-name">Mercedes</strong>
                     </div>
                 </a>
@@ -251,7 +252,7 @@
                                                 View Applicants (<%= job.dataValues.applicantsCount || 0 %>)
                                             </a>
                                         </td>
-                                        <td>
+                                       <td>
                                             <div class="action-buttons">
                                                 <div class="tooltip-container">
                                                     <button class="action-btn view-job">
@@ -274,8 +275,8 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                           
                                         </td>
+
                                     </tr>
                                     <% }); %>
                             </tbody>
