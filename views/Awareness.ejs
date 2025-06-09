@@ -6,158 +6,342 @@
     <meta name="description" content="EqualChance - Job Board & Freelance Marketplace" />
     <title>EqualChance - Job Board & Freelance Marketplace</title>
     <link rel="shortcut icon" href="/images/fav.png" type="image/x-icon" />
-    <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="/css/leaflet.css" />
-    <link rel="stylesheet" href="/css/slick.css" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/dist/output-tailwind.css" />
-    <link rel="stylesheet" href="/css/dist/output-scss.css" />
     <style>
+        /* Reset and Base Styles */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          line-height: 1.6;
+          color: #333;
+          background-color: #f9f9f9;
+          padding-top: 82px; /* Space for fixed header */
+        }
+
         /* Header Styles */
         .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            background-color: #1F2937;
-            transition: all 0.3s ease;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 1000;
+          background-color: #1F2937;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s ease;
         }
 
         .header-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 25px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 15px 5%;
+          max-width: 1400px;
+          margin: 0 auto;
         }
 
         .logo img {
-            height: 42px;
-            width: 120px;
+          height: 42px;
+          width: auto;
+          transition: transform 0.3s ease;
         }
 
-        .left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+        .logo:hover img {
+          transform: scale(1.05);
         }
 
         .nav-list {
-            display: flex;
-            align-items: center;
-            gap: 20px;
+          display: flex;
+          list-style: none;
+          gap: 25px;
         }
 
         .nav-list li a {
-            color: white;
-            font-weight: 500;
-            position: relative;
-            text-decoration: none !important;
-            border: none !important;
-            box-shadow: none !important;
+          color: white;
+          font-weight: 500;
+          text-decoration: none;
+          padding: 5px 0;
+          position: relative;
+          transition: all 0.3s ease;
         }
 
         .nav-list li a:hover {
-            font-weight: 800;
-            text-decoration: none;
-            border: none;
+          color: #4ADF86;
         }
 
-        .user-info {
-            padding: 0;
-            border: none;
-            background: transparent;
-            display: flex;
-            align-items: center;
+        .nav-list li a::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background-color: #4ADF86;
+          transition: width 0.3s ease;
+        }
+
+        .nav-list li a:hover::after {
+          width: 100%;
         }
 
         .user-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: none;
-            background: none;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 2px solid rgba(255, 255, 255, 0.2);
+          transition: all 0.3s ease;
         }
 
-        .nav-list li a::after,
-        .nav-list li a::before {
-            display: none !important;
+        .user-avatar:hover {
+          border-color: #4ADF86;
+          transform: scale(1.1);
         }
 
-        @media (max-width: 768px) {
-            .header-inner {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                padding: 10px 8px;
-            }
-            .nav-list li a {
-                font-weight: 500;
-                font-size: small;
-            }
-            .logo img {
-                height: 32px;
-                width: 100px;
-            }
-            .nav-list {
-                flex-direction: row;
-                gap: 5px;
-            }
+        /* Hero Section */
+        .slider {
+          width: 100%;
+          overflow: hidden;
+        }
+
+        .slider_inner {
+          position: relative;
+          min-height: 600px;
+          background-color: #1D3E3E;
+          display: flex;
+          align-items: center;
+          padding: 0 5%;
+        }
+
+        .slider_bg {
+          position: absolute;
+          bottom: 0;
+          right: 5%;
+          height: 80%;
+        }
+
+        .slider_bg img {
+          height: 100%;
+          width: auto;
+          max-width: 100%;
+        }
+
+        .slider_content {
+          max-width: 800px;
+          z-index: 2;
+        }
+
+        .heading1 {
+          font-size: 3.5rem;
+          color: white;
+          margin-bottom: 1.5rem;
+          line-height: 1.2;
+        }
+
+        .body2 {
+          font-size: 1.1rem;
+          color: rgba(255, 255, 255, 0.9);
+          margin-bottom: 1rem;
+        }
+
+        /* Video Sections */
+        .popular_categories, .benefit {
+          padding: 60px 5%;
+          max-width: 1400px;
+          margin: 0 auto;
+        }
+
+        .heading3 {
+          font-size: 2rem;
+          color: #1F2937;
+          margin-bottom: 1.5rem;
+        }
+
+        .benefit_inner {
+          display: flex;
+          align-items: center;
+          gap: 50px;
+          margin-bottom: 60px;
+        }
+
+        .benefit_content {
+          flex: 1;
+        }
+
+        .benefit_bg {
+          flex: 1;
+          position: relative;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit_bg img {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        .play_btn {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          background: rgba(0, 0, 0, 0.7);
+          border: none;
+          color: white;
+          font-size: 1.5rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .play_btn:hover {
+          background: #4ADF86;
+          transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .list_benefit {
+          list-style: none;
+          margin-top: 2rem;
+        }
+
+        .benefit_item {
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: flex-start;
+        }
+
+        .benefit_item span {
+          color: #4ADF86;
+          margin-right: 10px;
+          font-size: 1.2rem;
         }
 
         /* Modal Styles */
         .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.8);
+          z-index: 2000;
+          justify-content: center;
+          align-items: center;
+          opacity: 0;
+          transition: opacity 0.3s ease;
         }
 
         .modal.open {
-            display: flex;
+          display: flex;
+          opacity: 1;
         }
 
         .modal_item {
-            position: relative;
-            display: none;
+          width: 90%;
+          max-width: 900px;
+          position: relative;
         }
 
-        .modal_item.open {
-            display: block;
+        .modal_item iframe {
+          width: 100%;
+          height: 500px;
+          border: none;
+          border-radius: 8px;
         }
 
         .close_popup_btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 18px;
-            line-height: 30px;
-            text-align: center;
-            z-index: 1010;
+          position: absolute;
+          top: -40px;
+          right: 0;
+          background: transparent;
+          color: white;
+          border: none;
+          font-size: 1.5rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
         }
 
         .close_popup_btn:hover {
-            background: rgba(0, 0, 0, 0.8);
+          color: #4ADF86;
         }
 
-        /* Ensure body doesn't scroll when modal is open */
-        body.scroll_locked {
-            overflow: hidden;
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+          .header-inner {
+            padding: 15px 3%;
+          }
+          
+          .slider_inner {
+            min-height: 500px;
+          }
+          
+          .heading1 {
+            font-size: 2.8rem;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .benefit_inner {
+            flex-direction: column;
+          }
+          
+          .slider_content {
+            text-align: center;
+          }
+          
+          .slider_bg {
+            position: relative;
+            right: auto;
+            height: auto;
+            margin-top: 30px;
+          }
+          
+          .heading1 {
+            font-size: 2.2rem;
+          }
+          
+          .nav-list {
+            gap: 15px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .header-inner {
+            padding: 10px 3%;
+          }
+          
+          .nav-list {
+            gap: 10px;
+          }
+          
+          .logo img {
+            height: 32px;
+          }
+          
+          .user-avatar {
+            width: 32px;
+            height: 32px;
+          }
+          
+          .heading1 {
+            font-size: 1.8rem;
+          }
+          
+          .body2 {
+            font-size: 1rem;
+          }
+          
+          .modal_item iframe {
+            height: 250px;
+          }
         }
     </style>
 </head>
@@ -190,273 +374,341 @@
 
     <!-- Slider -->
     <section class="slider">
-        <div class="slider_inner relative lg:h-[860px] md:h-[700px] sm:h-[500px] h-[600px] bg-[#1D3E3E]">
-            <div class="slider_bg absolute bottom-0 2xl:-right-48 xl:-right-24 -right-20 lg:h-full sm:h-[90%] h-[80%] animate animate_left" style="--i: 3">
-                <img src="/images/love.png" alt="slider3_user" width="400px" height="400px" style="margin-right: 325px; margin-top: 250px;" />
-                <div class="avatar relative w-12 h-12 flex-shrink-0"></div>
+        <div class="slider_inner">
+            <div class="slider_bg">
+                <img src="/images/love.png" alt="slider3_user" />
             </div>
-            <div class="slider_content flex flex-col items-start justify-center sm:pt-20 pt-16 lg:w-[848px] md:w-5/6 w-full h-full">
-                <h2 class="heading1 text-white animate animate_top" style="--i: 1; margin-left: 20px;">EQUAL CHANCE</h2>
-                <p class="body2 text-white mt-5 animate animate_top" style="--i: 2;  margin-left: 20px;">"Frustration is the only true obstacle—disability is just an excuse for those who refuse to reach their goals. If you stumble while learning to run, you may yet become the greatest runner in history. No one who keeps trying has ever truly failed"</p>
-                <p class="body2 text-white mt-5 animate animate_top" style="--i: 2;  margin-left: 20px;">"الإحباط فقط هو من يعيق الوصول، اما الإعاقة فهي حجة لمن لا يريد أن يصل. إن تعسرت مرة وأنت تحاول الجري، حتماً ستكون يوماً أعظم عداء في التاريخ، فلم يفشل أبداً من يكرر محاولاته"</p>
+            <div class="slider_content">
+                <h2 class="heading1 animate" style="--i: 1">EQUAL CHANCE</h2>
+                <p class="body2 animate" style="--i: 2">"Frustration is the only true obstacle—disability is just an excuse for those who refuse to reach their goals. If you stumble while learning to run, you may yet become the greatest runner in history. No one who keeps trying has ever truly failed"</p>
+                <p class="body2 animate" style="--i: 3">"الإحباط فقط هو من يعيق الوصول، اما الإعاقة فهي حجة لمن لا يريد أن يصل. إن تعسرت مرة وأنت تحاول الجري، حتماً ستكون يوماً أعظم عداء في التاريخ، فلم يفشل أبداً من يكرر محاولاته"</p>
             </div>
         </div>
     </section>
 
     <!-- Popular Categories -->
-    <section class="popular_categories lg:pt-20 sm:pt-14 pt-10">
+    <section class="popular_categories">
         <div class="container">
-            <div class="heading flex items-center justify-between flex-wrap gap-4">
-                <div class="left animate animate_top" style="--i: 1">
+            <div class="heading">
+                <div class="left animate" style="--i: 1">
                     <h3 class="heading3">awareness Content</h3>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Benefit Sections -->
     <!-- Video 1 -->
-    <section class="benefit lg:pb-20 sm:pb-14 pb-10">
+    <section class="benefit">
         <div class="container">
-            <div class="benefit_inner flex max-lg:flex-col-reverse items-center justify-between gap-y-8">
-                <div class="benefit_content xl:w-[589px] lg:w-5/12 w-full">
-                    <h3 class="heading3 animate animate_top" style="--i: 1">الحقوق المهنية للمعاقين</h3>
-                    <p class="body2 text-secondary mt-2 animate animate_top" style="--i: 2">الحق في تعيين 5% من المعاقين في الحكومة و القطاع العام و قطاع الاعمال و القطاع الخاص</p>
-                    <ul class="list_benefit flex flex-col gap-4 mt-8">
-                        <li class="benefit_item flex items-center gap-3 animate animate_top" style="--i: 3">
-                            <span class="ph-fill ph-check-circle flex-shrink-0 text-xl text-primary"></span>
+            <div class="benefit_inner">
+                <div class="benefit_content animate" style="--i: 1">
+                    <h3 class="heading3">الحقوق المهنية للمعاقين</h3>
+                    <p class="body2 text-secondary mt-2">الحق في تعيين 5% من المعاقين في الحكومة و القطاع العام و قطاع الاعمال و القطاع الخاص</p>
+                    <ul class="list_benefit">
+                        <li class="benefit_item animate" style="--i: 2">
+                            <span>✓</span>
                             <p class="body2 desc">ما هي الحقوق المهنية و الوظيفيه للمعاقين من ذوي الهمم</p>
                         </li>
-                        <li class="benefit_item flex items-center gap-3 animate animate_top" style="--i: 4">
-                            <span class="ph-fill ph-check-circle flex-shrink-0 text-xl text-primary"></span>
+                        <li class="benefit_item animate" style="--i: 3">
+                            <span>✓</span>
                             <p class="body2 desc">وما هي شروط اعتبار الشخص معاق ومستحق لكارت الخدمات المتكاملة</p>
                         </li>
-                        <li class="benefit_item flex items-center gap-3 animate animate_top" style="--i: 5">
-                            <span class="ph-fill ph-check-circle flex-shrink-0 text-xl text-primary"></span>
+                        <li class="benefit_item animate" style="--i: 4">
+                            <span>✓</span>
                             <p class="body2 desc">حق الذي يرعى معاق في الاعفاء الضريبي</p>
                         </li>
-                        <li class="benefit_item flex items-center gap-3 animate animate_top" style="--i: 6">
-                            <span class="ph-fill ph-check-circle flex-shrink-0 text-xl text-primary"></span>
+                        <li class="benefit_item animate" style="--i: 5">
+                            <span>✓</span>
                             <p class="body2 desc">حق ذوي الهمم في تخفيض ساعات العمل اليومية</p>
                         </li>
                     </ul>
                 </div>
-                <div class="benefit_bg relative lg:w-1/2 sm:w-[70%] w-full">
-                    <img src="images/v 1.jpg" alt="benefit3" class="w-full rounded-xl" />
-                    <button class="btn_open_popup play_btn flex items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-15 h-15 rounded-full bg-black text-white duration-300 hover:bg-primary" data-type="modal_video" data-video-id="video1">
-                        <span class="ph-fill ph-play text-2xl"></span>
+                <div class="benefit_bg animate" style="--i: 6">
+                    <img src="images/v1.jpg" alt="benefit3" class="w-full rounded-xl" />
+                    <button class="btn_open_popup play_btn" data-video-id="video1">
+                        ►
                     </button>
                 </div>
             </div>
         </div>
     </section>
     <div class="modal" id="video1">
-        <div class="modal_item modal_video md:w-[700px] w-[90vw] aspect-[16/9]" data-type="modal_video">
-            <button class="close_popup_btn">X</button>
-            <iframe class="w-full h-full" src="https://www.youtube.com/embed/iPoKGhvBCH8?si=IKJArgzBWHmylLZA" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="modal_item">
+            <button class="close_popup_btn">×</button>
+            <iframe src="https://www.youtube.com/embed/iPoKGhvBCH8?si=IKJArgzBWHmylLZA" title="YouTube video player" allowfullscreen></iframe>
         </div>
     </div>
 
     <!-- Video 2 -->
-    <section class="benefit lg:pb-20 sm:pb-14 pb-10">
+    <section class="benefit">
         <div class="container">
-            <div class="benefit_inner flex max-lg:flex-col-reverse items-center justify-between gap-y-8">
-                <div class="benefit_content xl:w-[589px] lg:w-5/12 w-full">
-                    <h3 class="heading3 animate animate_top" style="--i: 1">تأهيل ذوي الهمم لسوق العمل .. والتأكد من تطبيق نسبة الـ 5% تعيينات لهم في القطاع الخاص</h3>
+            <div class="benefit_inner">
+                <div class="benefit_content animate" style="--i: 1">
+                    <h3 class="heading3">تأهيل ذوي الهمم لسوق العمل .. والتأكد من تطبيق نسبة الـ 5% تعيينات لهم في القطاع الخاص</h3>
                 </div>
-                <div class="benefit_bg relative lg:w-1/2 sm:w-[70%] w-full">
-                    <img src="images/v 2.jpg" alt="benefit3" class="w-full rounded-xl" />
-                    <button class="btn_open_popup play_btn flex items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-15 h-15 rounded-full bg-black text-white duration-300 hover:bg-primary" data-type="modal_video" data-video-id="video2">
-                        <span class="ph-fill ph-play text-2xl"></span>
+                <div class="benefit_bg animate" style="--i: 2">
+                    <img src="images/v2.jpg" alt="benefit3" class="w-full rounded-xl" />
+                    <button class="btn_open_popup play_btn" data-video-id="video2">
+                        ►
                     </button>
                 </div>
             </div>
         </div>
     </section>
     <div class="modal" id="video2">
-        <div class="modal_item modal_video md:w-[700px] w-[90vw] aspect-[16/9]" data-type="modal_video">
-            <button class="close_popup_btn">X</button>
-            <iframe class="w-full h-full" src="https://www.youtube.com/embed/MtgurEcbVK4?si=6tNg2BSDIdzV7bDh" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="modal_item">
+            <button class="close_popup_btn">×</button>
+            <iframe src="https://www.youtube.com/embed/MtgurEcbVK4?si=6tNg2BSDIdzV7bDh" title="YouTube video player" allowfullscreen></iframe>
         </div>
     </div>
 
     <!-- Video 3 -->
-    <section class="benefit lg:pb-20 sm:pb-14 pb-10">
+    <section class="benefit">
         <div class="container">
-            <div class="benefit_inner flex max-lg:flex-col-reverse items-center justify-between gap-y-8">
-                <div class="benefit_content xl:w-[589px] lg:w-5/12 w-full">
-                    <h3 class="heading3 animate animate_top" style="--i: 1">كل ما تريد معرفته حول فرص عمل ذوى الاحتياجات الخاصة ..وفرص عملهم فى البنوك والشركات</h3>
+            <div class="benefit_inner">
+                <div class="benefit_content animate" style="--i: 1">
+                    <h3 class="heading3">كل ما تريد معرفته حول فرص عمل ذوى الاحتياجات الخاصة ..وفرص عملهم فى البنوك والشركات</h3>
                 </div>
-                <div class="benefit_bg relative lg:w-1/2 sm:w-[70%] w-full">
-                    <img src="/images/v 3.jpg" alt="benefit3" class="w-full rounded-xl" />
-                    <button class="btn_open_popup play_btn flex items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-15 h-15 rounded-full bg-black text-white duration-300 hover:bg-primary" data-type="modal_video" data-video-id="video3">
-                        <span class="ph-fill ph-play text-2xl"></span>
+                <div class="benefit_bg animate" style="--i: 2">
+                    <img src="images/v3.jpg" alt="benefit3" class="w-full rounded-xl" />
+                    <button class="btn_open_popup play_btn" data-video-id="video3">
+                        ►
                     </button>
                 </div>
             </div>
         </div>
     </section>
     <div class="modal" id="video3">
-        <div class="modal_item modal_video md:w-[700px] w-[90vw] aspect-[16/9]" data-type="modal_video">
-            <button class="close_popup_btn">X</button>
-            <iframe class="w-full h-full" src="https://www.youtube.com/embed/IF1I217b0bI?si=mS8YiU43C2yMFobi" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="modal_item">
+            <button class="close_popup_btn">×</button>
+            <iframe src="https://www.youtube.com/embed/IF1I217b0bI?si=mS8YiU43C2yMFobi" title="YouTube video player" allowfullscreen></iframe>
         </div>
     </div>
 
     <!-- Video 4 -->
-    <section class="benefit lg:pb-20 sm:pb-14 pb-10">
+    <section class="benefit">
         <div class="container">
-            <div class="benefit_inner flex max-lg:flex-col-reverse items-center justify-between gap-y-8">
-                <div class="benefit_content xl:w-[589px] lg:w-5/12 w-full">
-                    <h3 class="heading3 animate animate_top" style="--i: 1">نصائح هامة لك لو أنت لسه نازل شغل جديد أو بتشتغل</h3>
+            <div class="benefit_inner">
+                <div class="benefit_content animate" style="--i: 1">
+                    <h3 class="heading3">نصائح هامة لك لو أنت لسه نازل شغل جديد أو بتشتغل</h3>
                 </div>
-                <div class="benefit_bg relative lg:w-1/2 sm:w-[70%] w-full">
-                    <img src="images/v 4.jpg" alt="benefit3" class="w-full rounded-xl" />
-                    <button class="btn_open_popup play_btn flex items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-15 h-15 rounded-full bg-black text-white duration-300 hover:bg-primary" data-type="modal_video" data-video-id="video4">
-                        <span class="ph-fill ph-play text-2xl"></span>
+                <div class="benefit_bg animate" style="--i: 2">
+                    <img src="images/v4.jpg" alt="benefit3" class="w-full rounded-xl" />
+                    <button class="btn_open_popup play_btn" data-video-id="video4">
+                        ►
                     </button>
                 </div>
             </div>
         </div>
     </section>
     <div class="modal" id="video4">
-        <div class="modal_item modal_video md:w-[700px] w-[90vw] aspect-[16/9]" data-type="modal_video">
-            <button class="close_popup_btn">X</button>
-            <iframe class="w-full h-full" src="https://www.youtube.com/embed/yV_K33h3nWg?si=5lwTMrF9v4ZksVG6" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="modal_item">
+            <button class="close_popup_btn">×</button>
+            <iframe src="https://www.youtube.com/embed/yV_K33h3nWg?si=5lwTMrF9v4ZksVG6" title="YouTube video player" allowfullscreen></iframe>
         </div>
     </div>
 
     <!-- Video 5 -->
-    <section class="benefit lg:pb-20 sm:pb-14 pb-10">
+    <section class="benefit">
         <div class="container">
-            <div class="benefit_inner flex max-lg:flex-col-reverse items-center justify-between gap-y-8">
-                <div class="benefit_content xl:w-[589px] lg:w-5/12 w-full">
-                    <h3 class="heading3 animate animate_top" style="--i: 1">Creating an ATS Resume for Graduates and Military Veterans (for Employment)</h3>
-                    <ul class="list_benefit flex flex-col gap-4 mt-8">
-                        <li class="benefit_item flex items-center gap-3 animate animate_top" style="--i: 3">
-                            <span class="ph-fill ph-check-circle flex-shrink-0 text-xl text-primary"></span>
+            <div class="benefit_inner">
+                <div class="benefit_content animate" style="--i: 1">
+                    <h3 class="heading3">Creating an ATS Resume for Graduates and Military Veterans (for Employment)</h3>
+                    <ul class="list_benefit">
+                        <li class="benefit_item animate" style="--i: 2">
+                            <span>✓</span>
                             <p class="body2 desc">How to Create an ATS-Compliant CV</p>
                         </li>
-                        <li class="benefit_item flex items-center gap-3 animate animate_top" style="--i: 4">
-                            <span class="ph-fill ph-check-circle flex-shrink-0 text-xl text-primary"></span>
+                        <li class="benefit_item animate" style="--i: 3">
+                            <span>✓</span>
                             <p class="body2 desc">How to Create a CV on Canva</p>
                         </li>
-                        <li class="benefit_item flex items-center gap-3 animate animate_top" style="--i: 5">
-                            <span class="ph-fill ph-check-circle flex-shrink-0 text-xl text-primary"></span>
+                        <li class="benefit_item animate" style="--i: 4">
+                            <span>✓</span>
                             <p class="body2 desc">Creating the Strongest CV</p>
                         </li>
-                        <li class="benefit_item flex items-center gap-3 animate animate_top" style="--i: 6">
-                            <span class="ph-fill ph-check-circle flex-shrink-0 text-xl text-primary"></span>
+                        <li class="benefit_item animate" style="--i: 5">
+                            <span>✓</span>
                             <p class="body2 desc">Tips for Graduates on Creating a CV</p>
                         </li>
                     </ul>
                 </div>
-                <div class="benefit_bg relative lg:w-1/2 sm:w-[70%] w-full">
-                    <img src="images/v 5.jpg" alt="benefit3" class="w-full rounded-xl" />
-                    <button class="btn_open_popup play_btn flex items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-15 h-15 rounded-full bg-black text-white duration-300 hover:bg-primary" data-type="modal_video" data-video-id="video5">
-                        <span class="ph-fill ph-play text-2xl"></span>
+                <div class="benefit_bg animate" style="--i: 6">
+                    <img src="images/v5.jpg" alt="benefit3" class="w-full rounded-xl" />
+                    <button class="btn_open_popup play_btn" data-video-id="video5">
+                        ►
                     </button>
                 </div>
             </div>
         </div>
     </section>
     <div class="modal" id="video5">
-        <div class="modal_item modal_video md:w-[700px] w-[90vw] aspect-[16/9]" data-type="modal_video">
-            <button class="close_popup_btn">X</button>
-            <iframe class="w-full h-full" src="https://www.youtube.com/embed/c6EcifBVIck?si=6U8udauyXfg4BMl2" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="modal_item">
+            <button class="close_popup_btn">×</button>
+            <iframe src="https://www.youtube.com/embed/c6EcifBVIck?si=6U8udauyXfg4BMl2" title="YouTube video player" allowfullscreen></iframe>
         </div>
     </div>
-w
+
     <!-- Video 6 -->
-    <section class="benefit lg:pb-20 sm:pb-14 pb-10">
+    <section class="benefit">
         <div class="container">
-            <div class="benefit_inner flex max-lg:flex-col-reverse items-center justify-between gap-y-8">
-                <div class="benefit_content xl:w-[589px] lg:w-5/12 w-full">
-                    <h3 class="heading3 animate animate_top" style="--i: 1">CV وليه هو اهم من Cover Letter يعنى ايه</h3>
+            <div class="benefit_inner">
+                <div class="benefit_content animate" style="--i: 1">
+                    <h3 class="heading3">CV وليه هو اهم من Cover Letter يعنى ايه</h3>
                 </div>
-                <div class="benefit_bg relative lg:w-1/2 sm:w-[70%] w-full">
-                    <img src="images/v 6.jpg" alt="benefit3" class="w-full rounded-xl" />
-                    <button class="btn_open_popup play_btn flex items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-15 h-15 rounded-full bg-black text-white duration-300 hover:bg-primary" data-type="modal_video" data-video-id="video6">
-                        <span class="ph-fill ph-play text-2xl"></span>
+                <div class="benefit_bg animate" style="--i: 2">
+                    <img src="images/v6.jpg" alt="benefit3" class="w-full rounded-xl" />
+                    <button class="btn_open_popup play_btn" data-video-id="video6">
+                        ►
                     </button>
                 </div>
             </div>
         </div>
     </section>
     <div class="modal" id="video6">
-        <div class="modal_item modal_video md:w-[700px] w-[90vw] aspect-[16/9]" data-type="modal_video">
-            <button class="close_popup_btn">X</button>
-            <iframe class="w-full h-full" src="https://www.youtube.com/embed/5LsD5VJmae8?si=WVF2EsVIpyh7mDDu" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="modal_item">
+            <button class="close_popup_btn">×</button>
+            <iframe src="https://www.youtube.com/embed/5LsD5VJmae8?si=WVF2EsVIpyh7mDDu" title="YouTube video player" allowfullscreen></iframe>
         </div>
     </div>
 
-    <!-- Feature Services (Commented out in original code) -->
-    <!-- Uncomment if needed -->
-    <!--
-    <section class="feature_services lg:pt-20 sm:pt-14 pt-10 md:pb-6 bg-surface">
-        <div class="container">
-            <div class="heading flex items-center justify-between flex-wrap gap-4">
-                <div class="left animate animate_top" style="--i: 1">
-                    <h3 class="heading3">Feature services</h3>
-                    <p class="body2 text-secondary mt-3">Discover our featured services designed to elevate your experience</p>
-                </div>
-                <a href="services-default.html" class="text-button pb-0.5 border-b-2 border-primary duration-300 hover:text-primary animate animate_top" style="--i: 2">All Services</a>
-            </div>
-            <div class="list section-swiper-navigation relative md:mt-10 mt-7">
-                <button class="custom-button-prev2 -border lg:-left-6 left-2">
-                    <span class="ph-bold ph-arrow-left text-xl"></span>
-                </button>
-                <div class="swiper -section swiper-feature_services overflow-unset">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="service_item overflow-hidden relative rounded-lg bg-white shadow-md duration-300 hover:shadow-xl animate animate_top" style="--i: 1">
-                                <button class="add_wishlist_btn">
-                                    <span class="ph ph-heart text-xl"></span>
-                                    <span class="ph-fill ph-heart text-xl"></span>
-                                </button>
-                                <a href="services-detail1.html" class="service_thumb">
-                                    <img src="assets/images/service/1.webp" alt="1" class="w-full" />
-                                </a>
-                                <div class="service_info py-5 px-4">
-                                    <div class="flex items-center justify-between">
-                                        <a href="services-default.html" class="tag caption2 bg-surface hover:bg-primary hover:text-white">Graphic & Design</a>
-                                        <div class="rate flex items-center gap-1">
-                                            <span class="ph-fill ph-star text-yellow text-xs"></span>
-                                            <strong class="service_rate text-button-sm">4.9</strong>
-                                            <span class="service_rate_quantity caption1 text-secondary">(482)</span>
-                                        </div>
-                                    </div>
-                                    <a href="services-detail1.html" class="service_title text-title pt-2 duration-300 hover:text-primary">Professional seo services to boost your website's visibility</a>
-                                    <div class="service_more_info flex items-center justify-between mt-4 pt-4 border-t border-line">
-                                        <a href="candidates-detail1.html" class="service_author flex items-center gap-2">
-                                            <img src="assets/images/avatar/IMG-1.webp" alt="IMG-1" class="service_author_avatar w-8 h-8 rounded-full" />
-                                            <span class="service_author_name">Floyd Miles</span>
-                                        </a>
-                                        <div class="service_price">
-                                            <span class="text-secondary">From </span>
-                                            <span class="text-title">$75</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Add other swiper slides as needed -->
-                    </div>
-                </div>
-                <button class="custom-button-next2 -border lg:-right-6 right-2">
-                    <span class="ph-bold ph-arrow-right text-xl"></span>
-                </button>
-            </div>
-        </div>
-    </section>
-    -->
-
-    <!-- Scripts -->
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/phosphor-icons.js"></script>
-    <script src="/js/slick.min.js"></script>
-    <script src="/js/leaflet.js"></script>
-    <script src="/js/swiper-bundle.min.js"></script>
-    <script src="/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          // Modal functionality
+          const openModalButtons = document.querySelectorAll('.btn_open_popup');
+          const closeModalButtons = document.querySelectorAll('.close_popup_btn');
+          const modals = document.querySelectorAll('.modal');
+          
+          // Open modal
+          openModalButtons.forEach(button => {
+            button.addEventListener('click', () => {
+              const modalId = button.getAttribute('data-video-id');
+              const modal = document.getElementById(modalId);
+              
+              // Close any open modals first
+              modals.forEach(m => m.classList.remove('open'));
+              document.body.classList.remove('scroll_locked');
+              
+              // Open the selected modal
+              modal.classList.add('open');
+              document.body.classList.add('scroll_locked');
+            });
+          });
+          
+          // Close modal
+          closeModalButtons.forEach(button => {
+            button.addEventListener('click', () => {
+              const modal = button.closest('.modal');
+              modal.classList.remove('open');
+              document.body.classList.remove('scroll_locked');
+            });
+          });
+          
+          // Close modal when clicking outside content
+          modals.forEach(modal => {
+            modal.addEventListener('click', (e) => {
+              if (e.target === modal) {
+                modal.classList.remove('open');
+                document.body.classList.remove('scroll_locked');
+              }
+            });
+          });
+          
+          // Close modal with Escape key
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+              modals.forEach(modal => {
+                if (modal.classList.contains('open')) {
+                  modal.classList.remove('open');
+                  document.body.classList.remove('scroll_locked');
+                }
+              });
+            }
+          });
+          
+          // Smooth scrolling for anchor links
+          document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+              e.preventDefault();
+              
+              const targetId = this.getAttribute('href');
+              if (targetId === '#') return;
+              
+              const targetElement = document.querySelector(targetId);
+              if (targetElement) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                
+                window.scrollTo({
+                  top: targetPosition,
+                  behavior: 'smooth'
+                });
+              }
+            });
+          });
+          
+          // Header scroll effect
+          const header = document.querySelector('.header');
+          let lastScroll = 0;
+          
+          window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+              header.style.transform = 'translateY(0)';
+              return;
+            }
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+              // Scroll down
+              header.style.transform = 'translateY(-100%)';
+            } else if (currentScroll < lastScroll) {
+              // Scroll up
+              header.style.transform = 'translateY(0)';
+            }
+            
+            lastScroll = currentScroll;
+          });
+          
+          // Animation on scroll
+          function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate');
+            
+            elements.forEach(element => {
+              const elementPosition = element.getBoundingClientRect().top;
+              const windowHeight = window.innerHeight;
+              
+              if (elementPosition < windowHeight - 100) {
+                const delay = element.getAttribute('style').match(/--i: (\d+)/)[1] * 0.1;
+                element.style.animation = `fadeInUp 0.5s ease-out ${delay}s forwards`;
+              }
+            });
+          }
+          
+          // Initial check and add scroll event listener
+          animateOnScroll();
+          window.addEventListener('scroll', animateOnScroll);
+          
+          // Add animation keyframes dynamically
+          const style = document.createElement('style');
+          style.textContent = `
+            @keyframes fadeInUp {
+              from {
+                opacity: 0;
+                transform: translateY(20px);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+            
+            .animate {
+              opacity: 0;
+            }
+          `;
+          document.head.appendChild(style);
+        });
+    </script>
 </body>
 </html>
