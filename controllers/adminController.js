@@ -7,7 +7,9 @@ const Feedback = require("../models/feedback");
 
 exports.getCompanylist = async (req, res, next) => {
   try {
-    res.render("Companylist");
+    const companies = await Company.findAll();
+
+    res.render("Companylist", { companies: companies });
   } catch (error) {
     console.error("Error fetching Company list page :", error);
   }
@@ -15,7 +17,10 @@ exports.getCompanylist = async (req, res, next) => {
 
 exports.getUserlist = async (req, res, next) => {
   try {
-    res.render("Userlist");
+    const applicants = await Applicant.findAll();
+    res.render("Userlist", {
+      applicants: applicants,
+    });
   } catch (error) {
     console.error("Error fetching User list page :", error);
   }

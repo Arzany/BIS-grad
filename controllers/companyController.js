@@ -3,6 +3,8 @@ const Application = require("../models/application");
 const sequelize = require("../util/database");
 const { Op, fn, col } = require("sequelize");
 const Applicant = require("../models/applicant");
+const Company = require("../models/company");
+const User = require("../models/user");
 
 exports.getPayment = async (req, res, next) => {
   try {
@@ -40,10 +42,7 @@ exports.getCompanyjobsview = async (req, res, next) => {
         },
         {
           model: Applicant,
-          attributes: [
-            "name",
-            "phone",
-          ],
+          attributes: ["name", "phone"],
         },
       ],
     });
@@ -52,7 +51,7 @@ exports.getCompanyjobsview = async (req, res, next) => {
     const applicantsCount = await Application.count({
       where: { jobId: req.params.jobId },
     });
-    
+
     res.render("companyjobsview", { applications, applicantsCount });
   } catch (error) {
     console.error("Error fetching Company jobs view page :", error);
@@ -87,17 +86,66 @@ exports.getCompanysubmitjob = async (req, res, next) => {
 
 exports.getCompanyprofile = async (req, res, next) => {
   try {
-    res.render("companyprofile");
+    const companyId = req.session.xid;
+    const company = await Company.findByPk(companyId);
+    const jobs = await Job.findAll({ where: { companyId: companyId } });
+
+    if (!company) return res.status(404).send("Company not found");
+    res.render("companyprofile", { company: company, jobs: jobs });
   } catch (error) {
     console.error("Error fetching Company profile page :", error);
   }
 };
 
-exports.getCompanyprofilesett = async (req, res, next) => {
+exports.getEditProfile = async (req, res) => {
   try {
-    res.render("companyprofilesett");
+    const companyId = req.session.xid;
+    const company = await Company.findByPk(companyId, {
+      include: [
+        {
+          model: User,
+          as: "user", // use the alias if you defined one in your association
+        },
+      ],
+    });
+    if (!company) return res.status(404).send("Company not found");
+
+    res.render("companyprofilesett", { company });
   } catch (error) {
-    console.error("Error fetching Company profile sett page :", error);
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+
+// POST: Update Profile
+exports.postEditProfile = async (req, res) => {
+  try {
+    const companyId = req.session.xid;
+
+    const { name, address, website, categories, description } = req.body;
+
+    // Handle image upload if applicable (you need multer for that)
+    const logo = req.file ? req.file : undefined;
+
+    const updatedData = {
+      name,
+      address,
+      website,
+      categories,
+      description,
+      updatedAt: new Date(),
+    };
+
+    if (logo) updatedData.logo = logo.filename;
+
+    await Company.update(updatedData, {
+      where: { id: companyId },
+    });
+
+    res.redirect("/companyprofile");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Update failed");
   }
 };
 

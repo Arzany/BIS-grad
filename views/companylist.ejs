@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="shortcut icon" href="/images/fav.png" type="image/x-icon" />
     <link rel="stylesheet" href="/css/user-list.css">
 </head>
+
 <body>
     <!-- Header -->
     <header class="header">
@@ -14,7 +16,7 @@
             <div class="logo">
                 <img src="/images/logoforallpages.png">
             </div>
-            
+
             <div class="navigator">
                 <ul class="nav-list">
                     <li><a href="/home">Home</a></li>
@@ -47,7 +49,7 @@
                 <form class="search-form" id="searchForm">
                     <div class="search-input">
                         <input type="text" id="searchInput" placeholder="Job title, key words or company">
-                    </div>  
+                    </div>
                     <button type="submit" class="btn-primary">Search</button>
                 </form>
             </div>
@@ -68,103 +70,44 @@
                     <option value="name-desc">Name (Z-A)</option>
                 </select>
             </div>
-        </div>       
-        <div class="filter-tags">
-            <span id="resultsCount">5 Results</span>
         </div>
-        
-        <div class="candidates-list" id="candidatesList">
-            <!-- Candidate 1 -->
-            <div class="candidate-item" data-name="Marina Medhat" data-title="Financial Analyst" data-company="Tech Corp"  data-date="2023-05-15">
-                <div class="candidate-info">
-                    <img src="/images/com. logo/alabd.jpg" alt="EL-Abd">
-                    <div class="candidate-details">
-                        <h3>EL-Abd</h3>
-                        <span class="location">October, Giza, Egypt</span>
-                    </div>
-                </div>
-                <div class="profile-action">
-                    <a href="/companyprofile">
-                        <button class="view-profile">View Profile</button>
-                    </a>
-                </div>
-            </div>
+        <!-- <div class="filter-tags">
+            <span id="resultsCount">5 Results</span>
+        </div> -->
 
-            <!-- Candidate 2 -->
-            <div class="candidate-item" data-name="Mario Wael" data-title="Web Designer" data-company="Design Solutions"  data-date="2023-06-20">
-                <div class="candidate-info">
-                    <img src="/images/com. logo/mercedese.jpg" alt="Mercedes">
-                    <div class="candidate-details">
-                        <h3>Mercedes</h3>
-                        <span class="location">New Cairo, Cairo</span>
-                        <div class="candidate-meta">
+        <div class="candidates-list" id="candidatesList">
+            <% companies.forEach(function(company) { %>
+                <div class="candidate-item" data-name="<%= company.name %>" data-title="<%= company.industry || '' %>"
+                    data-company="<%= company.name %>"
+                    data-date="<%= company.createdAt ? company.createdAt.toISOString().slice(0,10) : '' %>">
+                    <div class="candidate-info">
+                        <img src="/images/<%= company.logo || 'default.jpg' %>" alt="<%= company.name %>">
+                        <div class="candidate-details">
+                            <h3>
+                                <%= company.name %>
+                            </h3>
+                            <span class="location">
+                                <%= company.address || '' %>
+                            </span>
                         </div>
                     </div>
+                    <!-- <div class="profile-action">
+                        <a href="/companyprofile/<%= company.id %>">
+                            <button class="view-profile">View Profile</button>
+                        </a>
+                    </div> -->
                 </div>
-                <div class="profile-action">
-                    <a href="#">
-                        <button class="view-profile">View Profile</button>
-                    </a>
-                    
-                </div>
-            </div>
-
-            <!-- Candidate 3 -->
-            <div class="candidate-item" data-name="Ahmed Samir" data-title="Content Writer" data-company="Content Creators"  data-date="2023-07-10">
-                <div class="candidate-info">
-                    <img src="/images/com. logo/etisalate.jpg" alt="etisalate">
-                    <div class="candidate-details">
-                        <h3>Etisalate</h3>
-                        <span class="location">Alexandria, Egypt</span>
-                    </div>
-                </div>
-                <div class="profile-action">
-                    <a href="#">
-                        <button class="view-profile">View Profile</button>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Candidate 4 -->
-            <div class="candidate-item" data-name="Sarah Mohamed" data-title="Video Editor" data-company="Media Pro"  data-date="2023-08-05">
-                <div class="candidate-info">
-                    <img src="/images/com. logo/nissan.jpg" alt="Nissan">
-                    <div class="candidate-details">
-                        <h3>Nissan</h3>
-                        <span class="location">Downtown, Cairo</span>
-                    </div>
-                </div>
-                <div class="profile-action">
-                    <a href="#">
-                        <button class="view-profile">View Profile</button>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Candidate 5 -->
-            <div class="candidate-item" data-name="John Doe" data-title="Digital Marketer" data-company="Marketing Plus"  data-date="2023-09-12">
-                <div class="candidate-info">
-                    <img src="/images/com. logo/vodafone.jpg" alt="Vodafone">
-                    <div class="candidate-details">
-                        <h3>Vodafone</h3>
-                        <span class="location">Zamalek, Cairo</span>
-                    </div>
-                </div>
-                <div class="profile-action">
-                    <a> 
-                        <button class="view-profile">View Profile</button>
-                    </a>
-                </div>
-            </div>
+                <% }); %>
         </div>
-        
-        <div class="pagination">
+
+        <!-- <div class="pagination">
             <button class="active">1</button>
             <button>2</button>
             <button>3</button>
             <button>></button>
-        </div>
+        </div> -->
     </div>
     <script src="/js/users-list.js"></script>
 </body>
+
 </html>

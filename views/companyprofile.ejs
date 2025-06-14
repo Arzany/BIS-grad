@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="shortcut icon" href="/images/fav.png" type="image/x-icon" />
     <link rel="stylesheet" href="/css/company.profile.css">
 </head>
+
 <body class="dashboard-page">
     <!-- Header -->
     <header class="dashboard-header">
@@ -16,21 +18,23 @@
                     <img src="/images/logoforallpages.png" alt="EqualChance Logo">
                 </a>
             </div>
-            
+
             <nav class="main-nav">
                 <ul>
                     <li><a href="/home">Home</a></li>
                     <li><a href="/awareness">For you</a></li>
                     <li><a href="/price">Payment</a></li>
-                    
+
                 </ul>
             </nav>
-            
+
             <div class="user-menu">
                 <div class="user-avatar">
-                    <img src="/images/etisalate.jpg" alt="company logo">
+                    <img src="/cv/<%= company.logo %>" alt="company logo">
                 </div>
-                <span>Mercedes</span>
+                <span>
+                    <%= company.name %>
+                </span>
             </div>
         </div>
     </header>
@@ -42,11 +46,11 @@
             <div class="sidebar-menu">
                 <h4>Management</h4>
                 <ul>
-                    
+
                     <li><a href="/companyjobs"><i class="ph ph-gavel">💼</i> MY Jobs</a></li>
                     <li><a href="/companysubmitjob"><i class="ph ph-gavel">📝</i> Submit Jobs</a></li>
                 </ul>
-                
+
                 <h4>Account</h4>
                 <ul>
                     <li class="active"><a href="/companyprofile"><i class="ph ph-user-circle">👤</i> My Profile</a></li>
@@ -64,82 +68,95 @@
                 <h2>My Profile</h2>
                 <a href="/companyprofilesett" class="btn-primary">Edit Profile</a>
             </div>
-            
+
             <div class="profile-content">
                 <!-- Left Column -->
                 <div class="profile-left">
                     <div class="info-card">
                         <h3>Company Info</h3>
                         <div class="company-map">
-                        <ul class="company-info">
-                            <li><span>Website:</span> http://www.mercedes.com</li>
-                            <li><span>Email:</span> maercedes@gmail.com</li>
-                            <li><span>Industry:</span> Internet Publishing</li>
-                            <li><span>Address:</span> October, Giza</li>
-                        </ul>
+                            <ul class="company-info">
+                                <li><span>Website:</span>
+                                    <%= company.website %>
+                                </li>
+                                <li><span>Email:</span>
+                                    <%= company.email %>
+                                </li>
+                                <li><span>Categories:</span>
+                                    <%= company.categories %>
+                                </li>
+                                <li><span>Address:</span>
+                                    <%= company.address %>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                
-                <!-- Right Column -->
-                <div class="profile-right">
-                    <div class="about-card">
-                        <h3>About Us</h3>
-                        <p>The Mercedes-Benz Group AG (former Daimler AG) is one of the world's most successful automotive companies. With Mercedes-Benz AG, we are one of the leading global suppliers of high-end passenger cars and premium vans. Mercedes-Benz Mobility AG offers financing, leasing, car subscription and car rental, fleet management, digital services for charging and payment, insurance brokerage, as well as innovative mobility services.</p>
-                    </div>
-                    
-                    <div class="jobs-card">
-                        <h3>Our Job Openings</h3>
-                        <div class="job-listing">
-                            <!-- Job 1 -->
-                            <a href="job-details-1.html" class="job-link">
-                                <div class="job-item">
-                                    <div class="job-header">
-                                        <img src="images/etisalate.jpg" alt="Mercedes Logo">
-                                        <div>
-                                            <h4>Digital Marketing</h4>
-                                            <div class="job-meta">
-                                                <span><i class="ph ph-map-pin"></i> October, Giza</span>
-                                                <span><i class="ph ph-calendar-blank"></i> 2 days ago</span>
+
+                    <!-- Right Column -->
+                    <div class="profile-right">
+                        <div class="about-card">
+                            <h3>About Us</h3>
+                            <p>
+                                <%= company.description %>
+                            </p>
+                        </div>
+
+                        <div class="jobs-card">
+                            <h3>Our Jobs</h3>
+                            <div class="job-listing">
+                                <% jobs.forEach(function(job) { %>
+                                    <a href="/job-details/<%= job.id %>" class="job-link">
+                                        <div class="job-item" style="padding: 1rem;">
+                                            <div class="job-header">
+                                                <img src="/images/<%= job.logo || 'default.jpg' %>"
+                                                    alt="<%= company.name %> Logo">
+                                                <div>
+                                                    <h4>
+                                                        <%= job.title %>
+                                                    </h4>
+                                                    <div class="job-meta">
+                                                        <span><i class="ph ph-map-pin"></i>
+                                                            <%= job.location || '' %>
+                                                        </span>
+                                                        <span>
+                                                            <i class="ph ph-calendar-blank"></i>
+                                                            <%= job.createdAt ?
+                                                                job.createdAt.getDate().toString().padStart(2, '0' )
+                                                                + ' ' + job.createdAt.toLocaleString('en-US', {
+                                                                month: 'short' }) + ' ' + job.createdAt.getFullYear()
+                                                                : '' %>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="job-footer">
+                                                <div class="job-tags">
+                                                    <span>
+                                                        <%= job.type || '' %>
+                                                    </span>
+                                                    <% if (job.salary_period) { %>
+                                                        <span>
+                                                            <%= job.salary_period %>
+                                                        </span>
+                                                        <% } %>
+                                                            <% if (job.min_salary || job.max_salary) { %>
+                                                                <span>
+                                                                    <%= job.min_salary %>EGP - <%= job.max_salary %>EGP
+                                                                </span>
+                                                                <% } %>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="job-footer">
-                                        <div class="job-tags">
-                                            <span>full-time</span>
-                                            <span>UX/UI</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                    
-                            <!-- Job 2 -->
-                            <a href="job-details-2.html" class="job-link">
-                                <div class="job-item">
-                                    <div class="job-header">
-                                        <img src="images/com. logo/mercedese.jpg" alt="Mercedes Logo">
-                                        <div>
-                                            <h4>Full Stack Developer</h4>
-                                            <div class="job-meta">
-                                                <span><i class="ph ph-map-pin"></i> Sheraton, Cairo</span>
-                                                <span><i class="ph ph-calendar-blank"></i> 2 days ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="job-footer">
-                                        <div class="job-tags">
-                                            <span>Full-Time</span>
-                                            <span>Web Design</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
+                                    </a>
+                                    <% }); %>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </main>
     </div>
 
     <script src="/js/company-profile.js"></script>
 </body>
+
 </html>

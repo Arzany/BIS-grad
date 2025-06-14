@@ -94,7 +94,9 @@
                 <div class="stat-card">
                     <div class="stat-info">
                         <span>Posted Jobs</span>
-                        <h3><%= jobsCount %></h3>
+                        <h3>
+                            <%= jobsCount %>
+                        </h3>
                     </div>
                     <div class="stat-icon">
                         <i class='bx bx-briefcase'></i>
@@ -106,7 +108,9 @@
                 <div class="stat-card">
                     <div class="stat-info">
                         <span>Applications</span>
-                        <h3><%= totalApplicants %></h3>
+                        <h3>
+                            <%= totalApplicants %>
+                        </h3>
                     </div>
                     <div class="stat-icon">
                         <i class='bx bx-send'></i>
@@ -118,7 +122,9 @@
                 <div class="stat-card">
                     <div class="stat-info">
                         <span>Pending</span>
-                        <h3><%= pendingCount %></h3>
+                        <h3>
+                            <%= pendingCount %>
+                        </h3>
                     </div>
                     <div class="stat-icon">
                         <i class='bx bx-no-entry'></i>
@@ -130,7 +136,9 @@
                 <div class="stat-card">
                     <div class="stat-info">
                         <span>Approved</span>
-                        <h3><%= approvedCount %></h3>
+                        <h3>
+                            <%= approvedCount %>
+                        </h3>
                     </div>
                     <div class="stat-icon">
                         <i class='bx bx-smile'></i>
@@ -142,7 +150,9 @@
                 <div class="stat-card">
                     <div class="stat-info">
                         <span>Rejected</span>
-                        <h3><%= rejectedCount %></h3>
+                        <h3>
+                            <%= rejectedCount %>
+                        </h3>
                     </div>
                     <div class="stat-icon">
                         <i class='bx bx-sad'></i>
@@ -248,11 +258,18 @@
                                             </span>
                                         </td>
                                         <td>
-                                            <a href="/companyjobsview/<%= job.id %>" class="btn btn-outline">
-                                                View Applicants (<%= job.dataValues.applicantsCount || 0 %>)
-                                            </a>
+                                            <% const count=job.dataValues.applicantsCount || 0; %>
+                                                <a href="<%= count > 0 ? '/companyjobsview/' + job.id : '#' %>"
+                                                    class="btn btn-outline <%= count === 0 ? 'disabled' : '' %>"
+                                                    <%=count===0
+                                                    ? 'aria-disabled="true" tabindex="-1" style="pointer-events: none; opacity: 0.6;"'
+                                                    : '' %>>
+                                                    View Applicants (<%= count %>)
+                                                </a>
                                         </td>
-                                       <td>
+
+
+                                        <td>
                                             <div class="action-buttons">
                                                 <div class="tooltip-container">
                                                     <button class="action-btn view-job">

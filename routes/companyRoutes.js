@@ -16,12 +16,14 @@ router.get("/companychangepass",companycontroller.getCompanychangepass);
 router.get("/companydeleteprofile",companycontroller.getCompanydeleteprofile);
 router.get("/companysubmitjob",companycontroller.getCompanysubmitjob);
 router.get("/companyprofile",companycontroller.getCompanyprofile);
-router.get("/companyprofilesett",companycontroller.getCompanyprofilesett);
+router.get("/companyprofilesett",companycontroller.getEditProfile);
 router.get("/companyjobs",companycontroller.getCompanyjobs);
 router.get("/companyeditjob",companycontroller.getCompanyeditjobs);
 
 
 router.post("/companysubmitjob",companycontroller.postCompanysubmitjob);
+router.post("/companyprofilesett",companycontroller.postEditProfile);
+
 
 
 module.exports = router;

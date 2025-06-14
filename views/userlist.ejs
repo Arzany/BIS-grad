@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="shortcut icon" href="/images/fav.png" type="image/x-icon" />
     <link rel="stylesheet" href="/css/user-list.css">
 </head>
+
 <body>
     <!-- Header -->
     <header class="header">
@@ -14,15 +16,15 @@
             <div class="logo">
                 <img src="/images/logoforallpages.png">
             </div>
-            
-                <div class="navigator">
-                    <ul class="nav-list">
-                        <li><a href="/admindashboard">admin dashboard</a></li>
-                        <li><a href="/awareness">Awareness</a></li>
-                        <li><a href="/userlist">Applicants List</a></li>
-                        <li><a href="/companylist">Companies List</a></li>
-                    </ul>
-                </div>
+
+            <div class="navigator">
+                <ul class="nav-list">
+                    <li><a href="/admindashboard">admin dashboard</a></li>
+                    <li><a href="/awareness">Awareness</a></li>
+                    <li><a href="/userlist">Applicants List</a></li>
+                    <li><a href="/companylist">Companies List</a></li>
+                </ul>
+            </div>
             <a href="/companyprofile">
                 <div class="user-actions">
                     <div class="user-profile">
@@ -44,7 +46,7 @@
                 <form class="search-form" id="searchForm">
                     <div class="search-input">
                         <input type="text" id="searchInput" placeholder="Job title, key words or company">
-                    </div>  
+                    </div>
                     <button type="submit" class="btn-primary">Search</button>
                 </form>
             </div>
@@ -65,124 +67,66 @@
                     <option value="name-desc">Name (Z-A)</option>
                 </select>
             </div>
-        </div>       
-        <div class="filter-tags">
-            <span id="resultsCount">5 Results</span>
         </div>
-        
+        <!-- <div class="filter-tags">
+            <span id="resultsCount">5 Results</span>
+        </div> -->
+
         <div class="candidates-list" id="candidatesList">
             <!-- Candidate 1 -->
-            <div class="candidate-item" data-name="Marina Medhat" data-title="Financial Analyst" data-company="Tech Corp"  data-date="2023-05-15">
-                <div class="candidate-info">
-                    <img src="images/u_profile/marina.jpg" alt="Marina Medhat">
-                    <div class="candidate-details">
-                        <h3>Marina Medhat</h3>
-                        <span class="location">October, Giza, Egypt</span>
-                        <div class="candidate-tags">
-                            <span>Full-Time</span>
-                            <span>Financial Analyst</span>
+            <div class="candidates-list" id="candidatesList">
+                <% applicants.forEach(function(applicant) { %>
+                    <div class="candidate-item" data-name="<%= applicant.name %>"
+                        data-title="<%= applicant.jobTitle || '' %>" data-company="<%= applicant.companyName || '' %>"
+                        data-date="<%= applicant.createdAt ? applicant.createdAt.toISOString().slice(0,10) : '' %>">
+                        <div class="candidate-info">
+                            <img src="/images/<%= applicant.logo || 'default.jpg' %>" alt="<%= applicant.name %>">
+                                <div class="candidate-details">
+                                    <h3>
+                                        <%= applicant.name %>
+                                    </h3>
+                                    <span class="location">
+                                        <%= applicant.phone || '' %>
+                                    </span>
+                                    <div class="candidate-tags">
+                                        <% if (applicant.disability_type) { %>
+                                            <span>
+                                                <%= applicant.disability_type %>
+                                            </span>
+                                            <% } %>
+                                                <% if (applicant.major) { %>
+                                                    <span>
+                                                        <%= applicant.major %>
+                                                    </span>
+                                                    <% } %>
+                                                        <% if (applicant.education) { %>
+                                                            <span>
+                                                                <%= applicant.education %>
+                                                            </span>
+                                                            <% } %>
+                                    </div>
+                                </div>
                         </div>
+                        <!-- <div class="profile-action">
+                            <a href="/user-profile/<%= applicant.id %>">
+                                <button class="view-profile">View Profile</button>
+                            </a>
+                        </div> -->
                     </div>
-                </div>
-                <div class="profile-action">
-                    <a href="user-profile.html">
-                        <button class="view-profile">View Profile</button>
-                    </a>
-                </div>
+                    <% }); %>
             </div>
 
-            <!-- Candidate 2 -->
-            <div class="candidate-item" data-name="Mario Wael" data-title="Web Designer" data-company="Design Solutions"  data-date="2023-06-20">
-                <div class="candidate-info">
-                    <img src="images/u_profile/mario.jpg" alt="Mario Wael">
-                    <div class="candidate-details">
-                        <h3>Mario Wael</h3>
-                        <span class="location">New Cairo, Cairo</span>
-                        <div class="candidate-meta">
-                        </div>
-                        <div class="candidate-tags">
-                            <span>Full-Time</span>
-                            <span>Web Designer</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="profile-action">
-                    <a href="#">
-                        <button class="view-profile">View Profile</button>
-                    </a>
-                    
-                </div>
-            </div>
-
-            <!-- Candidate 3 -->
-            <div class="candidate-item" data-name="Ahmed Samir" data-title="Content Writer" data-company="Content Creators"  data-date="2023-07-10">
-                <div class="candidate-info">
-                    <img src="images/u_profile/mario.jpg" alt="Ahmed Samir">
-                    <div class="candidate-details">
-                        <h3>Ahmed Samir</h3>
-                        <span class="location">Alexandria, Egypt</span>
-                        <div class="candidate-tags">
-                            <span>Full-Time</span>
-                            <span>Content Writing</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="profile-action">
-                    <a href="#">
-                        <button class="view-profile">View Profile</button>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Candidate 4 -->
-            <div class="candidate-item" data-name="Sarah Mohamed" data-title="Video Editor" data-company="Media Pro"  data-date="2023-08-05">
-                <div class="candidate-info">
-                    <img src="images/u_profile/marina.jpg" alt="Sarah Mohamed">
-                    <div class="candidate-details">
-                        <h3>Sarah Mohamed</h3>
-                        <span class="location">Downtown, Cairo</span>
-                        <div class="candidate-tags">
-                            <span>Full-Time</span>
-                            <span>HR</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="profile-action">
-                    <a href="#">
-                        <button class="view-profile">View Profile</button>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Candidate 5 -->
-            <div class="candidate-item" data-name="John Doe" data-title="Digital Marketer" data-company="Marketing Plus"  data-date="2023-09-12">
-                <div class="candidate-info">
-                    <img src="images/u_profile/mario.jpg" alt="John Doe">
-                    <div class="candidate-details">
-                        <h3>John Doe</h3>
-                        <span class="location">Zamalek, Cairo</span>
-                        <div class="candidate-tags">
-                            <span>Full-Time</span>
-                            <span>Digital Marketing</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="profile-action">
-                    <a> 
-                        <button class="view-profile">View Profile</button>
-                    </a>
-                </div>
-            </div>
         </div>
-        
-        <div class="pagination">
+
+        <!-- <div class="pagination">
             <button class="active">1</button>
             <button>2</button>
             <button>3</button>
             <button>></button>
-        </div>
+        </div> -->
     </div>
 
     <script src="/js/users-list.js"></script>
 </body>
+
 </html>
