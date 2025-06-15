@@ -4,6 +4,8 @@ const Application = require("../models/application");
 const Applicant = require("../models/applicant");
 const User = require("../models/user");
 
+const bcrypt = require("bcrypt");
+
 exports.getJobdetailedit = async (req, res, next) => {
   try {
     const jobId = req.params.jobId;
@@ -91,7 +93,7 @@ exports.getUserchangepass = async (req, res, next) => {
 
 exports.getUserdeleteprofile = async (req, res, next) => {
   try {
-        const applicant = await Applicant.findByPk(req.session.xid, {
+    const applicant = await Applicant.findByPk(req.session.xid, {
       include: [{ model: User, as: "user" }],
     });
     res.render("userdeleteprofile", { applicant: applicant });
@@ -254,5 +256,78 @@ exports.postApplyToJob = async (req, res, next) => {
     res.redirect("/userapplied");
   } catch (error) {
     console.error("Error fetching Job grid edit page :", error);
+  }
+};
+
+exports.postUserchangepass = async (req, res) => {
+  try {
+    const xapplicant = await Applicant.findByPk(req.session.xid, {
+      include: [{ model: User, as: "user" }],
+    });
+
+    const userId = req.session.user.id;
+    const { oldPassword, newPassword } = req.body;
+
+    // Find the user
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    // Check if old password is correct
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).render("userchangepass", {
+        error: "Old Password is incorrect",
+        applicant: xapplicant,
+      });
+    }
+
+    // Hash new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update password
+    await User.update({ password: hashedPassword }, { where: { id: userId } });
+
+    res.redirect("/userprofile");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Update failed");
+  }
+};
+exports.postUserdeleteprofile = async (req, res) => {
+  try {
+    const xapplicant = await Applicant.findByPk(req.session.xid, {
+      include: [{ model: User, as: "user" }],
+    });
+
+    const userId = req.session.user.id;
+    const { password } = req.body;
+
+    // Find the user
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    // Check if old password is correct
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).render("userdeleteprofile", {
+        error: "Password is incorrect",
+        applicant: xapplicant,
+      });
+    }
+
+    // Update password
+    await User.destroy({ where: { id: userId } });
+
+    req.session.destroy((err) => {
+      console.log(err);
+      res.redirect("/home");
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Update failed");
   }
 };
