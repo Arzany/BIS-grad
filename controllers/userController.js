@@ -93,6 +93,64 @@ exports.getUsersettings = async (req, res, next) => {
   }
 };
 
+exports.getEditProfile = async (req, res) => {
+  try {
+    const appliantId = req.session.xid;
+    const  user = await  user.findByPk(appliantId, {
+      include: [
+        {
+          model: User,
+          as: "user", // use the alias if you defined one in your association
+        },
+      ],
+    });
+    if (!applicant) return res.status(404).send("applicant not found");
+
+    res.render("usersetting", { applicant });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+
+// POST: Update Profile
+exports.postEditProfile = async (req, res) => {
+  try {
+    const appliantId = req.session.xid;
+
+    const { name, address, phone, gender, age , disability_type , major , language , education , my_experience } = req.body;
+
+    // Handle image upload if applicable (you need multer for that)
+    const logo = req.file ? req.file : undefined;
+
+    const updatedData = {
+      name,
+      address,
+      phone,
+      gender,
+      age,
+      disability_type ,
+      major , 
+      language, 
+      education,
+      my_experience,
+
+      updatedAt: new Date(),
+    };
+
+    if (logo) updatedData.logo = logo.filename;
+
+    await applicant.update(updatedData, {
+      where: { id: appliantId },
+    });
+
+    res.redirect("/userprofile");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Update failed");
+  }
+};
+
 exports.getJobgridedit = async (req, res, next) => {
   try {
     const jobs = await Job.findAll({

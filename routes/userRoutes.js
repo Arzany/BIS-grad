@@ -21,7 +21,7 @@ router.get("/usersetting",usercontroller.getUsersettings);
 
 
 router.post("/applyToJob",usercontroller.postApplyToJob);
-
+router.post("/companyprofilesett",usercontroller.postEditProfile);
 
 
 module.exports = router;
