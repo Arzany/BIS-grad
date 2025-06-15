@@ -6,6 +6,9 @@ const Applicant = require("../models/applicant");
 const Company = require("../models/company");
 const User = require("../models/user");
 
+const bcrypt = require("bcrypt");
+
+
 exports.getPayment = async (req, res, next) => {
   try {
     res.render("payment");
@@ -66,7 +69,9 @@ exports.getCompanyjobsview = async (req, res, next) => {
 
 exports.getCompanychangepass = async (req, res, next) => {
   try {
-    const company = await Company.findByPk(req.session.xid);
+    const company = await Company.findByPk(req.session.xid, {
+      include: [{ model: User, as: "user" }],
+    });
 
     res.render("companychangepass", { company: company });
   } catch (error) {
@@ -274,5 +279,78 @@ exports.postCompanysubmitjob = async (req, res, next) => {
     res.redirect("/companyjobs");
   } catch (error) {
     console.error("Error fetching Company submit job page :", error);
+  }
+};
+
+exports.postCompanychangepass = async (req, res) => {
+  try {
+    const xcompany = await Company.findByPk(req.session.xid, {
+      include: [{ model: User, as: "user" }],
+    });
+
+    const userId = req.session.user.id;
+    const { oldPassword, newPassword } = req.body;
+
+    // Find the user
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    // Check if old password is correct
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).render("companychangepass", {
+        error: "Old Password is incorrect",
+        company: xcompany,
+      });
+    }
+
+    // Hash new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update password
+    await User.update({ password: hashedPassword }, { where: { id: userId } });
+
+    res.redirect("/userprofile");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Update failed");
+  }
+};
+exports.postCompanydeleteprofile = async (req, res) => {
+  try {
+    const xcompany = await Company.findByPk(req.session.xid, {
+      include: [{ model: User, as: "user" }],
+    });
+
+    const userId = req.session.user.id;
+    const { password } = req.body;
+
+    // Find the user
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    // Check if old password is correct
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).render("companydeleteprofile", {
+        error: "Password is incorrect",
+        company: xcompany,
+      });
+    }
+
+    // Update password
+    await User.destroy({ where: { id: userId } });
+
+    req.session.destroy((err) => {
+      console.log(err);
+      res.redirect("/home");
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Update failed");
   }
 };

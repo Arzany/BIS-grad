@@ -289,7 +289,7 @@ exports.postUserchangepass = async (req, res) => {
     // Update password
     await User.update({ password: hashedPassword }, { where: { id: userId } });
 
-    res.redirect("/userprofile");
+    res.redirect("/companyprofile");
   } catch (error) {
     console.error(error);
     res.status(500).send("Update failed");

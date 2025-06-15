@@ -22,6 +22,9 @@ router.get("/companyeditjob", companycontroller.getCompanyeditjobs);
 
 router.post("/companysubmitjob", companycontroller.postCompanysubmitjob);
 router.post("/companyprofilesett", upload, companycontroller.postEditProfile);
+router.post("/companychangepass", companycontroller.postCompanychangepass);
+router.post("/companydeleteprofile", companycontroller.postCompanydeleteprofile);
+
 
 module.exports = router;
 

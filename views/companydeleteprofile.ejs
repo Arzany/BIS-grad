@@ -73,25 +73,31 @@
                 <h1>Delete Profile</h1>
             </div>
 
-            <div class="delete-form-container">
-                <h2>Are you sure! You want to delete your profile.</h2>
-                <p class="warning-text">This can't be undone!</p>
+            <% if (typeof error !=="undefined" ) { %>
+                <div class="form-error" style="margin: 1rem;">
+                    <%= error %>
+                </div>
+                <% } %>
 
-                <form class="delete-form">
-                    <div class="form-group">
-                        <label for="password">Please enter your login Password to confirm: <span
-                                class="required">*</span></label>
-                        <input type="password" id="password" placeholder="Your Password..." required>
+                    <div class="delete-form-container">
+                        <h2>Are you sure! You want to delete your profile.</h2>
+                        <p class="warning-text">This can't be undone!</p>
+
+                        <form class="delete-form" action="/companydeleteprofile" method="POST" id="deleteProfileForm">
+                            <div class="form-group">
+                                <label for="password">Please enter your login Password to confirm: <span
+                                        class="required">*</span></label>
+                                <input type="password" id="password" name="password" placeholder="Your Password..." required>
+                            </div>
+
+                            <button type="button" class="btn-delete" id="deleteBtn">Delete Profile</button>
+                        </form>
                     </div>
-
-                    <button type="button" class="btn-delete" id="deleteBtn">Delete Profile</button>
-                </form>
-            </div>
         </main>
     </div>
 
     <!-- Delete Confirmation Modal -->
-    <div class="modal" id="deleteModal">
+    <!-- <div class="modal" id="deleteModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Why are you deleting your account?</h3>
@@ -132,7 +138,7 @@
                 <button type="submit" class="btn-submit">Submit</button>
             </form>
         </div>
-    </div>
+    </div> -->
 
 
 
