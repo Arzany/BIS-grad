@@ -8,7 +8,6 @@
     <link rel="shortcut icon" href="/images/fav.png" type="image/x-icon" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href='/css/company-jobs.css' rel='stylesheet'>
-    <link rel="stylesheet" href="company-jobs.css">
 </head>
 
 <body class="dashboard">
@@ -35,8 +34,8 @@
             <div class="user-block">
                 <a href="/companyprofile">
                     <div class="user-info">
-                        <img src="/images/mercedese.jpg" alt="Compay logo" class="user-avatar">
-                        <strong class="user-name">Mercedes</strong>
+                        <img src="/company-logos/<%= company.logo %>" alt="Compay logo" class="user-avatar">
+                        <strong class="user-name"><%= company.name %></strong>
                     </div>
                 </a>
             </div>
@@ -328,4 +327,4 @@
     <script src="/js/company-jobs.js"></script>
 </body>
 
-</html>
+</html>>

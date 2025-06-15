@@ -29,9 +29,9 @@
             </div>
 
             <div class="user-block">
-                <a href="../project lev. 44444/user-profile.html">
+                <a href="/userprofile">
                     <button class="user-info">
-                        <img src="/images/mercedese.jpg" alt="User" class="user-avatar">
+                        <img src="/applicant-images/<%= applicant.image %>" alt="User" class="user-avatar">
                     </button>
                 </a>
             </div>
@@ -71,7 +71,7 @@
                         <a href="/jobdetailedit/<%= job.id %>">
 
                             <div class="job-header">
-                                <img src="/images/mercedese.jpg" alt="Company Logo">
+                                <img src="/company-logos/<%= job.company.logo %>" alt="Company Logo">
                                 <div class="job-info">
                                     <span class="company">
                                         <%= job.company.name %>

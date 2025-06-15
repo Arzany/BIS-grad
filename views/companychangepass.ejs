@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,47 +8,50 @@
     <link rel="shortcut icon" href="/images/fav.png" type="image/x-icon" />
     <link rel="stylesheet" href="/css/user-change-password.css">
 </head>
+
 <body>
 
     <div class="dashboard-container">
         <!-- Header -->
-    <header class="header">
-        <div class="header-container">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="/images/logoforallpages.png" alt="FreelanHub Logo">
+        <header class="header">
+            <div class="header-container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="/images/logoforallpages.png" alt="FreelanHub Logo">
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="/home">Home</a></li>
+                        <li><a href="/awareness">For you</a></li>
+                        <li><a href="/price">Payment</a></li>
+                    </ul>
+                </nav>
+                <a href="/companyprofile">
+                    <div class="user-menu">
+                        <div class="user-avatar">
+                            <img src="/company-logos/<%= company.logo %>" alt="company logo">
+                        </div>
+                        <span calss="marina">
+                            <%= company.name %>
+                        </span>
+                        <i class="ph ph-caret-down"></i>
+                    </div>
                 </a>
             </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="/home">Home</a></li>
-                    <li><a href="/awareness">For you</a></li>
-                    <li><a href="/price">Payment</a></li>
-                </ul>
-            </nav>
-            <a href="/companyprofile">
-                <div class="user-menu">
-                <div class="user-avatar">
-                    <img src="/images/mercedese.jpg" alt="Company profile">
-                </div>
-                <span calss="marina">Mercedes</span>
-                <i class="ph ph-caret-down"></i>
-            </div>
-            </a>
-        </div>
-    </header>
+        </header>
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <div class="sidebar-inner">
                 <div class="sidebar-section">
                     <h4 class="sidebar-title">Management</h4>
                     <ul class="sidebar-menu">
-                
+
                         <li><a href="/companyjobs"><i class="icon">💼</i> My Jobs</a></li>
                         <li><a href="/companysubmitjob"><i class="icon">📝</i> Submit jobs</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="sidebar-section">
                     <h4 class="sidebar-title">User</h4>
                     <ul class="sidebar-menu">
@@ -67,28 +71,28 @@
                 <button class="mobile-menu-btn">☰ Menu</button>
                 <h1>Change Password</h1>
             </div>
-            
+
             <form class="password-form" id="passwordForm">
                 <div class="form-group">
                     <label for="email">Your Email: <span class="required">*</span></label>
                     <input type="email" id="email" placeholder="Ex: martinaayman@gmail.com" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="old-password">Old Password: <span class="required">*</span></label>
                     <input type="password" id="old-password" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="new-password">New Password: <span class="required">*</span></label>
                     <input type="password" id="new-password" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="confirm-password">Confirm New Password: <span class="required">*</span></label>
                     <input type="password" id="confirm-password" required>
                 </div>
-                
+
                 <button type="button" class="btn-change-password">Change Password</button>
             </form>
         </main>
@@ -102,17 +106,19 @@
                 <button class="close-modal">&times;</button>
             </div>
             <div class="modal-body">
-                <p>We have sent a verification link to <span class="email-highlight">avitex*****@gmaiil.com</span>. Click on the link to complete the verification process.</p>
+                <p>We have sent a verification link to <span class="email-highlight">avitex*****@gmaiil.com</span>.
+                    Click on the link to complete the verification process.</p>
                 <p class="note">*You might need to check your spam folder.*</p>
                 <div class="modal-actions">
                     <button class="btn-resend">Resend Email</button>
                     <a href="/home">
                         <button class="btn-return">Return to homepage</button>
-                    </a>  
+                    </a>
                 </div>
             </div>
         </div>
     </div>
     <script src="/js/user-change-pass.js"></script>
 </body>
+
 </html>

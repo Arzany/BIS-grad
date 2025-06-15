@@ -28,8 +28,8 @@
             <a href="/userprofile">
                 <div class="user-actions">
                     <div class="user-profile">
-                        <img src="/images/marina.webp" alt="User profile">
-                        <span>My Profile</span>
+                        <img src="/applicant-images/<%= applicant.image %>" alt="User profile">
+                        <span><%= applicant.name %></span>
                         <i class="ph ph-caret-down"></i>
                     </div>
                  </div>
@@ -54,9 +54,9 @@
             <div class="sidebar-section">
                 <h4>User</h4>
                 <ul>
-                    <li><a href="/userprofile"><i class="icon">👤</i> My Profile</a></li>
+                    <li class="active"><a href="/userprofile"><i class="icon">👤</i> My Profile</a></li>
                     <li><a href="/usersetting"><i class="icon">⚙️</i>Edit Profile</a></li>
-                    <li class="active"><a href="/userchangepass"><i class="icon">🔓</i> Change Password</a></li>
+                    <li><a href="/userchangepass"><i class="icon">🔓</i> Change Password</a></li>
                     <li><a href="/userdeleteprofile"><i class="icon">🗑️</i> Delete Profile</a></li>
                     <li><a href="/home"><i class="icon">🚪</i> Log Out</a></li>
                 </ul>
@@ -67,8 +67,8 @@
         <main class="main-content">
             <div class="content-header">
                 <h1 class="title">My profile</h1>
-                <img src="images/marina.webp" class="profile_pic">
-                <a href="#" class="btn-edit">Edit Profile </a>
+                <img src="/applicant-images/<%= applicant.image %>" class="profile_pic">
+                <a href="/usersetting" class="btn-edit">Edit Profile </a>
             </div>
             
             <div class="profile-content">
@@ -81,44 +81,44 @@
                         <ul class="info-list">
                             <li>
                                 <span>Name:</span>
-                                <strong>Marina Medhat Fawzy</strong>
+                                <strong><%= applicant.name %></strong>
                             </li>
                             <li>
                                 <span>Age:</span>
-                                <strong>25</strong>
+                                <strong><%= applicant.age %></strong>
                             </li>
                             <li>
-                                <span>Male:</span>
-                                <strong>Female</strong>
+                                <span>Gender:</span>
+                                <strong><%= applicant.gender %></strong>
                             </li>
                             <li>
                                 <span>Email:</span>
-                                <strong>marinamedhat949@gmail.com</strong>
+                                <strong><%= applicant.user.email %></strong>
                             </li>
                             <li>
                             <span>Phone Number:</span>
-                                <strong>01254935764</strong>
+                                <strong><%= applicant.phone %></strong>
                             </li>
                             <li>
                                 <span>Address:</span>
-                                <strong>October, Giza , Egypt</strong>
+                                <strong><%= applicant.address %></strong>
                             
                             </li>
                             <li>
                                 <span>Languages:</span>
-                                <strong>English, French</strong>
+                                <strong><%= applicant.language %></strong>
                             </li>
                             <li>
                                 <span>Education:</span>
-                                <strong>BIS Bachelar degree</strong>
+                                <strong><%= applicant.education %></strong>
                             </li>
                             <li>
                                 <span>Major:</span>
-                                <strong>Financial Analyst</strong>
+                                <strong><%= applicant.major %></strong>
                             </li>
                             <li>
                                 <span>Type of disability:</span>
-                                <strong>Physical disability</strong>
+                                <strong><%= applicant.disability_type %></strong>
                             </li>
                         </ul>
                     </div>
@@ -127,20 +127,8 @@
                     <!-- About Me -->
                     <div class="exprience-card">
                         <h2>My Experience</h2>
-                        <p>During my studies, I discovered how technology drives modern banking—from digital transactions to risk modeling. This inspired me to deepen my finance knowledge, leading me to complete specialized courses at the Egyptian Banking Institute (EBI). These courses covered:
+                        <p><%= applicant.my_experience %></p>
 
-                            Fundamentals of Banking Operations (e.g., loans, deposits, and payment systems).
-                            
-                            Financial Accounting Basics (reading balance sheets, income statements).
-                            
-                            Risk Management (credit risk, compliance).</p>
-                        <p>I'm now seeking opportunities to apply this hybrid skill set in retail banking, fintech, or financial analysis. I thrive in roles that require:
-
-                            Analyzing financial data to improve customer services.
-                            
-                            Automating reports to reduce errors (a strength from my BIS training).
-                            
-                            Learning regulatory frameworks (thanks to my EBI courses).</p>
                     </div>
         </div>
     </div>

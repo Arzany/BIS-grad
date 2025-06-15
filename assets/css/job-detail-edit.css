@@ -48,6 +48,17 @@ ul {
     list-style: none;
 }
 
+/* Styles By K */
+.form-error {
+    color: #e53e3e;
+    background: #fff0f0;
+    padding: 10px;
+    border-radius: 5px;
+    /* margin-bottom: 15px; */
+    text-align: center;
+    font-size: larger;
+}
+
 img {
     max-width: 100%;
     height: auto;

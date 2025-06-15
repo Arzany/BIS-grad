@@ -29,8 +29,8 @@
             </nav>
             <a href="/userprofile">
                 <div class="user-profile">
-                    <img src="/images/marina.webp" alt="User profile">
-                    <span>Marina</span>
+                        <img src="/applicant-images/<%= applicant.image %>" alt="User profile">
+                        <span><%= applicant.name %></span>
                     <i class="ph-caret-down"></i>
                 </div>
             </a>
@@ -109,7 +109,8 @@
                                         </a>
                                         <div class="job-meta">
                                             <a href="#" class="company">
-                                                <img src="/images/mercedese.jpg" alt="Company Logo">
+                                                <img src="/company-logos/<%= app.job.company.logo %>"
+                                                    alt="Company Logo">
                                                 <%= app.job.company.name %>
                                             </a>
                                             <span class="location">

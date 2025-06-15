@@ -210,13 +210,13 @@ document.addEventListener("DOMContentLoaded", function () {
       closeModal();
     });
 
-  document
-    .querySelector(".modal-form")
-    .addEventListener("submit", function (e) {
-      e.preventDefault();
-      alert("Meeting scheduled successfully!");
-      closeModal();
-    });
+  // document
+  //   .querySelector(".modal-form")
+  //   .addEventListener("submit", function (e) {
+  //     e.preventDefault();
+  //     alert("Meeting scheduled successfully!");
+  //     closeModal();
+  //   });
 
   document.querySelectorAll(".btn-action").forEach((button) => {
     const title = button.getAttribute("title");

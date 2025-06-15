@@ -29,14 +29,13 @@
                 </ul>
             </div>
 
-            <div class="user-block">
-                <a href="/companyprofile">
-                    <button class="user-info">
-                        <img src="images/com. logo/mercedese.jpg" alt="User" class="user-avatar">
-                        <strong class="user-name">Mercedes</strong>
-                        <span class="ph ph-caret-down"></span>
-                    </button>
-                </a>
+            <div class="user-menu">
+                <div class="user-avatar">
+                    <img src="/company-logos/<%= company.logo %>" alt="company logo">
+                </div>
+                <span>
+                    <%= company.name %>
+                </span>
             </div>
         </div>
     </header>
@@ -75,7 +74,7 @@
                     </div>
                 </div>
             </div>
-        </div>>
+        </div>
 
 
         <!-- Main Content -->
@@ -162,8 +161,11 @@
                                 <tr>
                                     <td>
                                         <div class="candidate-info">
-                                            <img src="<%= app.applicant && app.applicant.profileImage ? app.applicant.profileImage : '/images/u_profile/default.jpg' %>"
-                                                alt="<%= app.applicant && app.applicant.name ? app.applicant.name : 'Candidate' %>'s profile">
+                                            <div class="user-avatar">
+
+                                                <img src="/applicant-images/<%= app.applicant.image %>"
+                                                    alt="<%= app.applicant.name %>">
+                                            </div>
                                             <div>
                                                 <h3>
                                                     <%= app.applicant && app.applicant.name ? app.applicant.name

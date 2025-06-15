@@ -2,6 +2,7 @@ const Job = require("../models/job");
 const Company = require("../models/company");
 const Application = require("../models/application");
 const Applicant = require("../models/applicant");
+const User = require("../models/user");
 
 exports.getJobdetailedit = async (req, res, next) => {
   try {
@@ -14,7 +15,16 @@ exports.getJobdetailedit = async (req, res, next) => {
         },
       ],
     });
-    res.render("jobdetailedit", { job: job });
+
+    let errorMessage;
+    if (req.query.error === "already_applied") {
+      errorMessage = "You have already applied to this job.";
+    }
+
+    console.log("______________________");
+    console.log("______________________");
+    console.log(errorMessage);
+    res.render("jobdetailedit", { job: job, error: errorMessage });
   } catch (error) {
     console.error("Error fetching Job detail edit page :", error);
   }
@@ -38,24 +48,31 @@ exports.getPrice = async (req, res, next) => {
 
 exports.getuserapplied = async (req, res, next) => {
   try {
-const applications = await Application.findAll({
-  where: { applicantId: req.session.xid },
-  include: [
-    {
-      model: Job,
+    const applications = await Application.findAll({
+      where: { applicantId: req.session.xid },
       include: [
         {
-          model: Company,
-          attributes: ["name", "logo"],
+          model: Job,
+          include: [
+            {
+              model: Company,
+              attributes: ["name", "logo"],
+            },
+          ],
+        },
+        {
+          model: Applicant,
         },
       ],
-    },
-    {
-      model: Applicant,
-    },
-  ],
-});
-    res.render("userapplied", { applications: applications });
+    });
+
+    const applicant = await Applicant.findByPk(req.session.xid, {
+      include: [{ model: User, as: "user" }],
+    });
+    res.render("userapplied", {
+      applications: applications,
+      applicant: applicant,
+    });
   } catch (error) {
     console.error("Error fetching User applied page :", error);
   }
@@ -63,7 +80,10 @@ const applications = await Application.findAll({
 
 exports.getUserchangepass = async (req, res, next) => {
   try {
-    res.render("userchangepass");
+    const applicant = await Applicant.findByPk(req.session.xid, {
+      include: [{ model: User, as: "user" }],
+    });
+    res.render("userchangepass", { applicant: applicant });
   } catch (error) {
     console.error("Error fetching User change pass page :", error);
   }
@@ -71,7 +91,10 @@ exports.getUserchangepass = async (req, res, next) => {
 
 exports.getUserdeleteprofile = async (req, res, next) => {
   try {
-    res.render("userdeleteprofile");
+        const applicant = await Applicant.findByPk(req.session.xid, {
+      include: [{ model: User, as: "user" }],
+    });
+    res.render("userdeleteprofile", { applicant: applicant });
   } catch (error) {
     console.error("Error fetching User delete profile page :", error);
   }
@@ -79,7 +102,10 @@ exports.getUserdeleteprofile = async (req, res, next) => {
 
 exports.getUserprofile = async (req, res, next) => {
   try {
-    res.render("userprofile");
+    const applicant = await Applicant.findByPk(req.session.xid, {
+      include: [{ model: User, as: "user" }],
+    });
+    res.render("userprofile", { applicant: applicant });
   } catch (error) {
     console.error("Error fetching User profile page :", error);
   }
@@ -87,7 +113,10 @@ exports.getUserprofile = async (req, res, next) => {
 
 exports.getUsersettings = async (req, res, next) => {
   try {
-    res.render("usersetting");
+    const applicant = await Applicant.findByPk(req.session.xid, {
+      include: [{ model: User, as: "user" }],
+    });
+    res.render("usersetting", { applicant: applicant });
   } catch (error) {
     console.error("Error fetching User settings page :", error);
   }
@@ -96,7 +125,7 @@ exports.getUsersettings = async (req, res, next) => {
 exports.getEditProfile = async (req, res) => {
   try {
     const appliantId = req.session.xid;
-    const  user = await  user.findByPk(appliantId, {
+    const user = await user.findByPk(appliantId, {
       include: [
         {
           model: User,
@@ -116,12 +145,28 @@ exports.getEditProfile = async (req, res) => {
 // POST: Update Profile
 exports.postEditProfile = async (req, res) => {
   try {
-    const appliantId = req.session.xid;
+    const applicantId = req.session.xid;
 
-    const { name, address, phone, gender, age , disability_type , major , language , education , my_experience } = req.body;
+    const {
+      name,
+      address,
+      phone,
+      gender,
+      age,
+      disability_type,
+      major,
+      language,
+      education,
+      my_experience,
+    } = req.body;
 
-    // Handle image upload if applicable (you need multer for that)
-    const logo = req.file ? req.file : undefined;
+    // Handle files from multer.fields()
+    const uploadedFiles = req.files || {};
+
+    const cvFile = uploadedFiles.cv ? uploadedFiles.cv[0] : null;
+    const imageFile = uploadedFiles.applicantImage
+      ? uploadedFiles.applicantImage[0]
+      : null;
 
     const updatedData = {
       name,
@@ -129,19 +174,19 @@ exports.postEditProfile = async (req, res) => {
       phone,
       gender,
       age,
-      disability_type ,
-      major , 
-      language, 
+      disability_type,
+      major,
+      language,
       education,
       my_experience,
-
       updatedAt: new Date(),
     };
 
-    if (logo) updatedData.logo = logo.filename;
+    if (cvFile) updatedData.cv = cvFile.filename;
+    if (imageFile) updatedData.image = imageFile.filename;
 
-    await applicant.update(updatedData, {
-      where: { id: appliantId },
+    await Applicant.update(updatedData, {
+      where: { id: applicantId },
     });
 
     res.redirect("/userprofile");
@@ -163,7 +208,11 @@ exports.getJobgridedit = async (req, res, next) => {
       ],
     });
 
-    res.render("jobgridedit", { jobs: jobs });
+    const applicant = await Applicant.findByPk(req.session.xid, {
+      include: [{ model: User, as: "user" }],
+    });
+
+    res.render("jobgridedit", { jobs: jobs, applicant: applicant });
   } catch (error) {
     console.error("Error fetching Job grid edit page :", error);
   }
@@ -173,11 +222,31 @@ exports.postApplyToJob = async (req, res, next) => {
   try {
     const cover_letter = req.body.cover_letter;
     const jobId = req.body.jobId;
-    const cv = req.file;
+
+    const existingApplication = await Application.findOne({
+      where: {
+        applicantId: req.session.xid,
+        jobId: jobId,
+      },
+    });
+
+    if (existingApplication) {
+      // Application already exists, handle accordingly:
+      // e.g. send error response, or update existing record
+      return res.redirect(`/jobdetailedit/${jobId}?error=already_applied`);
+    }
+
+    const uploadedFiles = req.files || {};
+
+    const cvFile = uploadedFiles.cv ? uploadedFiles.cv[0] : null;
+    var cv;
+    if (cvFile) {
+      cv = cvFile.filename;
+    }
 
     const application = await Application.create({
       cover_letter: cover_letter,
-      cv_path: cv.filename,
+      cv_path: cv,
       jobId: jobId,
       applicantId: req.session.xid,
     });

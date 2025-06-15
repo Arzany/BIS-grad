@@ -100,75 +100,82 @@
     </section>
 
     <!-- Main Content -->
-    <main class="job-detail">
-        <div class="container">
-            <div class="job-content">
-                <section class="job-overview">
-                    <h2>Projects Overview</h2>
-                    <div class="overview-grid">
-                        <div class="overview-item">
-                            <i class="ph ph-calendar-blank"></i>
-                            <div>
-                                <span>Date Posted:</span>
-                                <strong>
-                                    <%= job.createdAt ? job.createdAt.toLocaleDateString('en-US', { year: 'numeric' ,
-                                        month: 'long' , day: 'numeric' }) : '' %>
-                                </strong>
-                            </div>
-                        </div>
-                        <div class="overview-item">
-                            <i class="ph ph-clock-countdown"></i>
-                            <div>
-                                <span>Expiration date:</span>
-                                <strong>
-                                    <%= job.application_deadline ? job.application_deadline.toLocaleDateString('en-US',
-                                        { year: 'numeric' , month: 'long' , day: 'numeric' }) : '' %>
-                                </strong>
-                            </div>
-                        </div>
-                        <!-- <div class="overview-item">
+    <% if (typeof error !=="undefined" ) { %>
+        <div class="form-error">
+            <%= error %>
+        </div>
+        <% } %>
+            <main class="job-detail">
+
+                <div class="container">
+                    <div class="job-content">
+                        <section class="job-overview">
+                            <h2>Job Overview</h2>
+                            <div class="overview-grid">
+                                <div class="overview-item">
+                                    <i class="ph ph-calendar-blank"></i>
+                                    <div>
+                                        <span>Date Posted:</span>
+                                        <strong>
+                                            <%= job.createdAt ? job.createdAt.toLocaleDateString('en-US', {
+                                                year: 'numeric' , month: 'long' , day: 'numeric' }) : '' %>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <div class="overview-item">
+                                    <i class="ph ph-clock-countdown"></i>
+                                    <div>
+                                        <span>Expiration date:</span>
+                                        <strong>
+                                            <%= job.application_deadline ?
+                                                job.application_deadline.toLocaleDateString('en-US', { year: 'numeric' ,
+                                                month: 'long' , day: 'numeric' }) : '' %>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <!-- <div class="overview-item">
                             <i class="ph ph-map-pin"></i>
                             <div>
                                 <span>Location:</span>
                                 <strong>Las Vegas, USA</strong>
                             </div>
                         </div> -->
-                        <div class="overview-item">
-                            <i class="ph ph-hourglass"></i>
-                            <div>
-                                <span>Salary Type:</span>
-                                <strong>
-                                    <%= job.salary_period %>
-                                </strong>
-                            </div>
-                        </div>
-                        <div class="overview-item">
-                            <i class="ph ph-chart-bar"></i>
-                            <div>
-                                <span>Salary Range:</span>
-                                <strong>
-                                    <%= job.min_salary %> LE - <%= job.max_salary %> LE
-                                </strong>
-                            </div>
-                        </div>
-                        <!-- <div class="overview-item">
+                                <div class="overview-item">
+                                    <i class="ph ph-hourglass"></i>
+                                    <div>
+                                        <span>Salary Type:</span>
+                                        <strong>
+                                            <%= job.salary_period %>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <div class="overview-item">
+                                    <i class="ph ph-chart-bar"></i>
+                                    <div>
+                                        <span>Salary Range:</span>
+                                        <strong>
+                                            <%= job.min_salary %> LE - <%= job.max_salary %> LE
+                                        </strong>
+                                    </div>
+                                </div>
+                                <!-- <div class="overview-item">
                             <i class="ph ph-translate"></i>
                             <div>
                                 <span>English Level:</span>
                                 <strong>Fluent</strong>
                             </div>
                         </div> -->
-                    </div>
-                </section>
+                            </div>
+                        </section>
 
-                <section class="job-description">
-                    <h2>Full Job Description</h2>
-                    <p>
-                        <%= job.description %>
-                    </p>
-                </section>
+                        <section class="job-description">
+                            <h2>Full Job Description</h2>
+                            <p>
+                                <%= job.description %>
+                            </p>
+                        </section>
 
-                <!-- <section class="job-responsibilities">
+                        <!-- <section class="job-responsibilities">
                     <h2>The Work You'll Do:</h2>
                     <ul>
                         <li>Support the Creative Directors and Associate Creative Directors of experience design to
@@ -204,7 +211,7 @@
                     </ul>
                 </section> -->
 
-                <!-- <section class="job-gallery">
+                        <!-- <section class="job-gallery">
                     <div class="gallery-grid">
                         <div class="gallery-item main-item">
                             <img src="assets/images/blog/1.webp" alt="Job Image 1">
@@ -272,7 +279,7 @@
                 </section>
             </div> -->
 
-                <!-- <aside class="job-sidebar">
+                        <!-- <aside class="job-sidebar">
                 <div class="sidebar-card">
                     <h3>About the Employer</h3>
                     <div class="employer-info">
@@ -317,10 +324,10 @@
                 </div>
             </aside>
         </div> -->
-    </main>
+            </main>
 
-    <!-- Footer -->
-    <!-- <footer class="footer">
+            <!-- Footer -->
+            <!-- <footer class="footer">
         <div class="container">
             <div class="footer-top">
                 <div class="footer-logo">
@@ -407,56 +414,57 @@
         </div>
     </footer> -->
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu">
-        <button class="close-menu"><i class="ph ph-x"></i></button>
-        <div class="menu-content">
-            <!-- Mobile menu content would go here -->
-        </div>
-    </div>
-
-    <!-- Apply Modal -->
-    <div class="modal apply-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Apply Jobs</h3>
-                <button class="close-modal"><i class="ph ph-x"></i></button>
+            <!-- Mobile Menu -->
+            <div class="mobile-menu">
+                <button class="close-menu"><i class="ph ph-x"></i></button>
+                <div class="menu-content">
+                    <!-- Mobile menu content would go here -->
+                </div>
             </div>
-            <form class="modal-form" method="POST" action="/applyToJob" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="cover-letter">Cover letter <span>*</span></label>
-                    <textarea name="cover_letter" id="cover-letter" rows="4" cols="50"
-                        placeholder="Enter your cover letter" required></textarea>
+
+            <!-- Apply Modal -->
+            <div class="modal apply-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Apply Jobs</h3>
+                        <button class="close-modal"><i class="ph ph-x"></i></button>
+                    </div>
+                    <form class="modal-form" method="POST" action="/applyToJob" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="cover-letter">Cover letter <span>*</span></label>
+                            <textarea name="cover_letter" id="cover-letter" rows="4" cols="50"
+                                placeholder="Enter your cover letter" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="pdf-cv">CV <span>*</span></label>
+                            <input type="file" id="pdf-cv" name="cv" accept=".pdf,.doc,.docx" required
+                                style="display:none;">
+                            <label for="pdf-cv" class="custom-file-label">Choose File</label>
+                            <span id="file-chosen" style="margin-left:10px;">No file chosen</span>
+                        </div>
+                        <input type="hidden" name="jobId" value="<%= job.id %>">
+                        <button type="submit" class="btn-primary">Apply Now</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="pdf-cv">CV <span>*</span></label>
-                    <input type="file" id="pdf-cv" name="cv" accept=".pdf,.doc,.docx" required style="display:none;">
-                    <label for="pdf-cv" class="custom-file-label">Choose File</label>
-                    <span id="file-chosen" style="margin-left:10px;">No file chosen</span>
+            </div>
+
+            <!-- Video Modal -->
+            <div class="modal video-modal">
+                <div class="modal-content">
+                    <iframe src="https://www.youtube.com/embed/VCPGMjCW0is" frameborder="0" allowfullscreen></iframe>
                 </div>
-                <input type="hidden" name="jobId" value="<%= job.id %>">
-                <button type="submit" class="btn-primary">Apply Now</button>
-            </form>
-        </div>
-    </div>
+            </div>
 
-    <!-- Video Modal -->
-    <div class="modal video-modal">
-        <div class="modal-content">
-            <iframe src="https://www.youtube.com/embed/VCPGMjCW0is" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </div>
+            <!-- Scroll to Top Button -->
+            <!-- <button class="scroll-top"><i class="ph ph-caret-up"></i></button> -->
 
-    <!-- Scroll to Top Button -->
-    <!-- <button class="scroll-top"><i class="ph ph-caret-up"></i></button> -->
-
-    <script src="/js/job-grid-edit.js"></script>
-    <script src="/js/job-detail-edit.js"></script>
-    <script>
-        document.getElementById('pdf-cv').addEventListener('change', function () {
-            document.getElementById('file-chosen').textContent = this.files[0]?.name || 'No file chosen';
-        });
-    </script>
+            <script src="/js/job-grid-edit.js"></script>
+            <script src="/js/job-detail-edit.js"></script>
+            <script>
+                document.getElementById('pdf-cv').addEventListener('change', function () {
+                    document.getElementById('file-chosen').textContent = this.files[0]?.name || 'No file chosen';
+                });
+            </script>
 </body>
 
 </html>

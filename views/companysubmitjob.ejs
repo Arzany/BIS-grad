@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit Job</title><link rel="shortcut icon" href="/images/fav.png" type="image/x-icon" />
+    <title>Submit Job</title>
+    <link rel="shortcut icon" href="/images/fav.png" type="image/x-icon" />
     <link rel="stylesheet" href="/css/company-submit-jobs.css">
 </head>
 
@@ -31,11 +32,12 @@
 
                 <div class="user-block">
                     <a href="/companyprofile">
-
-                        <img src="/images/mercedese.jpg" alt="User" class="user-avatar">
-                        <strong class="user-name">Mercedes</strong>
-                        <span class="ph ph-caret-down"></span>
-
+                        <div class="user-info">
+                            <img src="/company-logos/<%= company.logo %>" alt="Compay logo" class="user-avatar">
+                            <strong class="user-name">
+                                <%= company.name %>
+                            </strong>
+                        </div>
                     </a>
                 </div>
 
@@ -110,13 +112,13 @@
 
                     <!-- Banner Upload -->
                     <!-- <div class="form-group"> -->
-                        <!-- <label for="banner">Upload Banner</label>
+                    <!-- <label for="banner">Upload Banner</label>
                                 <div class="upload-area" id="banner-upload">
                                     <div class="preview-area">
                                         <span class="placeholder-icon">📷</span>
                                         <img id="banner-preview" src="#" alt="Banner Preview" style="display: none;">
                                     </div> -->
-                        <!-- <div class="upload-controls">
+                    <!-- <div class="upload-controls">
                                         <label for="banner" class="btn-upload">Choose File</label>
                                         <input type="file" id="banner" accept="image/*">
                                         <p>JPG 320x240px</p>

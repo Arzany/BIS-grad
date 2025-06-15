@@ -42,7 +42,7 @@ exports.getCompanyjobsview = async (req, res, next) => {
         },
         {
           model: Applicant,
-          attributes: ["name", "phone"],
+          attributes: ["name", "phone", "image"],
         },
       ],
     });
@@ -52,7 +52,13 @@ exports.getCompanyjobsview = async (req, res, next) => {
       where: { jobId: req.params.jobId },
     });
 
-    res.render("companyjobsview", { applications, applicantsCount });
+    const company = await Company.findByPk(req.session.xid);
+
+    res.render("companyjobsview", {
+      applications,
+      applicantsCount,
+      company: company,
+    });
   } catch (error) {
     console.error("Error fetching Company jobs view page :", error);
   }
@@ -60,7 +66,9 @@ exports.getCompanyjobsview = async (req, res, next) => {
 
 exports.getCompanychangepass = async (req, res, next) => {
   try {
-    res.render("companychangepass");
+    const company = await Company.findByPk(req.session.xid);
+
+    res.render("companychangepass", { company: company });
   } catch (error) {
     console.error("Error fetching Company change pass page :", error);
   }
@@ -68,7 +76,9 @@ exports.getCompanychangepass = async (req, res, next) => {
 
 exports.getCompanydeleteprofile = async (req, res, next) => {
   try {
-    res.render("companydeleteprofile");
+    const company = await Company.findByPk(req.session.xid);
+
+    res.render("companydeleteprofile", { company: company });
   } catch (error) {
     console.error("Error fetching Company delete profile page :", error);
   }
@@ -76,8 +86,11 @@ exports.getCompanydeleteprofile = async (req, res, next) => {
 
 exports.getCompanysubmitjob = async (req, res, next) => {
   try {
+    const company = await Company.findByPk(req.session.xid);
+
     res.render("companysubmitjob", {
       companyId: req.session.user.id || null,
+      company: company,
     });
   } catch (error) {
     console.error("Error fetching Company submit job page :", error);
@@ -110,7 +123,7 @@ exports.getEditProfile = async (req, res) => {
     });
     if (!company) return res.status(404).send("Company not found");
 
-    res.render("companyprofilesett", { company });
+    res.render("companyprofilesett", { company: company });
   } catch (error) {
     console.error(error);
     res.status(500).send("Server error");
@@ -124,8 +137,11 @@ exports.postEditProfile = async (req, res) => {
 
     const { name, address, website, categories, description } = req.body;
 
-    // Handle image upload if applicable (you need multer for that)
-    const logo = req.file ? req.file : undefined;
+    const uploadedFiles = req.files || {};
+
+    const logoFile = uploadedFiles.companyLogo
+      ? uploadedFiles.companyLogo[0]
+      : null;
 
     const updatedData = {
       name,
@@ -136,7 +152,7 @@ exports.postEditProfile = async (req, res) => {
       updatedAt: new Date(),
     };
 
-    if (logo) updatedData.logo = logo.filename;
+    if (logoFile) updatedData.logo = logoFile.filename;
 
     await Company.update(updatedData, {
       where: { id: companyId },
@@ -206,6 +222,8 @@ exports.getCompanyjobs = async (req, res, next) => {
       return sum + Number(job.getDataValue("applicantsCount") || 0);
     }, 0);
 
+    const company = await Company.findByPk(req.session.xid);
+
     res.render("companyjobs", {
       jobs,
       totalApplicants,
@@ -213,6 +231,7 @@ exports.getCompanyjobs = async (req, res, next) => {
       pendingCount,
       approvedCount,
       rejectedCount,
+      company: company,
     });
   } catch (error) {
     console.error("Error fetching Company jobs page :", error);
@@ -221,7 +240,9 @@ exports.getCompanyjobs = async (req, res, next) => {
 
 exports.getCompanyeditjobs = async (req, res, next) => {
   try {
-    res.render("companyeditjob");
+    const company = await Company.findByPk(req.session.xid);
+
+    res.render("companyeditjob", { company: company });
   } catch (error) {
     console.error("Error fetching Company edit jobs page :", error);
   }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="/css/user-settings.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body class="dashboard">
     <!-- Header -->
     <header class="header">
@@ -28,10 +30,12 @@
             <a href="/usersetting">
                 <div class="user-menu">
                     <div class="user-avatar">
-                        <img src="/images/marina.webp" alt="User profile">
+                        <img src="/applicant-images/<%= applicant.image %>" alt="User profile">
                     </div>
-                    <span class="marina">Marina</span>
-            </div>
+                    <span style="color: white;">
+                        <%= applicant.name %>
+                    </span>
+                </div>
             </a>
         </div>
     </header>
@@ -50,8 +54,8 @@
                 <h4>User</h4>
                 <ul>
                     <li><a href="/userprofile"><i class="icon">👤</i> My Profile</a></li>
-                    <li><a href="/usersetting"><i class="icon">⚙️</i>Edit Profile</a></li>
-                    <li class="active"><a href="/userchangepass"><i class="icon">🔓</i> Change Password</a></li>
+                    <li class="active"><a href="/usersetting"><i class="icon">⚙️</i>Edit Profile</a></li>
+                    <li><a href="/userchangepass"><i class="icon">🔓</i> Change Password</a></li>
                     <li><a href="/userdeleteprofile"><i class="icon">🗑️</i> Delete Profile</a></li>
                     <li><a href="/home"><i class="icon">🚪</i> Log Out</a></li>
                 </ul>
@@ -62,123 +66,132 @@
         <main class="main-content">
             <div class="content-header">
                 <h2>Edit Profile</h2>
-                <button id="save-publish-btn" class="btn-primary">Save & Publish</button>
             </div>
+            <form action="/editUserProfile" method="POST" enctype="multipart/form-data">
 
-            <!-- CV File Section -->
-            <section class="card">
-                <h3>CV File</h3>
-                <div id="file-list-container" class="file-list">
-                    <div class="file-item">
-                        
-                        <button class="delete-btn"></button>
-                    </div>
-                </div>
-                <div class="file-upload">
-                    <label class="upload-btn">
-                        Choose File
-                        <input type="file" id="cv-upload" accept=".pdf,.doc,.docx">
-                    </label>
-                    <span>Upload file PDF, Doc, Docx</span>
-                </div>
-            </section>
+                <!-- CV File Section -->
+                <section class="card">
+                    <h3>CV File</h3>
+                    <div id="file-list-container" class="file-list">
+                        <div class="file-item">
 
-            <!-- Information Section -->
-            <section class="card">
-                <h3>Information</h3>
-                <div class="form-grid">
-                    <!-- Avatar Upload -->
-                    <div class="form-group full-width">
-                        <label> Upload a new photo: <span class="required">*</span></label>
-                        <div class="avatar-upload">
-                            <div class="avatar-preview">
-                                <i class="ph ph-image"></i>
-                                <img id="avatar-preview" src="#" alt="Preview" style="display: none;">
-                            </div>
-                            <div class="avatar-upload-controls">
-                                <strong>Upload your photo</strong>
-                                <p>JPG 320x240px</p>
-                                <label class="upload-btn">
-                                    Choose File
-                                    <input type="file" id="avatar-upload" accept="image/*">
-                                </label>
-                            </div>
+                            <button class="delete-btn"></button>
                         </div>
                     </div>
+                    <div class="file-upload">
+                        <label class="upload-btn">
+                            Choose File
+                            <input type="file" name="cv" id="cv-upload" accept=".pdf,.doc,.docx">
+                        </label>
+                        <span>Upload file PDF, Doc, Docx</span>
+                    </div>
+                </section>
 
-                    <!-- Personal Info -->
-                    <div class="form-group">
-                        <label for="full-name">Full Name: <span class="required">*</span></label>
-                        <input type="text" id="full-name" placeholder="Ex: John amir" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">Phone number: <span class="required">*</span></label>
-                        <input type="tel" id="phone" placeholder="Ex: +1234567890" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email address: <span class="required">*</span></label>
-                        <input type="email" id="email" placeholder="Ex: john.amir@gmail.com" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Gender: <span class="required">*</span></label>
-                        <select>
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="age">Age: <span class="required">*</span></label>
-                        <input type="number" id="age" value="32" required>
+                <!-- Information Section -->
+                <section class="card">
+                    <h3>Information</h3>
+                    <div class="form-grid">
+                        <!-- Avatar Upload -->
+                        <div class="form-group full-width">
+                            <label> Upload a new photo: <span class="required">*</span></label>
+                            <div class="avatar-upload">
+                                <div class="avatar-preview">
+                                    <% if (applicant.image) { %>
+                                        <img id="avatarPreview" src="/applicant-images/<%= applicant.image %>" alt="Preview">
+                                        <% } else { %>
+                                            <span class="default-icon">+</span>
+                                            <% } %>
+                                </div>
+                                <div class="avatar-upload-controls">
+                                    <strong>Upload your photo</strong>
+                                    <label class="upload-btn">
+                                        Choose File
+                                        <input type="file" id="avatarUpload" name="applicantImage" accept="image/*">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Personal Info -->
+                        <div class="form-group">
+                            <label for="full-name">Full Name: <span class="required">*</span></label>
+                            <input type="text" id="full-name" name="name" value="<%= applicant.name %>" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone number: <span class="required">*</span></label>
+                            <input type="tel" id="phone" name="phone" value="<%= applicant.phone %>" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email address: <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" value="<%= applicant.user.email %>" disabled
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Gender: <span class="required">*</span></label>
+                            <select name="gender" required>
+                                <option value="male" <%=applicant.gender==='male' ? 'selected' : '' %>>Male</option>
+                                <option value="female" <%=applicant.gender==='female' ? 'selected' : '' %>>Female
+                                </option>
+                                <option value="other" <%=applicant.gender==='other' ? 'selected' : '' %>>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Age: <span class="required">*</span></label>
+                            <input type="number" id="age" name="age" value="<%= applicant.age %>" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="education">Education: <span class="required">*</span></label>
+                            <input type="text" id="education" name="education" value="<%= applicant.education %>"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="major">Major: <span class="required">*</span></label>
+                            <input type="text" id="major" name="major" value="<%= applicant.major %>" required>
+                        </div>
+
                     </div>
 
-                    <div class="form-group">
-                        <label for="education">Education: <span class="required">*</span></label>
-                        <input type="text" id="education" placeholder="Ex: Bacholar degree" required>
-                    </div>
+                    <!-- <div class="form-group full-width">
+                    <label>Experience time: <span class="required">*</span></label>
+                    <select>
+                        <option>>4 Years</option>
+                        <option>4 Years</option>
+                        <option>3 Years</option>
+                        <option>2 Years</option>
+                        <option>1 Year</option>
+                        <option>&lt; 1 Year</option>
+                        <option>0 Year</option>
+                    </select>
+                </div> -->
 
-                    <div class="form-group">
-                        <label for="major">Major: <span class="required">*</span></label>
-                        <input type="text" id="major" placeholder="Ex: Data Analyst" required>
-                    </div>
-                    
-                    </div>
-                    
-                    <div class="form-group full-width">
-                        <label>Experience time: <span class="required">*</span></label>
-                        <select>
-                            <option>>4 Years</option>
-                            <option>4 Years</option>
-                            <option>3 Years</option>
-                            <option>2 Years</option>
-                            <option>1 Year</option>
-                            <option>&lt; 1 Year</option>
-                            <option>0 Year</option>
-                        </select>
-                    </div>
-                    
                     <div class="form-group full-width">
                         <label>Language: <span class="required">*</span></label>
                         <div class="tags-input">
-                            <input type="text" placeholder="Type your language...">
+                            <input type="text" name="language" value="<%= applicant.language %>">
                             <div class="tags-container"></div>
                         </div>
                     </div>
 
                     <div class="form-group full-width">
                         <label>Your Experience: <span class="required">*</span></label>
-                        <textarea rows="6" placeholder= "Ex: UI/UX designer with 5+ years in the industry. Specialized in creating intuitive user interfaces and engaging user experiences for web and mobile applications." ></textarea>
+                        <textarea rows="6" name="my_experience"><%= applicant.my_experience %></textarea>
                     </div>
-                </div>
-            </section>
+                    <!-- </div> -->
+                </section>
+                <button id="save-publish-btn" type="submit" class="btn-primary">Save</button>
+
+            </form>
 
         </main>
     </div>
 
     <script src="/js/user-setting.js"></script>
 </body>
+
 </html>

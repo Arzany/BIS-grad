@@ -30,7 +30,7 @@
 
             <div class="user-menu">
                 <div class="user-avatar">
-                    <img src="/cv/<%= company.logo %>" alt="company logo">
+                    <img src="/company-logos/<%= company.logo %>" alt="company logo">
                 </div>
                 <span>
                     <%= company.name %>
@@ -108,7 +108,7 @@
                                     <a href="/job-details/<%= job.id %>" class="job-link">
                                         <div class="job-item" style="padding: 1rem;">
                                             <div class="job-header">
-                                                <img src="/images/<%= job.logo || 'default.jpg' %>"
+                                                <img src="/company-logos/<%= company.logo || 'default.jpg' %>"
                                                     alt="<%= company.name %> Logo">
                                                 <div>
                                                     <h4>

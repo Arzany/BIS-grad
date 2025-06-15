@@ -46,19 +46,19 @@ app.use(
   })
 );
 
-const fileStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "assets/cv");
-  },
-  filename: (req, file, cb) => {
-    const randomNumber = Math.floor(Math.random() * 100000);
-    const fileExtension = file.originalname.split(".").pop();
-    const newFilename = `${randomNumber}-${Date.now()}.${fileExtension}`;
-    cb(null, newFilename);
-  },
-});
+// const fileStorage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "assets/cv");
+//   },
+//   filename: (req, file, cb) => {
+//     const randomNumber = Math.floor(Math.random() * 100000);
+//     const fileExtension = file.originalname.split(".").pop();
+//     const newFilename = `${randomNumber}-${Date.now()}.${fileExtension}`;
+//     cb(null, newFilename);
+//   },
+// });
 
-app.use(multer({ storage: fileStorage }).single("cv"));
+// app.use(multer({ storage: fileStorage }).single("cv"));
 
 const commonRoutes = require("./routes/commonRoutes");
 const adminRoutes = require("./routes/adminRoutes");
