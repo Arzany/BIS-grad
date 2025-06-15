@@ -48,8 +48,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="candidate-password">Password</label>
+
                                 <input type="password" id="candidate-password" name="password" required
                                     placeholder="Password">
+                                <div id="candidate-password-error" class="error-message"
+                                    style="color:red; font-size:0.9em; display:none;">
+                                    Password must be at least 8 characters.
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="candidate-confirm">Confirm password</label>
@@ -80,6 +85,10 @@
                                 <label for="employer-password">Password</label>
                                 <input type="password" id="employer-password" name="password" required
                                     placeholder="Password">
+                                <div id="employer-password-error" class="error-message"
+                                    style="color:red; font-size:0.9em; display:none;">
+                                    Password must be at least 8 characters.
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="employer-confirm">Confirm password</label>
@@ -99,26 +108,42 @@
             <script src="/js/register.js"></script>
 
             <script>
-                function validatePasswords(formId, passwordId, confirmId, buttonClass) {
+                function validatePasswords(formId, passwordId, confirmId, buttonClass, errorId) {
                     const form = document.getElementById(formId);
                     const password = document.getElementById(passwordId);
                     const confirm = document.getElementById(confirmId);
                     const button = form.querySelector('.' + buttonClass);
+                    const errorMsg = document.getElementById(errorId);
 
                     function check() {
-                        if (password.value && password.value !== confirm.value) {
-                            button.disabled = true;
+                        let isValid = true;
+
+                        // Check password length
+                        if (!password.value || password.value.length < 8) {
+                            errorMsg.style.display = 'block';
+                            isValid = false;
                         } else {
-                            button.disabled = false;
+                            errorMsg.style.display = 'none';
                         }
+
+                        // Check if passwords match
+                        if (password.value !== confirm.value) {
+                            isValid = false;
+                        }
+
+                        button.disabled = !isValid;
                     }
 
                     password.addEventListener('input', check);
                     confirm.addEventListener('input', check);
+
+                    // Initial check
+                    check();
                 }
 
-                validatePasswords('candidate-form', 'candidate-password', 'candidate-confirm', 'submit-btn');
-                validatePasswords('employer-form', 'employer-password', 'employer-confirm', 'submit-btn');
+                // Usage:
+                validatePasswords('candidate-form', 'candidate-password', 'candidate-confirm', 'submit-btn', 'candidate-password-error');
+                validatePasswords('employer-form', 'employer-password', 'employer-confirm', 'submit-btn', 'employer-password-error');
             </script>
 </body>
 
